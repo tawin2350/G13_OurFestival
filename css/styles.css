@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Prompt", sans-serif;
+}
+
+body {
+  background: #fefefe;
+  color: #222;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid #ccc;
+  background: white;
+  position: sticky;
+  top: 0;
+}
+
+header .logo {
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
+  color: #333;
+}
+
+.logo:hover {
+  color: #eee;
+  font-size: 17px ;
+  border: 2px solid rgb(172, 30, 30);
+  background-color: rgb(172, 30, 30);
+  border-radius: 5px;
+}
+
+header nav a {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+.corner-icon {
+  font-size: 1.5em;
+}
+
+.main {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.main h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.main p {
+  font-size: 1.2em;
+  color: #555;
+}
+
+.work {
+  text-align: center;
+  padding: 60px 20px;
+  border-top: 1px solid #eee;
+}
+
+.work h2 {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.staff {
+  padding: 50px 0;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+.staff h2 {
+  margin-bottom: 20px;
+}
+
+.staff-container {
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px;
+  gap: 20px;
+}
+
+.staff-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.staff-container::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 10px;
+}
+
+.card {
+  flex: 0 0 180px;
+  height: 220px;
+  border-radius: 10px;
+  background: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  border-top: 1px solid #ccc;
+  background: #fafafa;
+}
+
+footer a {
+  color: #007aff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
