@@ -49,6 +49,8 @@ header nav a:hover {
 
 .corner-icon {
   font-size: 1.5em;
+  height: 50px;
+  border-radius: 20px;
 }
 
 .main {
@@ -116,7 +118,6 @@ header nav a:hover {
   font-weight: bold;
 }
 
-/* FOOTER */
 footer {
   display: flex;
   justify-content: space-between;
