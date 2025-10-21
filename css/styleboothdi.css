@@ -1,0 +1,222 @@
+:root{
+  --bg: #fffaf5;
+  --ink: #222;
+  --sub: #666;
+  --line: #e9e4de;
+  --brand: #b71c1c;    
+  --card: #ffffff;
+  --shadow: 0 8px 24px rgba(0,0,0,.08);
+  --radius: 16px;
+}
+
+*{ box-sizing: border-box }
+html,body{ height: 100% }
+
+body{
+  margin: 0;
+  font-family: "Prompt", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 18px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: saturate(140%) blur(6px);
+}
+.home-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+.home-link .home-text{
+  display: none;               
+  font-size: 12px;
+  line-height: 1.1;
+  color: var(--sub);
+}
+
+.page-title{
+  margin: 0;
+  text-align: center;
+  font-size: clamp(18px, 2.6vw, 26px);
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+.profile-link{
+  justify-self: end;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.avatar{
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: #f3f3f3;
+  border: 1px solid var(--line);
+}
+.profile-hint{
+  display: none;
+  text-align: right;
+  font-size: 11px;
+  color: var(--sub);
+}
+
+
+.spacer{ height: 12px }
+
+
+.section{
+  padding: 24px clamp(16px, 4vw, 40px);
+  border-top: 1px solid var(--line);
+  background: transparent;
+}
+
+.section:first-of-type{ border-top: 0 }
+
+.section-title.xl{
+  margin: 12px 0 6px;
+  font-size: clamp(28px, 6vw, 54px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.section-sub{
+  margin: 0;
+  text-align: center;
+  color: var(--sub);
+}
+
+
+.zone-head{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.zone-title{
+  margin: 0;
+  font-size: clamp(18px, 3.2vw, 28px);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.zone-note{
+  color: var(--sub);
+  font-size: 14px;
+}
+
+
+.card-row{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, 520px);
+  gap: 18px;
+  overflow-x: auto;
+  padding: 8px 4px 14px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.card-row::-webkit-scrollbar{ height: 10px }
+.card-row::-webkit-scrollbar-thumb{
+  background: #cfc7bf; border-radius: 999px;
+}
+
+
+.shop-card{
+  scroll-snap-align: start;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.shop-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+}
+.card-link{
+  display: grid;
+  grid-template-columns: 44% 1fr;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  padding: 14px;
+  min-height: 180px;
+}
+
+.thumb{
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f3f1ee;
+  border: 1px solid var(--line);
+}
+.thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.meta{ display: grid; align-content: start; gap: 6px }
+.shop-name{
+  margin: 2px 0 0;
+  font-size: clamp(16px, 2.4vw, 20px);
+  font-weight: 700;
+}
+.shop-brief{
+  margin: 0;
+  color: var(--brand);
+  font-weight: 600;
+  font-size: 14px;
+}
+.shop-detail{
+  margin: 4px 0 0 18px;
+  padding: 0;
+  color: var(--sub);
+  font-size: 14px;
+}
+
+
+.site-footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px clamp(16px, 4vw, 40px);
+  background: #fff;
+  border-top: 1px solid var(--line);
+}
+.copy{ font-size: 14px; color: var(--sub) }
+.feedback{
+  color: #007aff; text-decoration: none; font-weight: 600;
+}
+.feedback:hover{ text-decoration: underline }
+
+
+@media (min-width: 780px){
+  .home-link .home-text{ display: block }
+  .profile-hint{ display: block }
+  .card-link{ grid-template-columns: 40% 1fr; min-height: 200px; padding: 18px }
+}
