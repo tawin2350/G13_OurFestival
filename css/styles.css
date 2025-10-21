@@ -31,8 +31,8 @@ header .logo {
 .logo:hover {
   color: #eee;
   font-size: 17px;
-  border: 2px solid rgb(172, 30, 30);
-  background-color: rgb(172, 30, 30);
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
   border-radius: 5px;
 }
 
