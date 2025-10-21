@@ -10,6 +10,10 @@ header {
   z-index: 10;
 }
 
+body {
+    font-family: "Prompt", sans-serif;
+}
+
 header .logo {
   font-weight: bold;
   text-decoration: none;
@@ -121,12 +125,38 @@ header nav a:hover {
     justify-content: center; 
 }
 
-.promotion { 
-    background: #fff3ff; 
-    border: 1px solid #ef5350; 
+.promotion {
+    background: #fff3ff;
+    border: 1px solid #ef5350;
     border-radius: 10px;
-    padding: 15px; 
-    margin-bottom: 20px; 
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.promo-text {
+    max-width: 60%;
+}
+
+.promo-images {
+    display: flex;
+    gap: 10px;
+}
+
+.promo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ef5350;
+    transition: transform 0.3s ease;
+}
+
+.promo-img:hover {
+    transform: scale(1.1);
 }
 
 .footer {
