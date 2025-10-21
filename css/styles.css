@@ -8,7 +8,9 @@
 body {
   background: #fefefe;
   color: #222;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
@@ -135,7 +137,7 @@ header nav a:hover {
   scroll-behavior: smooth;
   padding: 20px;
   gap: 20px;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: mandatory;
 }
 
 .staff-container::-webkit-scrollbar {
@@ -182,6 +184,9 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+.content-wrapper{
+  flex-grow: 0.;
 }
 @media(min-width:768px){
   footer{
