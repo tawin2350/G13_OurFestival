@@ -139,10 +139,10 @@ body{
 .card-row{
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(280px, 520px);
-  gap: 18px;
+  grid-auto-columns: 100%;
+  gap: 0;
   overflow-x: auto;
-  padding: 8px 4px 14px;
+  padding: 0 0 14px;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
@@ -153,18 +153,19 @@ body{
 
 
 .shop-card{
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   background: var(--card);
+  min-width: 100%;
+  max-width: 100%;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
   transition: transform .18s ease, box-shadow .18s ease;
 }
-.shop-card:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0,0,0,.12);
-}
+.shop-card:hover{ transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.12) }
+
+.shop-card.is-centered{ transform: scale(1.02); box-shadow: 0 18px 36px rgba(0,0,0,.14) }
 .card-link{
   display: grid;
   grid-template-columns: 44% 1fr;
@@ -231,3 +232,54 @@ body{
   .profile-hint{ display: block }
   .card-link{ grid-template-columns: 40% 1fr; min-height: 200px; padding: 18px }
 }
+
+.carousel-controls{
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.carousel-controls button{
+  appearance: none;
+  border: 0;
+  background: rgba(0,0,0,0.06);
+  color: var(--ink);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .12s ease, background .12s ease;
+}
+.carousel-controls button:hover{ transform: translateY(-2px); background: rgba(0,0,0,0.09) }
+
+@media (max-width: 600px){
+  .card-row{ padding-left: 0; padding-right: 0 }
+  .shop-card{ min-width: 100% }
+}
+
+@media (min-width: 900px){
+  .card-row{ padding-left: 0; padding-right: 0 }
+  .shop-card{ min-width: 100% }
+}
+
+.carousel-controls{ display: flex !important }
+.carousel-controls button{ display: inline-flex !important; z-index: 60 }
+.section.zone{ position: relative }
+.section.zone .carousel-controls{
+  position: absolute;
+  right: 20px;
+  top: 8px;
+  background: transparent;
+  gap: 6px;
+}
+.section.zone .carousel-controls button{
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.carousel-controls button:focus{ outline: 3px solid rgba(0,123,255,0.18) }
