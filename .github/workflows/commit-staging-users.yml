@@ -1,0 +1,28 @@
+name: Commit staging users
+
+on:
+  workflow_dispatch:
+
+jobs:
+  commit-users:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check staging file
+        run: |
+          if [ ! -f data/users_staging.json ]; then
+            echo "No staging file data/users_staging.json found";
+            exit 1;
+          fi
+
+      - name: Copy staging to users.json
+        run: |
+          mkdir -p data
+          cp data/users_staging.json data/users.json
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/users.json
+          git commit -m "Update users.json from staging by workflow" || echo "nothing to commit"
+          git push

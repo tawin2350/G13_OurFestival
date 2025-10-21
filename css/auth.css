@@ -1,0 +1,154 @@
+body {
+	font-family: 'Prompt', system-ui, sans-serif;
+	background: #f6f7fb;
+	margin: 0;
+	color: #222;
+}
+
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 18px;
+	background: #fff;
+	box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+.logo-img { height:34px; }
+.corner-icon { height:36px; border-radius:50%; }
+.auth-main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 60px 15px;
+    background: linear-gradient(180deg, #f6f8fb 0%, #edf2f8 100%);
+	box-sizing: border-box;
+}
+.card.glass-card {
+	background: rgba(183, 35, 35, 0.688);
+	backdrop-filter: blur(18px);
+	-webkit-backdrop-filter: blur(18px);
+	width: auto;
+    max-width: auto;
+	padding: 40px 32px 36px;
+	border-radius: 24px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+	border: 1px solid rgba(210, 220, 255, 0.25);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+.card-header {
+	margin-bottom: 26px;
+}
+.card-avatar {
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	object-fit: cover;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+	margin-bottom: 10px;
+}
+.card-header h2 {
+	margin: 0;
+	font-size: 1.45em;
+	font-weight: 700;
+	color: #1565c0;
+}
+.card-desc {
+	font-size: 0.95em;
+	color: #555;
+	margin-top: 6px;
+	line-height: 1.5;
+}
+.form-section {
+	width: 200%;
+}
+.form-group {
+	position: relative;
+	margin-bottom: 24px;
+	text-align: left;
+}
+.form-group input {
+	width: 100%;
+	font-size: 1.05em;
+	padding: 18px 14px 10px;
+	border-radius: 12px;
+	border: 1.5px solid #ccd5e0;
+	background: #fff;
+	transition: all 0.2s ease;
+}
+.form-group input:focus {
+	border-color: #1976d2;
+	box-shadow: 0 0 0 3px rgba(25,118,210,0.15);
+}
+.form-group label {
+	position: absolute;
+	left: 16px;
+	top: 16px;
+	color: #888;
+	font-size: 0.95em;
+	pointer-events: none;
+	transition: 0.2s ease;
+	background: transparent;
+	padding: 0 4px;
+}
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group input[type="date"]:valid + label {
+	top: -10px;
+	left: 10px;
+	font-size: 0.85em;
+	color: #1976d2;
+	background: #fff;
+	padding: 0 6px;
+	border-radius: 4px;
+}
+.actions {
+	margin-top: 12px;
+}
+.btn {
+	border: none;
+	border-radius: 14px;
+	padding: 12px 32px;
+	cursor: pointer;
+	font-size: 1.05em;
+	transition: all 0.25s ease;
+}
+.gradient-btn {
+	background: linear-gradient(90deg,#1976d2 0%,#4fc3f7 100%);
+	color: #fff;
+	font-weight: 600;
+	box-shadow: 0 4px 14px rgba(25,118,210,0.15);
+}
+.gradient-btn:hover {
+	transform: translateY(-2px);
+	background: linear-gradient(90deg,#1251a2 0%,#1976d2 100%);
+	box-shadow: 0 8px 20px rgba(25,118,210,0.25);
+}
+.message {
+	margin-top: 14px;
+	text-align: center;
+	font-size: 0.95em;
+	color: #d32f2f;
+}
+.extra {
+	margin-top: 20px;
+	font-size: 0.9em;
+	color: #444;
+}
+@media (max-width: 600px) {
+	.card.glass-card {
+		padding: 28px 18px;
+		border-radius: 16px;
+	}
+	.card-avatar {
+		width: 60px;
+		height: 60px;
+	}
+	.form-group input {
+		font-size: 1em;
+		padding: 14px 10px 8px;
+	}
+}
