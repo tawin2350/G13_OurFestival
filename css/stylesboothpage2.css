@@ -103,3 +103,10 @@ header nav a:hover {
     align-items: center; 
     justify-content: center; 
 }
+
+.promotion { 
+    background: #f9f9f9; 
+    border: 1px dashed #aaa; 
+    padding: 15px; 
+    margin-bottom: 20px; 
+}
