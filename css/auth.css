@@ -21,11 +21,11 @@ header {
 	justify-content: center;
 	min-height: 100vh;
 	padding: 60px 15px;
-    background: linear-gradient(180deg, #f6f8fb 0%, #edf2f8 100%);
+    background: white;
 	box-sizing: border-box;
 }
 .card.glass-card {
-	background: rgba(183, 35, 35, 0.688);
+	background: rgba(255, 255, 255, 0);
 	backdrop-filter: blur(18px);
 	-webkit-backdrop-filter: blur(18px);
 	width: auto;

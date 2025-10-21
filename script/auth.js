@@ -1,4 +1,3 @@
-// Simple client-side auth for demo / GitHub Pages deployment
 (function () {
   function qs(sel, root) { return (root || document).querySelector(sel) }
   function qsa(sel, root) { return Array.from((root || document).querySelectorAll(sel)) }
@@ -18,12 +17,7 @@
     if (tabRegister) tabRegister.classList.add('active'); if (tabLogin) tabLogin.classList.remove('active');
     if (registerSection) registerSection.classList.remove('hidden'); if (loginSection) loginSection.classList.add('hidden');
   }
-
-  // no login UI — register only
-
-  // storage key
   var STORAGE_KEY = 'ourfestival_users_v1';
-  // firebase state
   var firebaseEnabled = false;
   var fbApp = null;
   var fbAuth = null;
@@ -33,7 +27,6 @@
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
       if (raw) return JSON.parse(raw);
-      // if no users in localStorage, try to fetch data/users.json (first-time load)
       return [];
     } catch(e) { return [] }
   }
@@ -43,12 +36,11 @@
     var elMember = qs('#member-count');
     var elReg = qs('#registered-count');
     if (firebaseEnabled && fbDb) {
-      // use Firestore count (simple approach: count documents)
       fbDb.collection('users').get().then(function (snap) {
         var n = snap.size || 0;
         if (elMember) elMember.textContent = n;
         if (elReg) elReg.textContent = n;
-      }).catch(function () { // fallback
+      }).catch(function () {
         var users = loadUsers(); if (elMember) elMember.textContent = users.length; if (elReg) elReg.textContent = users.length;
       });
       return;
@@ -77,7 +69,7 @@
         created: Date.now()
       }).then(function () {
         updateCounts();
-        if (msg) msg.textContent = 'สมัครเรียบร้อยแล้ว (Firebase)';
+        if (msg) msg.textContent = 'สมัครเรียบร้อยแล้ว';
         setTimeout(function () {
           qs('#reg-firstname').value = '';
           qs('#reg-lastname').value = '';
@@ -141,7 +133,7 @@
             firebaseEnabled = true;
             try { console.debug('Firebase options:', firebase.app().options); } catch (e) {}
             fbDb.collection('users').onSnapshot(function () { updateCounts() }, function () { updateCounts() });
-            setFbStatus('เชื่อมต่อ Firebase สำเร็จ');
+            setFbStatus('');
           } catch (err) {
             console.warn('fb init failed', err);
             qs('#register-message').textContent = 'ไม่สามารถเชื่อม Firebase: ' + (err && err.message || err);
