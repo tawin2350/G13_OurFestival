@@ -3,8 +3,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 40px);
-  border-bottom: 1px solid #ccc;
-  background: white;
+  border-bottom: 1px solid #ee9393;
+  background: #fce4ec;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -14,12 +14,12 @@ header .logo {
   font-weight: bold;
   text-decoration: none;
   transition: 0.2s ease-in-out;
-  color: #333;
+  color: #fff;
   font-size: clamp(1rem, 1.5vw,1.2rem);
 }
 
 .logo:hover {
-  color: #eee;
+  color: #e57373;
   font-size: 17px;
   border: 2px solid rgb(255, 255, 255);
   background-color: rgb(255, 255, 255);
@@ -29,7 +29,7 @@ header .logo {
 header nav a {
   margin: 0 20px;
   text-decoration: none;
-  color: #333;
+  color: #fff;
   font-weight: 500;
   font-size:  clamp(0.9rem, 1vw, 1rem);
 }
@@ -60,7 +60,7 @@ header nav a:hover {
 .shop-image { 
     width: 100%; 
     height: 200px; 
-    background: #eee; 
+    background: #fff7f7; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
@@ -80,8 +80,8 @@ header nav a:hover {
 
 .menu-large { 
     flex: 2; 
-    background: #fafafa; 
-    border: 1px solid #ccc; 
+    background: #fffafa; 
+    border: 1px solid #ef5350; 
     height: 120px; 
     display: flex; 
     align-items: center; 
@@ -97,8 +97,8 @@ header nav a:hover {
 }
 
 .menu-small { 
-    background: #fafafa; 
-    border: 1px solid #ccc; 
+    background: #fffafa; 
+    border: 1px solid #ef5350; 
     height: 55px; 
     display: flex; 
     align-items: center; 
@@ -106,16 +106,16 @@ header nav a:hover {
 }
 
 .promotion { 
-    background: #f9f9f9; 
-    border: 1px solid #aaa; 
+    background: #fff3ff; 
+    border: 1px solid #ef5350; 
     border-radius: 10px;
     padding: 15px; 
     margin-bottom: 20px; 
 }
 
 .footer {
-  background: linear-gradient(90deg, #ffffff, #ffffff);
-  color: #000000;
+  background: linear-gradient(90deg, #e57373, #81c784);
+  color: #ffffff;
   text-align: center;
   padding: 24px 16px 16px;
   border-top-left-radius: 30px;
@@ -131,7 +131,7 @@ header nav a:hover {
 }
 
 .footer-content a {
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 600;
   transition: 0.2s;
@@ -145,4 +145,22 @@ header nav a:hover {
   font-size: 13px;
   margin-top: 10px;
   opacity: 0.9;
+}
+
+.footer::before {
+  content: "💗";
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  font-size: 20px;
+  animation: float 3s infinite ease-in-out;
+}
+
+.footer::after {
+  content: "💚";
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 20px;
+  animation: float 3s infinite ease-in-out 1.5s;
 }
