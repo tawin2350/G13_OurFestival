@@ -4,7 +4,7 @@ header {
   align-items: center;
   padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 40px);
   border-bottom: 1px solid #ee9393;
-  background: #fce4ec;
+  background: linear-gradient(90deg, #e57373, #81c784);
   position: sticky;
   top: 0;
   z-index: 10;
