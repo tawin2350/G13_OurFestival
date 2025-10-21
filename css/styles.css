@@ -30,7 +30,7 @@ header .logo {
 
 .logo:hover {
   color: #eee;
-  font-size: 17px ;
+  font-size: 17px;
   border: 2px solid rgb(172, 30, 30);
   background-color: rgb(172, 30, 30);
   border-radius: 5px;
@@ -53,9 +53,28 @@ header nav a:hover {
   border-radius: 20px;
 }
 
+
 .main {
   text-align: center;
-  padding: 80px 20px;
+  padding: 100px 20px;
+  background-image: url("../source/market.webp"); 
+  background-size: cover;    
+  background-position: center; 
+  background-repeat: no-repeat; 
+  color: white; 
+  position: relative;
+}
+
+.main::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3); 
+}
+
+.main .content {
+  position: relative;
+  z-index: 1;
 }
 
 .main h1 {
@@ -65,8 +84,9 @@ header nav a:hover {
 
 .main p {
   font-size: 1.2em;
-  color: #555;
+  color: #fff; 
 }
+
 
 .work {
   text-align: center;
