@@ -1,10 +1,9 @@
-
 :root{
   --bg: #fffaf5;
   --ink: #222;
   --sub: #666;
   --line: #e9e4de;
-  --brand: #b71c1c;     
+  --brand: #b71c1c;    
   --card: #ffffff;
   --shadow: 0 8px 24px rgba(0,0,0,.08);
   --radius: 16px;
@@ -35,7 +34,6 @@ body{
   border-bottom: 1px solid var(--line);
   backdrop-filter: saturate(140%) blur(6px);
 }
-
 .home-link{
   display: inline-flex;
   align-items: center;
@@ -45,7 +43,7 @@ body{
   font-weight: 600;
 }
 .home-link .home-text{
-  display: none;                
+  display: none;               
   font-size: 12px;
   line-height: 1.1;
   color: var(--sub);
@@ -141,6 +139,7 @@ body{
 .card-row::-webkit-scrollbar-thumb{
   background: #cfc7bf; border-radius: 999px;
 }
+
 
 .shop-card{
   scroll-snap-align: start;
