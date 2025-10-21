@@ -107,7 +107,7 @@ header nav a:hover {
 
 .work {
   text-align: center;
-  padding: clmap(40px,8vw,60px)20px;
+  padding: clamp(40px,8vw,60px)20px;
   border-top: 1px solid #eee;
 }
 
