@@ -57,15 +57,31 @@ header nav a:hover {
   border-radius: 20px;
 }
 
-.shop-image { 
-    width: 100%; 
-    height: 200px; 
-    background: #fff7f7; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 1.2em; 
-    margin-bottom: 20px; 
+.shop-image {
+  width: 100%;
+  height: 200px;
+  background: #fff7f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border: 2px solid #ffbdbd;
+  position: relative;
+  overflow: hidden;
+}
+
+.shop-name {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  color: #000000;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  backdrop-filter: blur(2px);
 }
 
 .section { 
@@ -164,3 +180,4 @@ header nav a:hover {
   font-size: 20px;
   animation: float 3s infinite ease-in-out 1.5s;
 }
+
