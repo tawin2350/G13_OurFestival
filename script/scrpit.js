@@ -82,4 +82,115 @@ document.addEventListener('DOMContentLoaded', function () {
 			resizeTimer = setTimeout(function () { scrollToIndex(getCenteredIndex()); }, 150);
 		});
 	});
+
+	var coverflows = document.querySelectorAll('.coverflow');
+	coverflows.forEach(function (cf) {
+		var track = cf.querySelector('.coverflow-track');
+		var cards = Array.from(cf.querySelectorAll('.cf-card'));
+		var btnPrev = cf.querySelector('.cf-prev');
+		var btnNext = cf.querySelector('.cf-next');
+		var splitVisual = cf.closest('.split-visual');
+		var vt = splitVisual ? splitVisual.querySelector('.visual-text') : null;
+		var vtEyebrow = vt ? vt.querySelector('.eyebrow') : null;
+		var vtH = vt ? vt.querySelector('h1') : null;
+		var vtSub = vt ? vt.querySelector('.sub') : null;
+		if (!track || cards.length === 0) return;
+
+		var active = 0;
+		var transitioning = false;
+		var autoplayMs = 3500;
+		var timer = null;
+
+		function classAt(idx, cls) {
+			cards[idx].classList.add(cls);
+		}
+
+		function clearClasses() {
+			cards.forEach(function (c) {
+				c.classList.remove('is-center','is-left1','is-right1','is-left2','is-right2','is-hidden');
+			});
+		}
+
+		function mod(i, n) { return (i % n + n) % n; }
+
+		function applyPositions(centerIdx) {
+			clearClasses();
+			var n = cards.length;
+			var left1  = mod(centerIdx - 1, n);
+			var right1 = mod(centerIdx + 1, n);
+			var left2  = mod(centerIdx - 2, n);
+			var right2 = mod(centerIdx + 2, n);
+
+			classAt(centerIdx, 'is-center');
+			classAt(left1, 'is-left1');
+			classAt(right1, 'is-right1');
+			if (n > 4) { classAt(left2, 'is-left2'); classAt(right2, 'is-right2'); }
+
+			for (var i = 0; i < n; i++) {
+				if (i !== centerIdx && i !== left1 && i !== right1 && (n <= 4 || (i !== left2 && i !== right2))) {
+					cards[i].classList.add('is-hidden');
+				}
+			}
+		}
+
+		function goto(index) {
+			if (transitioning) return;
+			transitioning = true;
+			active = mod(index, cards.length);
+			applyPositions(active);
+			updateText(active);
+			setTimeout(function(){ transitioning = false; }, 700);
+		}
+
+		function next() { goto(active + 1); }
+		function prev() { goto(active - 1); }
+
+		function start() {
+			stop();
+			timer = setInterval(next, autoplayMs);
+		}
+		function stop() {
+			if (timer) { clearInterval(timer); timer = null; }
+		}
+
+		if (btnNext) btnNext.addEventListener('click', next);
+		if (btnPrev) btnPrev.addEventListener('click', prev);
+		cf.addEventListener('mouseenter', stop);
+		cf.addEventListener('mouseleave', start);
+		cf.addEventListener('focusin', stop);
+		cf.addEventListener('focusout', start);
+		track.addEventListener('keydown', function (ev) {
+			if (ev.key === 'ArrowLeft') { ev.preventDefault(); prev(); }
+			if (ev.key === 'ArrowRight') { ev.preventDefault(); next(); }
+		});
+
+		applyPositions(active);
+		updateText(active);
+		setTimeout(start, 800);
+	});
+
+	function updateText(idx) {
+		var allCF = document.querySelectorAll('.coverflow');
+		if (!allCF.length) return;
+		allCF.forEach(function(cf){
+			var splitVisual = cf.closest('.split-visual');
+			var vt = splitVisual ? splitVisual.querySelector('.visual-text') : null;
+			var vtEyebrow = vt ? vt.querySelector('.eyebrow') : null;
+			var vtH = vt ? vt.querySelector('h1') : null;
+			var vtSub = vt ? vt.querySelector('.sub') : null;
+			var cards = Array.from(cf.querySelectorAll('.cf-card'));
+			var activeCard = cf.querySelector('.cf-card.is-center');
+			if (!vt || !activeCard) return;
+			var eb = activeCard.getAttribute('data-eyebrow');
+			var hd = activeCard.getAttribute('data-heading') || activeCard.getAttribute('data-title');
+			var sb = activeCard.getAttribute('data-sub');
+			vt.classList.add('vt-fade');
+			setTimeout(function(){
+				if (vtEyebrow && eb) vtEyebrow.textContent = eb;
+				if (vtH && hd) vtH.textContent = hd;
+				if (vtSub && sb) vtSub.textContent = sb;
+				vt.classList.remove('vt-fade');
+			}, 120);
+		});
+	}
 });
