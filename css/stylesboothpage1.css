@@ -147,3 +147,26 @@ body {
   color: #444;
   font-size: 14px;
 }
+
+
+.section.category {
+  position: relative;
+  text-align: center;
+  padding: 80px 20px;
+  overflow: hidden;
+  background-color: #fffaf5; 
+}
+
+.section.category::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  background: url("../source/bg-shadow.png") center/contain no-repeat;
+  opacity: 0.25; /* ความโปร่งของเงา */
+  transform: translate(-50%, -50%);
+  z-index: -1; /* ให้อยู่หลังข้อความ */
+  filter: blur(3px); /* เบลอเงาเบา ๆ */
+}

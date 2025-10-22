@@ -156,6 +156,7 @@ header .nav-right {
 }
 
 .menu-item p {
+    text-align: center;
     margin-top: 8px;
     color: #555;
 }
