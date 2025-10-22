@@ -43,12 +43,11 @@ body{
   font-weight: 600;
 }
 .home-link .home-text{
-  display: none;               
+  display: none;
   font-size: 12px;
   line-height: 1.1;
   color: var(--sub);
 }
-
 .page-title{
   margin: 0;
   text-align: center;
@@ -56,7 +55,6 @@ body{
   font-weight: 700;
   letter-spacing: .5px;
 }
-
 .profile-link{
   justify-self: end;
   display: grid;
@@ -77,8 +75,6 @@ body{
   justify-content: center;
   background-color: #fff;
 }
-
-
 .avatar img {
   width: 100%;
   height: 100%;
@@ -91,8 +87,38 @@ body{
   color: var(--sub);
 }
 
-
 .spacer{ height: 12px }
+
+
+.section.category {
+  position: relative;
+  background-image: url("/source/cแม่พ่อค้า.webp"); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;   
+  padding-top: 80px;             
+  padding-bottom: 80px;           
+  color: #fff;                   
+  isolation: isolate;            
+}
+
+
+.section.category::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);  
+  z-index: 0;
+}
+
+.section.category .section-title,
+.section.category .section-sub {
+  position: relative;
+  z-index: 1; 
+  color: #fff;
+}
+;             
 
 
 .section{
@@ -100,7 +126,6 @@ body{
   border-top: 1px solid var(--line);
   background: transparent;
 }
-
 .section:first-of-type{ border-top: 0 }
 
 .section-title.xl{
@@ -115,7 +140,7 @@ body{
   text-align: center;
   color: var(--sub);
 }
-            
+
 
 .zone-head{
   display: flex;
@@ -164,8 +189,11 @@ body{
   transition: transform .18s ease, box-shadow .18s ease;
 }
 .shop-card:hover{ transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.12) }
-
-.shop-card.is-centered{ transform: scale(1.02); box-shadow: 0 18px 36px rgba(0,0,0,.14) }
+.shop-card.is-centered{
+  transform: scale(1.02);
+  box-shadow: 0 18px 36px rgba(0,0,0,.14);
+  border-color: #d7cfc6;
+}
 .card-link{
   display: grid;
   grid-template-columns: 44% 1fr;
@@ -175,7 +203,6 @@ body{
   padding: 14px;
   min-height: 180px;
 }
-
 .thumb{
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -190,7 +217,6 @@ body{
   object-fit: cover;
   display: block;
 }
-
 .meta{ display: grid; align-content: start; gap: 6px }
 .shop-name{
   margin: 2px 0 0;
@@ -227,23 +253,21 @@ body{
 .feedback:hover{ text-decoration: underline }
 
 
-@media (min-width: 780px){
-  .home-link .home-text{ display: block }
-  .profile-hint{ display: block }
-  .card-link{ grid-template-columns: 40% 1fr; min-height: 200px; padding: 18px }
-}
-
-.carousel-controls{
-  position: relative;
+.section.zone{ position: relative }
+.section.zone .carousel-controls{
+  position: absolute;
+  right: 20px;
+  top: 8px;
   display: flex;
   justify-content: flex-end;
   gap: 8px;
   margin-bottom: 8px;
+  background: transparent;
 }
-.carousel-controls button{
+.section.zone .carousel-controls button{
   appearance: none;
   border: 0;
-  background: rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.9);
   color: var(--ink);
   width: 38px;
   height: 38px;
@@ -253,33 +277,18 @@ body{
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   transition: transform .12s ease, background .12s ease;
 }
-.carousel-controls button:hover{ transform: translateY(-2px); background: rgba(0,0,0,0.09) }
-
-@media (max-width: 600px){
-  .card-row{ padding-left: 0; padding-right: 0 }
-  .shop-card{ min-width: 100% }
+.section.zone .carousel-controls button:hover{
+  transform: translateY(-2px);
+  background: rgba(0,0,0,0.09);
 }
-
-@media (min-width: 900px){
-  .card-row{ padding-left: 0; padding-right: 0 }
-  .shop-card{ min-width: 100% }
-}
-
-.carousel-controls{ display: flex !important }
-.carousel-controls button{ display: inline-flex !important; z-index: 60 }
-.section.zone{ position: relative }
-.section.zone .carousel-controls{
-  position: absolute;
-  right: 20px;
-  top: 8px;
-  background: transparent;
-  gap: 6px;
-}
-.section.zone .carousel-controls button{
-  background: rgba(255,255,255,0.9);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-
 .carousel-controls button:focus{ outline: 3px solid rgba(0,123,255,0.18) }
+
+
+@media (min-width: 780px){
+  .home-link .home-text{ display: block }
+  .profile-hint{ display: block }
+  .card-link{ grid-template-columns: 40% 1fr; min-height: 200px; padding: 18px }
+}
