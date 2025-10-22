@@ -127,16 +127,32 @@ header .nav-right {
     margin-top: 20px;
 }
 
-.menu-item img {
+.img-wrap {
     height: 250px;
     width: 250px;
     border-radius: 50%;
     border: 3px solid #b2ecfa;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
-.menu-item img:hover{
-    transform: scale(1.05);
+.img-wrap img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    transition: opacity 0.25s ease;
+}
+
+.img-wrap img.top{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.menu-item :hover img.top{
+    opacity: 1;
 }
 
 .menu-item p {
