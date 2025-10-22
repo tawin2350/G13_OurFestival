@@ -10,53 +10,42 @@
 <body>
 
   <header>
-  <a href="index.html" class="logo">
-    <img src="source/home_25694.png" alt="home icon" class="logo-img">
-  </a>
-  <nav>
-    <a href="Boothdirectorypage.html">CATEGORY</a>
-    <a href="contact.html">CONTACT</a>
-  </nav>
-  <a href="register.html">
-    <img src="source/user.jpg" class="corner-icon" alt="users">
-  </a>
-</header>
+    <a href="index.html" class="logo">
+      <img src="source/home_25694.png" alt="home icon" class="logo-img">
+    </a>
+    <nav>
+      <a href="Boothdirectorypage.html">CATEGORY</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+    <a href="register.html">
+      <img src="source/user.jpg" class="corner-icon" alt="users">
+    </a>
+  </header>
 
 
-  <main class="auth-main">
-    <div class="card glass-card">
-      <div class="card-header">
-        <img src="source/user.jpg" alt="สมัครสมาชิก" class="card-avatar">
-        <h2>สมัครสมาชิก</h2>
-        </div>
-        <p class="card-desc">กรอกข้อมูลเพื่อเข้าร่วมงาน Christmas's Fair</p>
-      <section id="register-section" class="form-section">
-        <form id="register-form" autocomplete="off">
-          <div class="form-group">
-            <input id="reg-firstname" type="text" required>
-            <label for="reg-firstname">ชื่อ</label>
-          </div>
-          <div class="form-group">
-            <input id="reg-lastname" type="text" required>
-            <label for="reg-lastname">นามสกุล</label>
-          </div>
-          <div class="form-group">
-            <input id="reg-birth" type="date" required>
-            <label for="reg-birth">วันเดือนปีเกิด</label>
-          </div>
-          <div class="form-group">
-            <input id="reg-email" type="email" required>
-            <label for="reg-email">อีเมล</label>
-          </div>
-          <div class="actions">
-            <button type="submit" class="btn gradient-btn big">สมัครสมาชิก</button>
-          </div>
-        </form>
-        <div id="register-message" class="message"></div>
-        <div id="fb-status" class="message" style="color:#0b66a3;margin-top:8px"></div>
-      </section>
-      <div class="extra">จำนวนผู้สมัคร: <strong id="registered-count">0</strong></div>
-      <div id="export-message" class="message"></div>
+  <main style="background: #fafbfc; min-height: 80vh; display: flex; align-items: center; justify-content: center;">
+    <div class="register-card">
+      <h2 style="font-size: 1.5em; font-weight: 600; color: #222; margin-bottom: 0.5em; text-align: center;">สมัครสมาชิก</h2>
+      <p style="font-size: 1em; color: #666; text-align: center; margin-bottom: 1.2em;">กรอกข้อมูลเพื่อเข้าร่วมงาน Christmas's Fair</p>
+      <form id="register-form" autocomplete="off" class="register-form">
+        <input id="reg-firstname" type="text" placeholder="ชื่อ" required class="register-input">
+        <input id="reg-lastname" type="text" placeholder="นามสกุล" required class="register-input">
+        <input id="reg-nickname" type="text" placeholder="ชื่อเล่น" required class="register-input">
+        <select id="reg-gender" required class="register-select">
+          <option value="" disabled selected hidden>เลือกเพศ</option>
+          <option value="ชาย">ชาย</option>
+          <option value="หญิง">หญิง</option>
+          <option value="อื่นๆ">อื่นๆ</option>
+        </select>
+        <input id="reg-birth" type="date" required class="register-input">
+        <input id="reg-email" type="email" placeholder="อีเมล" required class="register-input">
+        <input id="reg-phone" type="tel" placeholder="เบอร์โทรศัพท์" required pattern="[0-9]{9,10}" maxlength="10" class="register-input">
+        <button type="submit" class="register-btn">สมัครสมาชิก</button>
+      </form>
+      <div id="register-message" class="register-message"></div>
+      <div id="fb-status" class="fb-status"></div>
+      <div class="register-count">จำนวนผู้สมัคร: <strong id="registered-count">0</strong></div>
+      <div id="export-message" class="export-message"></div>
     </div>
   </main>
 
@@ -69,7 +58,6 @@
     </div>
   </footer>
 
-  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>

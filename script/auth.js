@@ -2,6 +2,11 @@
   function qs(sel, root) { return (root || document).querySelector(sel) }
   function qsa(sel, root) { return Array.from((root || document).querySelectorAll(sel)) }
 
+  function setFbStatus(msg) {
+    var el = document.getElementById('fb-status');
+    if (el) el.textContent = msg || '';
+  }
+
   var tabLogin = qs('#tab-login');
   var tabRegister = qs('#tab-register');
   var loginSection = qs('#login-section');
@@ -50,69 +55,80 @@
     if (elReg) elReg.textContent = users.length;
   }
   var regForm = qs('#register-form');
-  if (regForm) regForm.addEventListener('submit', function (ev) {
-    ev.preventDefault();
-    var firstname = qs('#reg-firstname').value.trim();
-    var lastname = qs('#reg-lastname').value.trim();
-    var birth = qs('#reg-birth').value;
-    var email = qs('#reg-email').value.trim().toLowerCase();
-    var msg = qs('#register-message');
-    if (msg) msg.textContent = '';
-    if (!firstname || !lastname || !birth || !email) { if (msg) msg.textContent = 'กรุณากรอกข้อมูลให้ครบ'; return }
+    window.addEventListener('DOMContentLoaded', function() {
+      var regForm = qs('#register-form');
+      if (regForm) regForm.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var firstname = qs('#reg-firstname').value.trim();
+        var lastname = qs('#reg-lastname').value.trim();
+        var nickname = qs('#reg-nickname').value.trim();
+        var gender = qs('#reg-gender').value;
+        var birth = qs('#reg-birth').value;
+        var email = qs('#reg-email').value.trim().toLowerCase();
+        var phone = qs('#reg-phone').value.trim();
+        var msg = qs('#register-message');
+        if (msg) msg.textContent = '';
+        if (!firstname || !lastname || !nickname || !gender || !birth || !email || !phone) {
+          if (msg) msg.textContent = 'กรุณากรอกข้อมูลให้ครบ'; return;
+        }
+        if (!/^\d{9,10}$/.test(phone)) {
+          if (msg) msg.textContent = 'กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง'; return;
+        }
 
-    if (firebaseEnabled && fbDb) {
-      fbDb.collection('users').add({
-        firstname: firstname,
-        lastname: lastname,
-        birth: birth,
-        email: email,
-        created: Date.now()
-      }).then(function () {
+        if (firebaseEnabled && fbDb) {
+          fbDb.collection('users').add({
+            firstname: firstname,
+            lastname: lastname,
+            nickname: nickname,
+            gender: gender,
+            birth: birth,
+            email: email,
+            phone: phone,
+            created: Date.now()
+          }).then(function () {
+            updateCounts();
+            if (msg) msg.textContent = 'สมัครเรียบร้อยแล้ว (Firebase)';
+            setTimeout(function () {
+              qs('#reg-firstname').value = '';
+              qs('#reg-lastname').value = '';
+              qs('#reg-nickname').value = '';
+              qs('#reg-gender').value = '';
+              qs('#reg-birth').value = '';
+              qs('#reg-email').value = '';
+              qs('#reg-phone').value = '';
+            }, 900);
+          }).catch(function (err) {
+            if (msg) msg.textContent = 'ข้อผิดพลาด Firebase: ' + (err && err.message || err);
+          });
+          return;
+        }
+
+        var users = loadUsers();
+        if (users.find(u => u.email === email)) { if (msg) msg.textContent = 'อีเมลนี้ถูกใช้แล้ว'; return }
+        users.push({
+          firstname: firstname,
+          lastname: lastname,
+          nickname: nickname,
+          gender: gender,
+          birth: birth,
+          email: email,
+          phone: phone,
+          created: Date.now()
+        });
+        saveUsers(users);
         updateCounts();
         if (msg) msg.textContent = 'สมัครเรียบร้อยแล้ว';
         setTimeout(function () {
           qs('#reg-firstname').value = '';
           qs('#reg-lastname').value = '';
+          qs('#reg-nickname').value = '';
+          qs('#reg-gender').value = '';
           qs('#reg-birth').value = '';
           qs('#reg-email').value = '';
+          qs('#reg-phone').value = '';
         }, 900);
-      }).catch(function (err) {
-        if (msg) msg.textContent = 'ข้อผิดพลาด Firebase: ' + (err && err.message || err);
       });
-      return;
-    }
-    var users = loadUsers();
-    if (users.find(u => u.email === email)) { if (msg) msg.textContent = 'อีเมลนี้ถูกใช้แล้ว'; return }
-    users.push({
-      firstname: firstname,
-      lastname: lastname,
-      birth: birth,
-      email: email,
-      created: Date.now()
     });
-    saveUsers(users);
-    updateCounts();
-    if (msg) msg.textContent = 'สมัครเรียบร้อยแล้ว';
-    setTimeout(function () {
-      qs('#reg-firstname').value = '';
-      qs('#reg-lastname').value = '';
-      qs('#reg-birth').value = '';
-      qs('#reg-email').value = '';
-    }, 900);
-  });
-  (function seedFromJson() {
-    var users = loadUsers();
-    if (users.length) { updateCounts(); return }
-    fetch('data/users.json').then(function (r) { if (!r.ok) throw new Error('no json'); return r.json() }).then(function (json) {
-      if (Array.isArray(json) && json.length) {
-        saveUsers(json);
-      }
-      updateCounts();
-    }).catch(function () { updateCounts(); });
-  })();
-
-  (function tryLoadFirebaseConfig() {
-    function setFbStatus(text) { try { var s = qs('#fb-status'); if (s) s.textContent = text } catch(e){} }
 
     fetch('data/firebase-config.json').then(function (r) { if (!r.ok) throw new Error('no fb config'); return r.json() }).then(function (cfg) {
       if (!cfg || !cfg.apiKey || !cfg.projectId) { setFbStatus('ไฟล์ config ของ Firebase ไม่ถูกต้อง'); return }
@@ -136,13 +152,14 @@
             setFbStatus('');
           } catch (err) {
             console.warn('fb init failed', err);
-            qs('#register-message').textContent = 'ไม่สามารถเชื่อม Firebase: ' + (err && err.message || err);
+            var msgEl = qs('#register-message');
+            if (msgEl) msgEl.textContent = 'ไม่สามารถเชื่อม Firebase: ' + (err && err.message || err);
             setFbStatus('ไม่สามารถเชื่อม Firebase: ' + (err && err.message || err));
             firebaseEnabled = false;
           }
         } else {
           tries++;
-          if (tries < 10) { setTimeout(initWhenReady, 300); } else { console.warn('firebase SDK not available'); qs('#register-message').textContent = 'ไม่พบ Firebase SDK'; setFbStatus('ไม่พบ Firebase SDK'); }
+          if (tries < 10) { setTimeout(initWhenReady, 300); } else { console.warn('firebase SDK not available'); var msgEl = qs('#register-message'); if (msgEl) msgEl.textContent = 'ไม่พบ Firebase SDK'; setFbStatus('ไม่พบ Firebase SDK'); }
         }
       }
       initWhenReady();
@@ -159,4 +176,4 @@
   }
 
   var dl = qs('#download-json'); if (dl) dl.addEventListener('click', downloadJSON);
-})();
+;

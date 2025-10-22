@@ -1,3 +1,61 @@
+/* Minimal register form styles */
+.register-card {
+	background: #fff;
+	border: 1px solid #eee;
+	border-radius: 14px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+	max-width: 370px;
+	width: 100%;
+	padding: 2.2em 2em 1.5em 2em;
+	margin: 2em 0;
+}
+.register-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+}
+.register-input, .register-select {
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	padding: 0.9em;
+	font-size: 1em;
+	background: #fafbfc;
+}
+.register-btn {
+	background: #222;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	padding: 1em;
+	font-size: 1.1em;
+	font-weight: 500;
+	cursor: pointer;
+	margin-top: 0.5em;
+}
+.register-message {
+	color: #d32f2f;
+	font-size: 0.98em;
+	margin-top: 0.7em;
+	text-align: center;
+}
+.fb-status {
+	color:#0b66a3;
+	font-size: 0.98em;
+	margin-top: 0.3em;
+	text-align: center;
+}
+.register-count {
+	font-size: 0.98em;
+	color: #222;
+	margin-top: 1.2em;
+	text-align: center;
+}
+.export-message {
+	font-size: 0.95em;
+	color: #666;
+	margin-top: 0.5em;
+	text-align: center;
+}
 body {
 	font-family: 'Prompt', system-ui, sans-serif;
 	background: #f6f7fb;
