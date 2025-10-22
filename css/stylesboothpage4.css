@@ -198,3 +198,29 @@ header .nav-right {
     margin-top: 8px;
     color: #555;
 }
+
+/* CONTACT */
+.contact {
+    width: 60%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.contact:hover{
+    transform: scale(1.05)
+}
+
+.contact-content h2{
+    text-align: center;
+    color: #5ca0e0;
+}
