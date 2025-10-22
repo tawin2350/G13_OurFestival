@@ -77,7 +77,7 @@ body {
   background-color: #fdfdfd;
   border: 2px solid #eeec70;
   border-radius: 15px;
-  padding: 10px;
+  padding: 20px;
   box-shadow: 0 3px 5px rgba(0,0,0,0.1);
   transition: 0.3s;
 }
@@ -165,8 +165,8 @@ body {
   width: 400px;
   height: 400px;
   background: url("../source/bg-shadow.png") center/contain no-repeat;
-  opacity: 0.25; /* ความโปร่งของเงา */
+  opacity: 0.25;
   transform: translate(-50%, -50%);
-  z-index: -1; /* ให้อยู่หลังข้อความ */
-  filter: blur(3px); /* เบลอเงาเบา ๆ */
+  z-index: -1; 
+  filter: blur(3px); 
 }
