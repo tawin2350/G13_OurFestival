@@ -63,14 +63,13 @@ header nav a:hover {
 
 .shop-image {
   width: 100%;
-  height: 200px;
+  height: 350px;
   background: #fff7f7;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2em;
   margin-bottom: 20px;
-  border-radius: 12px;
   border: 2px solid #ffbdbd;
   position: relative;
   overflow: hidden;
@@ -102,7 +101,7 @@ header nav a:hover {
     flex: 2; 
     background: #fffafa; 
     border: 1px solid #ef5350; 
-    height: 250px; 
+    height: 300px; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
@@ -119,7 +118,7 @@ header nav a:hover {
 .menu-small { 
     background: #fffafa; 
     border: 1px solid #ef5350; 
-    height: 120px; 
+    height: 145px; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
@@ -241,4 +240,38 @@ footer a:hover {
     flex-direction: row;
     justify-content: space-between;
   }
+}
+
+.menu-info {
+  text-align: center;
+  margin-top: 8px;
+  font-family: 'Prompt', sans-serif;
+}
+
+.menu-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.menu-price {
+  font-size: 14px;
+  color: #888;
+}
+
+.menu-large, .menu-small {
+  position: relative;
+}
+
+.menu-large .menu-info,
+.menu-small .menu-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: white;
+  padding: 6px 0;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 0 0 8px 8px;
 }
