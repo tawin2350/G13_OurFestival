@@ -31,20 +31,20 @@ header .nav-right {
     color: #666;
 }
 .logo-img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  vertical-align: middle;
-  transition: 0.2s ease-in-out;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    vertical-align: middle;
+    transition: 0.2s ease-in-out;
 }
 .logo-img:hover {
-  transform: scale(1.1);
-  filter: brightness(0.8);
+    transform: scale(1.1);
+    filter: brightness(0.8);
 }
 .corner-icon {
-  font-size: 1.5em;
-  height: 50px;
-  border-radius: 20px;
+    font-size: 1.5em;
+    height: 50px;
+    border-radius: 20px;
 }
 .store-header {
     text-align: center;
@@ -62,4 +62,41 @@ header .nav-right {
 .store-header .desc {
     color: #666;
     margin-top: 5px;
+}
+
+.promotion {
+    width: 60%;
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.promotion:hover{
+    transform: scale(1.05)
+}
+
+.deal-text-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.promotion h3 {
+    font-size: 24px;
+    color: #5ca0e0;
+    margin-bottom: 10px;
+}
+
+.promotion ul {
+    justify-items: center;
+    line-height: 1.8;
+    padding-left: 0;
 }
