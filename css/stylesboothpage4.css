@@ -224,3 +224,25 @@ header .nav-right {
     text-align: center;
     color: #5ca0e0;
 }
+
+/* FOOTER */
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(10px, 3vw, 20px) clamp(20px, 4vw, 40px);
+  border-top: 1px solid #ccc;
+  background: #fafafa;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+footer a {
+  color: #007aff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
