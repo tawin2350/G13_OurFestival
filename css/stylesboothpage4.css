@@ -17,6 +17,7 @@ header {
     top: 0;
     z-index: 10;
 }
+/* HEADER */
 header .home {
     text-decoration: none;
     color: #333;
@@ -64,6 +65,7 @@ header .nav-right {
     margin-top: 5px;
 }
 
+/* PROMOTION */
 .promotion {
     width: 60%;
     max-width: 600px;
@@ -101,6 +103,7 @@ header .nav-right {
     padding-left: 0;
 }
 
+/* RECOMMEND MENU */
 .recommend-menu {
     background-color: #fff;
     border-radius: 16px;
@@ -119,11 +122,14 @@ header .nav-right {
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    place-items: center;
     gap: 10px;
     margin-top: 20px;
 }
 
 .menu-item img {
+    height: 250px;
+    width: 250px;
     border-radius: 50%;
     border: 3px solid #b2ecfa;
     cursor: pointer;
@@ -134,6 +140,45 @@ header .nav-right {
 }
 
 .menu-item p {
+    margin-top: 8px;
+    color: #555;
+}
+
+/* TOPPING */
+.topping {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 40px auto;
+    max-width: 900px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+
+.topping h2 {
+    text-align: center;
+    color: #5ca0e0;
+    padding-bottom: 5px;
+}
+
+.topping-grid {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    place-items: center;
+    margin-top: 20px;
+}
+
+.topping-item img {
+    height: 150px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.topping-item img:hover{
+    transform: scale(1.05);
+}
+
+.topping-item p {
     margin-top: 8px;
     color: #555;
 }
