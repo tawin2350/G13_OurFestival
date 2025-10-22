@@ -102,7 +102,7 @@ header nav a:hover {
     flex: 2; 
     background: #fffafa; 
     border: 1px solid #ef5350; 
-    height: 120px; 
+    height: 250px; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
@@ -119,7 +119,7 @@ header nav a:hover {
 .menu-small { 
     background: #fffafa; 
     border: 1px solid #ef5350; 
-    height: 55px; 
+    height: 120px; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
@@ -160,6 +160,10 @@ header nav a:hover {
 }
 
 .footerstore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(90deg, #e57373, #81c784);
   color: #ffffff;
   text-align: center;
