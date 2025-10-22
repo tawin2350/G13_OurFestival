@@ -159,7 +159,7 @@ header nav a:hover {
     transform: scale(1.1);
 }
 
-.footer {
+.footerstore {
   background: linear-gradient(90deg, #e57373, #81c784);
   color: #ffffff;
   text-align: center;
@@ -171,29 +171,29 @@ header nav a:hover {
   position: relative;
 }
 
-.footer-content p {
+.footerstore-content p {
   margin: 6px 0;
   font-size: 15px;
 }
 
-.footer-content a {
+.footerstore-content a {
   color: #ffffff;
   text-decoration: none;
   font-weight: 600;
   transition: 0.2s;
 }
 
-.footer-content a:hover {
+.footerstore-content a:hover {
   text-shadow: 0 0 8px rgba(255,255,255,0.8);
 }
 
-.footer-bottom {
+.footerstore-bottom {
   font-size: 13px;
   margin-top: 10px;
   opacity: 0.9;
 }
 
-.footer::before {
+.footerstore::before {
   content: "💗";
   position: absolute;
   left: 20px;
@@ -202,7 +202,7 @@ header nav a:hover {
   animation: float 3s infinite ease-in-out;
 }
 
-.footer::after {
+.footerstore::after {
   content: "💚";
   position: absolute;
   right: 20px;
@@ -211,3 +211,30 @@ header nav a:hover {
   animation: float 3s infinite ease-in-out 1.5s;
 }
 
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(10px, 3vw, 20px) clamp(20px, 4vw, 40px);
+  border-top: 1px solid #ccc;
+  background: #fafafa;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+footer a {
+  color: #007aff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  footer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
