@@ -12,7 +12,6 @@ body {
     color: #333;
 }
 
-/* HEADER */
 header {
     display: flex;
     justify-content: space-between;
@@ -60,7 +59,6 @@ header .nav-right {
   border-radius: 20px;
 }
 
-/* STORE HEADER */
 .store-header {
     text-align: center;
     padding: 30px 10px;
@@ -82,7 +80,6 @@ header .nav-right {
     margin-top: 5px;
 }
 
-/* RECOMMEND MENU */
 .recommend-menu {
     background-color: #fff;
     border-radius: 16px;
@@ -116,7 +113,6 @@ header .nav-right {
     color: #555;
 }
 
-/* PROMOTION */
 .promotion {
     text-align: center;
     margin: 40px auto;
@@ -153,7 +149,6 @@ header .nav-right {
     border: 2px solid #ffd6e0;
 }
 
-/* CONTACT */
 .contact {
     text-align: center;
     margin: 40px auto;
@@ -173,7 +168,6 @@ header .nav-right {
     margin: 5px 0;
 }
 
-/* FOOTER */
 footer {
     background-color: #ffe5ec;
     border-top: 2px solid #ffd6e0;

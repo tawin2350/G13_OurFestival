@@ -1,3 +1,28 @@
+.reg-status-popup {
+	position: fixed;
+	left: 50%;
+	top: 18%;
+	transform: translate(-50%, 0);
+	background: #222;
+	color: #fff;
+	padding: 1em 2em;
+	border-radius: 12px;
+	box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+	font-size: 1.08em;
+	z-index: 9999;
+	min-width: 180px;
+	text-align: center;
+	opacity: 0.97;
+	animation: fadeInPop 0.3s;
+}
+.register-btn:disabled {
+	background: #b3c6ff;
+	cursor: not-allowed;
+}
+@keyframes fadeInPop {
+	from { opacity: 0; transform: translate(-50%, -20px); }
+	to { opacity: 0.97; transform: translate(-50%, 0); }
+}
 .register-card {
 	background: #fff;
 	border: 1px solid #eee;

@@ -1,0 +1,90 @@
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 2.1em;
+  margin-bottom: 0.7em;
+}
+.star {
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.star.selected,
+.star.hovered {
+  color: #ffd600;
+}
+.star-average {
+  font-size: 1.25em;
+  color: #ffd600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+}
+.fb-status-popup {
+  position: fixed;
+  left: 50%;
+  top: 18%;
+  transform: translate(-50%, 0);
+  background: #222;
+  color: #fff;
+  padding: 1em 2em;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+  font-size: 1.08em;
+  z-index: 9999;
+  min-width: 180px;
+  text-align: center;
+  opacity: 0.97;
+  animation: fadeInPop 0.3s;
+}
+@keyframes fadeInPop {
+  from { opacity: 0; transform: translate(-50%, -20px); }
+  to { opacity: 0.97; transform: translate(-50%, 0); }
+}
+.feedback-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  max-width: 400px;
+  width: 100%;
+  padding: 2.2em 2em 1.5em 2em;
+  margin: 2em 0;
+}
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.feedback-input, .feedback-select {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.9em;
+  font-size: 1em;
+  background: #fafbfc;
+}
+.feedback-btn {
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 1em;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 0.5em;
+}
+.feedback-message {
+  color: #d32f2f;
+  font-size: 0.98em;
+  margin-top: 0.7em;
+  text-align: center;
+}
+.fb-status {
+  color:#0b66a3;
+  font-size: 0.98em;
+  margin-top: 0.3em;
+  text-align: center;
+}

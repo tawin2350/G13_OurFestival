@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500&display=swap');
-
 body {
     font-family: 'Prompt', sans-serif;
     background-color: #fffafc;
@@ -7,7 +6,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
 header {
     display: flex;
     justify-content: space-between;
@@ -19,58 +17,48 @@ header {
     top: 0;
     z-index: 10;
 }
-
 header .home {
     text-decoration: none;
     color: #333;
     font-weight: 500;
 }
-
 header .nav-center {
     font-weight: bold;
     font-size: 1.1rem;
 }
-
 header .nav-right {
     font-size: 0.9rem;
     color: #666;
 }
-
 .logo-img {
-  width: 40px;         
+  width: 40px;
   height: 40px;
-  object-fit: contain; 
+  object-fit: contain;
   vertical-align: middle;
   transition: 0.2s ease-in-out;
 }
-
 .logo-img:hover {
-  transform: scale(1.1);  
+  transform: scale(1.1);
   filter: brightness(0.8);
 }
-
 .corner-icon {
   font-size: 1.5em;
   height: 50px;
   border-radius: 20px;
 }
-
 .store-header {
     text-align: center;
     padding: 30px 10px;
 }
-
 .store-header img {
     max-width: 90%;
     border-radius: 16px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
-
 .store-header h1 {
     margin-top: 20px;
     color: #5ca0e0;
 }
-
 .store-header .desc {
     color: #666;
     margin-top: 5px;

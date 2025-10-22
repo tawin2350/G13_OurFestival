@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback - OurFestival</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/feedback.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">
+      <img src="source/home_25694.png" alt="home icon" class="logo-img">
+    </a>
+    <nav>
+      <a href="Boothdirectorypage.html">CATEGORY</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+    <a href="register.html">
+      <img src="source/user.jpg" class="corner-icon" alt="users">
+    </a>
+  </header>
+
+  <main style="background: #fafbfc; min-height: 80vh; display: flex; align-items: center; justify-content: center;">
+    <div class="feedback-card">
+      <h2 style="font-size: 1.5em; font-weight: 600; color: #222; margin-bottom: 0.5em; text-align: center;">Feedback</h2>
+      <p style="font-size: 1em; color: #666; text-align: center; margin-bottom: 1.2em;">ให้คะแนนและแสดงความคิดเห็นเกี่ยวกับงานนี้</p>
+      <div class="star-average" style="text-align:center;margin-bottom:1em;">
+        <span id="star-average-label">ดาวเฉลี่ย:</span>
+        <span id="star-average"></span>
+      </div>
+      <form id="feedback-form" class="feedback-form" autocomplete="off">
+        <div class="star-rating" id="star-rating">
+          <span class="star" data-value="1">&#9733;</span>
+          <span class="star" data-value="2">&#9733;</span>
+          <span class="star" data-value="3">&#9733;</span>
+          <span class="star" data-value="4">&#9733;</span>
+          <span class="star" data-value="5">&#9733;</span>
+        </div>
+        <input type="hidden" id="fb-rating" required>
+        <input id="fb-name" type="text" placeholder="ชื่อ" required class="feedback-input">
+        <input id="fb-email" type="email" placeholder="อีเมล" required class="feedback-input">
+        <textarea id="fb-comment" placeholder="ความคิดเห็น" required class="feedback-input" style="min-height:80px;"></textarea>
+        <button type="submit" class="feedback-btn">ส่งความคิดเห็น</button>
+      </form>
+      <div id="feedback-message" class="feedback-message"></div>
+  <div id="fb-status" class="fb-status" style="display:none"></div>
+  <div id="fb-status-popup" class="fb-status-popup" style="display:none"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="copyright">
+      © [ชื่อผลงาน] | 012-345-6789
+    </div>
+    <div class="feedback">
+      <a href="#">feedback</a>
+    </div>
+  </footer>
+
+  
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  <script src="script/feedback.js"></script>
+</body>
+</html>

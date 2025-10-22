@@ -4,7 +4,17 @@
 
   function setFbStatus(msg) {
     var el = document.getElementById('fb-status');
+    var pop = document.getElementById('reg-status-popup');
     if (el) el.textContent = msg || '';
+    if (pop) {
+      if (msg) {
+        pop.textContent = msg;
+        pop.style.display = 'block';
+        setTimeout(function(){ pop.style.display = 'none'; }, 1800);
+      } else {
+        pop.style.display = 'none';
+      }
+    }
   }
 
   var tabLogin = qs('#tab-login');
@@ -67,6 +77,7 @@
         var email = qs('#reg-email').value.trim().toLowerCase();
         var phone = qs('#reg-phone').value.trim();
         var msg = qs('#register-message');
+        var btn = regForm.querySelector('button[type="submit"]');
         if (msg) msg.textContent = '';
         if (!firstname || !lastname || !nickname || !gender || !birth || !email || !phone) {
           if (msg) msg.textContent = 'กรุณากรอกข้อมูลให้ครบ'; return;
@@ -74,7 +85,11 @@
         if (!/^\d{9,10}$/.test(phone)) {
           if (msg) msg.textContent = 'กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง'; return;
         }
-
+        
+        if (btn) {
+          btn.disabled = true;
+          btn.textContent = 'กำลังโหลด...';
+        }
         if (firebaseEnabled && fbDb) {
           fbDb.collection('users').add({
             firstname: firstname,
@@ -87,7 +102,8 @@
             created: Date.now()
           }).then(function () {
             updateCounts();
-            if (msg) msg.textContent = 'สมัครเรียบร้อยแล้ว (Firebase)';
+            if (msg) msg.textContent = '';
+            setFbStatus('สมัครเรียบร้อยแล้ว (Firebase)');
             setTimeout(function () {
               qs('#reg-firstname').value = '';
               qs('#reg-lastname').value = '';
@@ -96,15 +112,24 @@
               qs('#reg-birth').value = '';
               qs('#reg-email').value = '';
               qs('#reg-phone').value = '';
-            }, 900);
+              if (btn) {
+                btn.disabled = false;
+                btn.textContent = 'สมัครสมาชิก';
+              }
+              setFbStatus('');
+            }, 1500);
           }).catch(function (err) {
             if (msg) msg.textContent = 'ข้อผิดพลาด Firebase: ' + (err && err.message || err);
+            setFbStatus('เกิดข้อผิดพลาด');
+            if (btn) {
+              btn.disabled = false;
+              btn.textContent = 'สมัครสมาชิก';
+            }
           });
           return;
         }
-
         var users = loadUsers();
-        if (users.find(u => u.email === email)) { if (msg) msg.textContent = 'อีเมลนี้ถูกใช้แล้ว'; return }
+        if (users.find(u => u.email === email)) { if (msg) msg.textContent = 'อีเมลนี้ถูกใช้แล้ว'; if (btn) { btn.disabled = false; btn.textContent = 'สมัครสมาชิก'; } return }
         users.push({
           firstname: firstname,
           lastname: lastname,
@@ -117,7 +142,8 @@
         });
         saveUsers(users);
         updateCounts();
-        if (msg) msg.textContent = 'สมัครเรียบร้อยแล้ว';
+        if (msg) msg.textContent = '';
+        setFbStatus('สมัครเรียบร้อยแล้ว');
         setTimeout(function () {
           qs('#reg-firstname').value = '';
           qs('#reg-lastname').value = '';
@@ -126,7 +152,12 @@
           qs('#reg-birth').value = '';
           qs('#reg-email').value = '';
           qs('#reg-phone').value = '';
-        }, 900);
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = 'สมัครสมาชิก';
+          }
+          setFbStatus('');
+        }, 1500);
       });
     });
 
