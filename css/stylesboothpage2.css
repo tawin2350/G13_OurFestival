@@ -134,37 +134,66 @@ header nav a:hover {
 }
 
 .promotion {
-    background: #fff3ff;
-    border: 1px solid #ef5350;
-    border-radius: 10px;
-    padding: 10px 15px;
-    margin-bottom: 20px;
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: linear-gradient(145deg, #fff9f3, #ffeedd);
+  border: 2px dashed #d7a86e;
+  border-radius: 18px;
+  padding: 25px;
+  margin: 40px auto;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(215, 168, 110, 0.2);
+  max-width: 700px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: "Prompt", sans-serif;
 }
 
-.promo-text {
-    max-width: 60%;
+.promotion:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(215, 168, 110, 0.3);
 }
 
-.promo-images {
-    display: flex;
-    gap: 10px;
+.promo-cookie h3 {
+  color: #b87434;
+  font-size: 1.5rem;
+  margin-bottom: 8px;
 }
 
-.promo-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ef5350;
-    transition: transform 0.3s ease;
+.promo-cookie p {
+  color: #6e4b1f;
+  font-size: 1rem;
+  margin-bottom: 18px;
 }
 
-.promo-img:hover {
-    transform: scale(1.1);
+.promo-cookie ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 18px;
+  display: inline-block;
+  text-align: left;
+}
+
+.promo-cookie li {
+  background: #fff6e9;
+  border-left: 6px solid #d7a86e;
+  padding: 8px 14px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #4e342e;
+  transition: background 0.3s ease;
+}
+
+.promo-cookie li:hover {
+  background: #ffeacc;
+}
+
+.promo-tag {
+  background: #d7a86e;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-weight: bold;
+  display: inline-block;
+  animation: cookieGlow 2.5s infinite ease-in-out;
 }
 
 .footerstore {
