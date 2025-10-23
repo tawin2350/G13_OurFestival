@@ -22,6 +22,11 @@ header .logo {
   font-size: clamp(1rem, 1.5vw,1.2rem);
 }
 
+header.scrolled {
+  background: linear-gradient(90deg, #ff8a65, #4db6ac);
+  transition: 0.3s;
+}
+
 .logo:hover {
   color: #e57373;
   font-size: 17px;
@@ -79,11 +84,13 @@ header nav a:hover {
   position: absolute;
   bottom: 10px;
   left: 15px;
-  color: #000000;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-weight: 600;
+  background: rgba(255, 255, 255, 0.7);
+  color: #3e2723;
+  font-family: "Sriracha", cursive;
   font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
   backdrop-filter: blur(2px);
 }
 
@@ -94,6 +101,25 @@ header nav a:hover {
 .recommend {
   text-align: center;
   padding: 40px 10%;
+}
+
+.shop-description, .shop-details {
+    font-size: 1rem;
+    color: #4e342e;
+    margin-bottom: 10px;
+}
+
+.recommend-title {
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 30px 0 20px 0;
+    background: linear-gradient(90deg, #ffe0b2, #ffcc80);
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 25px;
+    color: #6e4b1f;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .menu-grid {
