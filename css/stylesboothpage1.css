@@ -1,3 +1,8 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; 
+}
 * {
   margin: 0;
   padding: 0;
@@ -18,7 +23,12 @@ body {
   align-items: center; 
   justify-content: space-between; 
 }
-
+.some-number {
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
+  color: #d32f2f;
+  font-weight: 400;
+}
 .home-icon {
   width: 30px; 
 }
@@ -31,37 +41,38 @@ body {
 
 .shop-banner {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin: 40px 0;
+  margin: 0;
+  padding: 0;
 }
-
 .shop-banner-box {
-  width: 50%;
-  height: 500px;
-  border: 3px dashed #eeec70;
-  border-radius: 20px;
+  width: 100vw;
+  height: 300px;
+  border: none;
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fffef2;
+  background-color: transparent;
 }
 
 .shop-banner-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  object-position: 100% 65%;
+  border-radius: 0;
 }
 
 
 .shop-name {
   text-align: center;
   padding: 20px;
+  font-family: "Paytone One", sans-serif;
+  font-weight: 150;
 }
-
-
 .recommend {
   text-align: center;
   padding: 40px 10%;
@@ -98,7 +109,17 @@ body {
   font-size: 16px;
   margin-bottom: 5px;
 }
+h4{
+  font-family: "Arsenal SC", sans-serif;
+  font-size: 20px;        
+  font-weight: 700;       
+  color: #3a2e20;         
+  letter-spacing: 0.5px;  
+  text-align: center;     
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1); 
+  margin-top: 10px;
 
+}
 .menu-card .price {
   color: #c42c2c;
   font-weight: bold;
@@ -158,15 +179,81 @@ body {
 }
 
 .section.category::before {
-  content: "";
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    background: url("../source/bg-shadow.png") center/contain no-repeat;
+    opacity: 0.25;
+    transform: translate(-50%, -50%);
+    z-index: -1; 
+    filter: blur(3px);
+}
+/* ---------- สไลด์เมนู ---------- */
+.slider-container {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.menu-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.menu-card {
+  min-width: 250px;
+  margin: 10px;
+  background-color: #fff;
+  border: 2px solid #eeec70;
+  border-radius: 15px;
+  text-align: center;
+  padding: 15px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.menu-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.prev, .next {
   position: absolute;
   top: 50%;
-  left: 50%;
-  width: 400px;
-  height: 400px;
-  background: url("../source/bg-shadow.png") center/contain no-repeat;
-  opacity: 0.25;
-  transform: translate(-50%, -50%);
-  z-index: -1; 
-  filter: blur(3px); 
+  transform: translateY(-50%);
+  background-color: rgba(255,255,255,0.8);
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.prev:hover, .next:hover {
+  background-color: #ffeb3b;
+}
+
+.prev { left: 5px; }
+.next { right: 5px; }
+
+@media (max-width: 1024px) {
+  .menu-card { min-width: 200px; }
+}
+@media (max-width: 768px) {
+  .menu-card { min-width: 180px; }
+  .special-deal { width: 90%; }
+}
+@media (max-width: 480px) {
+  .menu-card { min-width: 150px; }
+  .menu-card img { height: 130px; }
+  .prev, .next { display: none; } 
 }
