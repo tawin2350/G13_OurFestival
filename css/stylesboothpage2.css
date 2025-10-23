@@ -228,7 +228,8 @@ header nav a:hover {
 
 .footerstore-content p {
   margin: 6px 0;
-  font-size: 15px;
+  font-size: 20px;
+  font-family: 'Arsenal SC' , 'Ultra' , sans-serif;
 }
 
 .footerstore-content a {
@@ -236,6 +237,7 @@ header nav a:hover {
   text-decoration: none;
   font-weight: 600;
   transition: 0.2s;
+  font-family: 'Arsenal SC' , 'Ultra' , sans-serif;
 }
 
 .footerstore-content a:hover {
@@ -243,9 +245,10 @@ header nav a:hover {
 }
 
 .footerstore-bottom {
-  font-size: 13px;
+  font-size: 15px;
   margin-top: 10px;
   opacity: 0.9;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .footerstore::before {
@@ -314,4 +317,14 @@ footer a:hover {
 h2 {
   font-family: 'Ultra' , serif;
   color: #4a2c10;
+}
+
+.badge {
+      font-size:12px; 
+      margin-bottom: 5px;
+      background:#f6f6f6; 
+      padding:4px 8px; 
+      border-radius:999px; 
+      display:inline-block; 
+      color:#555;
 }
