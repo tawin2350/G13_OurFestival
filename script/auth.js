@@ -1,6 +1,7 @@
+
 (function () {
-  function qs(sel, root) { return (root || document).querySelector(sel) }
-  function qsa(sel, root) { return Array.from((root || document).querySelectorAll(sel)) }
+  function qs(sel, root) { return (root || document).querySelector(sel); }
+  function qsa(sel, root) { return Array.from((root || document).querySelectorAll(sel)); }
 
   function setFbStatus(msg) {
     var el = document.getElementById('fb-status');
@@ -50,6 +51,46 @@
   function updateCounts() {
     var elMember = qs('#member-count');
     var elReg = qs('#registered-count');
+      updateRegisterList();
+  function updateRegisterList() {
+    var listEl = qs('#register-list');
+    if (!listEl) return;
+    listEl.innerHTML = '<div style="color:#888; font-size:0.98em; text-align:center;">กำลังโหลด...</div>';
+    function render(list) {
+      if (!list.length) { listEl.innerHTML = '<div style="color:#888; font-size:0.98em; text-align:center;">ยังไม่มีผู้สมัคร</div>'; return; }
+      listEl.innerHTML = '<ul style="list-style:none; padding:0; margin:0;">' +
+        list.map(function(u,i){
+          return '<li style="padding:7px 0; border-bottom:1px solid #eee; font-size:1.07em; display:flex; gap:0.7em; align-items:center;">'
+            + '<span style="font-weight:500;">' + (i+1) + '.</span>'
+            + '<span>' + (u.firstname || '-') + '</span>'
+            + '<span>' + (u.lastname || '-') + '</span>'
+            + '</li>';
+        }).join('') + '</ul>';
+    }
+    if (firebaseEnabled && fbDb) {
+      fbDb.collection('users').onSnapshot(function(snap){
+        var list = [];
+        snap.forEach(function(doc){
+          var d = doc.data(); list.push({ firstname: d.firstname, lastname: d.lastname });
+        });
+        render(list);
+      }, function(){ listEl.innerHTML = '<div style="color:#d32f2f; text-align:center;">โหลดข้อมูลจาก Firebase ไม่สำเร็จ</div>'; });
+      return;
+    }
+    var users = loadUsers();
+    render(users.map(function(u){ return { firstname: u.firstname, lastname: u.lastname }; }));
+  }
+  window.addEventListener('DOMContentLoaded', function() {
+    var listEl = qs('#register-list');
+    var toggleBtn = qs('#toggle-register-list');
+    if (listEl) {
+      listEl.style.display = 'block';
+      updateRegisterList();
+    }
+    if (toggleBtn) {
+      toggleBtn.style.display = 'none';
+    }
+  });
     if (firebaseEnabled && fbDb) {
       fbDb.collection('users').get().then(function (snap) {
         var n = snap.size || 0;
@@ -195,8 +236,6 @@
       }
       initWhenReady();
     }).catch(function () {setTimeout(function(){ setFbStatus('ไม่พบไฟล์ firebase-config.json (จะใช้ localStorage แทน)') }, 50); });
-  })();
-
   function downloadJSON() {
     var data = localStorage.getItem(STORAGE_KEY) || '[]';
     var blob = new Blob([data], { type: 'application/json' });
@@ -206,5 +245,7 @@
     URL.revokeObjectURL(url);
   }
 
-  var dl = qs('#download-json'); if (dl) dl.addEventListener('click', downloadJSON);
-;
+  var dl = qs('#download-json');
+  if (dl) dl.addEventListener('click', downloadJSON);
+
+})();
