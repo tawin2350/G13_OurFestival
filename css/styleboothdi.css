@@ -92,7 +92,7 @@ body{
 
 .section.category {
   position: relative;
-  background-image: url("/source/cแม่พ่อค้า.webp"); 
+  background-image: url("../source/พ่อค้า.webp"); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
