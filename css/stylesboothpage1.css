@@ -191,7 +191,7 @@ h4{
     z-index: -1; 
     filter: blur(3px);
 }
-/* ---------- สไลด์เมนู ---------- */
+
 .slider-container {
   position: relative;
   width: 80%;
