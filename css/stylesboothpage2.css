@@ -29,10 +29,10 @@ header.scrolled {
 }
 
 .shop-name-fancy {
-  font-family: "Pacifico", "Prompt", cursive;
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
   color: #fff8e1;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   letter-spacing: 1px;
   display: flex;
   align-items: center;
@@ -99,11 +99,6 @@ header nav a:hover {
   border-radius: 20px;
 }
 
-.shop-name {
-  text-align: center;
-  padding: 20px;
-}
-
 .section { 
     padding: 0 30px; 
 }
@@ -111,6 +106,7 @@ header nav a:hover {
 .recommend {
   text-align: center;
   padding: 40px 10%;
+  font-family: 'Lilita One' ,sans-serif;
 }
 
 .menu-grid {
@@ -160,7 +156,8 @@ header nav a:hover {
   box-shadow: 0 5px 15px rgba(215, 168, 110, 0.2);
   max-width: 700px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-family: "Prompt", sans-serif;
+  font-family: 'Ultra' , serif;
+  color: #4a2c10;
 }
 
 .promotion:hover {
@@ -312,4 +309,9 @@ footer a:hover {
 .menu-price {
   font-size: 14px;
   color: #888;
+}
+
+h2 {
+  font-family: 'Ultra' , serif;
+  color: #4a2c10;
 }
