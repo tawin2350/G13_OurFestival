@@ -68,16 +68,20 @@ header nav a:hover {
 
 .shop-image {
   width: 100%;
-  height: 350px;
+  aspect-ratio: 16 / 9;
   background: #fff7f7;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2em;
-  margin-bottom: 20px;
-  border: 2px solid #ffbdbd;
   position: relative;
   overflow: hidden;
+  border: 2px solid #ffbdbd;
+}
+
+.shop-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .shop-name {
@@ -103,24 +107,7 @@ header nav a:hover {
   padding: 40px 10%;
 }
 
-.shop-description, .shop-details {
-    font-size: 1rem;
-    color: #4e342e;
-    margin-bottom: 10px;
-}
 
-.recommend-title {
-    font-size: 1.8rem;
-    text-align: center;
-    margin: 30px 0 20px 0;
-    background: linear-gradient(90deg, #ffe0b2, #ffcc80);
-    display: inline-block;
-    padding: 12px 25px;
-    border-radius: 25px;
-    color: #6e4b1f;
-    font-weight: 700;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
 
 .menu-grid {
   display: grid;
