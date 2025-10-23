@@ -11,7 +11,8 @@ header {
 }
 
 body {
-    font-family: "Prompt", sans-serif;
+  font-family: "Prompt", sans-serif;
+  text-align: center;
 }
 
 header .logo {
@@ -70,7 +71,8 @@ header nav a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .shop-banner-box img {
@@ -293,21 +295,4 @@ footer a:hover {
 .menu-price {
   font-size: 14px;
   color: #888;
-}
-
-.menu-large, .menu-small {
-  position: relative;
-}
-
-.menu-large .menu-info,
-.menu-small .menu-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  color: white;
-  padding: 6px 0;
-  text-align: center;
-  font-size: 14px;
-  border-radius: 0 0 8px 8px;
 }
