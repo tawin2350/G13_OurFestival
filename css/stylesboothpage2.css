@@ -28,6 +28,23 @@ header.scrolled {
   transition: 0.3s;
 }
 
+.shop-name-fancy {
+  font-family: "Pacifico", "Prompt", cursive;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #fff8e1;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  animation: glowText 3s ease-in-out infinite;
+}
+
+.cookie-icon, .sparkle {
+  animation: floatEmoji 2.5s ease-in-out infinite alternate;
+}
+
 .logo:hover {
   color: #e57373;
   font-size: 17px;
