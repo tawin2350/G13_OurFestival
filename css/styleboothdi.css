@@ -20,6 +20,34 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
   line-height: 1.6;
 }
 
+.font-menu{
+  font-family: "Great Vibes", "Lilita One", "Prompt", cursive;
+  font-size: 1.35rem;
+}
+
+.font-slogan,
+.section-title,
+.zone-title{
+  font-family: "Arsenal SC", "Ultra", "Prompt", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.font-shop-name,
+.shop-name{
+  font-family: "Lilita One", "Paytone One", "Prompt", sans-serif;
+  letter-spacing: .3px;
+}
+.font-work-title,
+.page-title{
+  font-family: "Ultra", serif;
+  letter-spacing: .5px;
+}
+
+.font-story{
+  font-family: "TASA Orbiter", "Prompt", sans-serif;
+  line-height: 1.75;
+  font-size: 1.05rem;
+}
 
 .site-header{
   position: sticky;
@@ -291,4 +319,8 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
   .home-link .home-text{ display: block }
   .profile-hint{ display: block }
   .card-link{ grid-template-columns: 40% 1fr; min-height: 200px; padding: 18px }
+}
+
+@media (max-width: 780px){
+  .section.category{ background-attachment: scroll; }
 }
