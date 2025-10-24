@@ -15,7 +15,6 @@ body {
   overflow-x: hidden;
 }
 
-/* เอฟเฟกต์หิมะตก */
 body::before {
   content: '';
   position: fixed;
@@ -48,7 +47,6 @@ body::before {
   }
 }
 
-/* HEADER */
 header {
   display: flex;
   justify-content: space-between;
@@ -108,7 +106,6 @@ header nav a:hover {
   border-radius: 20px;
 }
 
-/* MAIN */
 .main {
   text-align: center;
   padding: clamp(60px, 10vw, 120px) 20px;
@@ -142,7 +139,6 @@ header nav a:hover {
   color: #fff;
 }
 
-/* WORK SECTION */
 .work {
   text-align: center;
   padding: clamp(40px, 8vw, 60px) 20px;
@@ -155,7 +151,6 @@ header nav a:hover {
   margin-bottom: 20px;
 }
 
-/* SPLIT HERO */
 .split-hero {
   max-width: 1200px;
   margin: 0 auto;
@@ -283,7 +278,6 @@ header nav a:hover {
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* SPLIT SLIDER */
 .split-slider {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(6px);
@@ -376,7 +370,6 @@ header nav a:hover {
   outline: 3px solid #ffd35a;
 }
 
-/* RESPONSIVE */
 @media (max-width: 900px) {
   .split-hero-inner {
     grid-template-columns: 1fr;
@@ -391,7 +384,6 @@ header nav a:hover {
   }
 }
 
-/* STAFF SECTION */
 .staff {
   padding: clamp(40px, 8vw, 60px) 0;
   text-align: center;
@@ -440,7 +432,6 @@ header nav a:hover {
   transform: scale(1.05);
 }
 
-/* FOOTER */
 footer {
   display: flex;
   flex-direction: column;
@@ -473,7 +464,6 @@ footer a:hover {
   }
 }
 
-/* COVERFLOW */
 .coverflow {
   padding: clamp(24px, 5vw, 40px) 20px;
   border-top: 1px solid #eee;
