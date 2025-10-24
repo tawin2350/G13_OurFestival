@@ -14,6 +14,7 @@
 	text-align: center;
 	opacity: 0.97;
 	animation: fadeInPop 0.3s;
+	display: none;
 }
 .register-btn:disabled {
 	background: #b3c6ff;
@@ -32,6 +33,19 @@
 	width: 100%;
 	padding: 2.2em 2em 1.5em 2em;
 	margin: 2em 0;
+}
+.register-card h2 {
+	font-size: 1.5em;
+	font-weight: 600;
+	color: #222;
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+.register-card > p {
+	font-size: 1em;
+	color: #666;
+	text-align: center;
+	margin-bottom: 1.2em;
 }
 .register-form {
 	display: flex;
@@ -67,6 +81,7 @@
 	font-size: 0.98em;
 	margin-top: 0.3em;
 	text-align: center;
+	display: none;
 }
 .register-count {
 	font-size: 0.98em;
@@ -74,11 +89,24 @@
 	margin-top: 1.2em;
 	text-align: center;
 }
+.register-list {
+	display: block;
+	margin: 0.5em 0 0.5em;
+	text-align: left;
+	max-width: 370px;
+}
 .export-message {
 	font-size: 0.95em;
 	color: #666;
 	margin-top: 0.5em;
 	text-align: center;
+}
+main.register-main {
+	background: #fafbfc;
+	min-height: 80vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 body {
 	font-family: 'Prompt', system-ui, sans-serif;
