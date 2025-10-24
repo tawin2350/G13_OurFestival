@@ -159,8 +159,6 @@ document.addEventListener('DOMContentLoaded', function () {
     updateTextFrom(cards[active]);
     setTimeout(start, 800);
   });
-
-  // Animate member cards one by one
   var memberCards = document.querySelectorAll('.staff .card');
   memberCards.forEach(function(card, index) {
     card.style.opacity = '0';
