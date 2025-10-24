@@ -54,6 +54,23 @@
   padding: 2.2em 2em 1.5em 2em;
   margin: 2em 0;
 }
+
+@media (min-width: 768px) {
+  .feedback-card {
+    max-width: 600px;
+    padding: 2.5em 3em 2em 3em;
+  }
+  
+  .feedback-input, .feedback-select {
+    font-size: 1.05em;
+    padding: 1em;
+  }
+  
+  .feedback-btn {
+    font-size: 1.15em;
+    padding: 1.1em;
+  }
+}
 .feedback-form {
   display: flex;
   flex-direction: column;

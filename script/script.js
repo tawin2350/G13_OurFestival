@@ -159,4 +159,16 @@ document.addEventListener('DOMContentLoaded', function () {
     updateTextFrom(cards[active]);
     setTimeout(start, 800);
   });
+
+  // Animate member cards one by one
+  var memberCards = document.querySelectorAll('.staff .card');
+  memberCards.forEach(function(card, index) {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    setTimeout(function() {
+      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, 800 + (index * 100));
+  });
 });
