@@ -221,7 +221,7 @@ header .nav-right {
 }
 
 .contact:hover{
-    transform: scale(1.05)
+    transform: scale(1.05);
 }
 
 .contact-content h2{
