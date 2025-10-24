@@ -83,9 +83,9 @@ header .nav-right {
 .recommend-menu {
     background-color: #fff8fa;
     border-radius: 16px;
-    padding: 25px;
+    padding: 5px;
     margin: 40px auto;
-    max-width: 1000px;
+    max-width: 1200px;
     box-shadow: 0 3px 8px rgba(0,0,0,0.05);
 }
 
