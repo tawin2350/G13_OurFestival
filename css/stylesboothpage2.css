@@ -10,6 +10,11 @@ header {
   z-index: 10;
 }
 
+.shop-name {
+  font-family: 'Ultra' , serif;
+  color: #4a2c10;
+}
+
 body {
   font-family: "Prompt", sans-serif;
   text-align: center;
@@ -89,7 +94,7 @@ header nav a:hover {
   justify-content: center;
   align-items: center;
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 .shop-banner-box img {
