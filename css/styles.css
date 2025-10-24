@@ -6,7 +6,7 @@
 }
 
 body {
-  background: #fefefe;
+  background: #ffffff;
   color: #222;
   display: flex;
   flex-direction: column;
@@ -15,36 +15,41 @@ body {
   overflow-x: hidden;
 }
 
-body::before {
-  content: '';
+/* Snowflake Effect */
+.snowflake {
   position: fixed;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 200%;
-  background-image: 
-    radial-gradient(2px 2px at 20% 30%, white, transparent),
-    radial-gradient(2px 2px at 60% 70%, white, transparent),
-    radial-gradient(1px 1px at 50% 50%, white, transparent),
-    radial-gradient(1px 1px at 80% 10%, white, transparent),
-    radial-gradient(2px 2px at 90% 60%, white, transparent),
-    radial-gradient(1px 1px at 33% 80%, white, transparent),
-    radial-gradient(1px 1px at 70% 25%, white, transparent);
-  background-size: 200px 200px, 300px 300px, 150px 150px, 250px 250px, 180px 180px, 220px 220px, 280px 280px;
-  background-repeat: repeat;
-  opacity: 0.6;
+  top: -10%;
+  color: white;
+  font-size: 1em;
   pointer-events: none;
-  z-index: 9999;
-  animation: snowfall 20s linear infinite;
+  z-index: 9997;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
-@keyframes snowfall {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(50%);
-  }
+@keyframes fall1 {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(5vw, 100vh); }
+}
+
+@keyframes fall2 {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-8vw, 100vh); }
+}
+
+@keyframes fall3 {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(3vw, 100vh); }
+}
+
+@keyframes fall4 {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-5vw, 100vh); }
+}
+
+@keyframes fall5 {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(7vw, 100vh); }
 }
 
 header {
