@@ -31,6 +31,8 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
   font-family: "Archivo Black", "Ultra", "Prompt", sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
+  padding-top: 20px;
+  padding-left: 10px;
 }
 .font-shop-name,
 .shop-name{
@@ -41,6 +43,10 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
 .page-title{
   font-family: "Ultra", serif;
   letter-spacing: .5px;
+  color: #b71c1c;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+  -webkit-text-stroke-width: 0.5px;
+  text-shadow: 2px 2px rgb(161, 156, 16);
 }
 
 .font-story{
@@ -57,10 +63,11 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 16px;
-  padding: 10px 18px;
+  padding: 30px 20px;
   background: #fff;
   border-bottom: 1px solid var(--line);
   backdrop-filter: saturate(140%) blur(6px);
+  margin: -10px -10px;
 }
 .home-link{
   display: inline-flex;
@@ -73,8 +80,12 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
 .home-link .home-text{
   display: none;
   font-size: 12px;
-  line-height: 1.1;
+  line-height: 1.5;
   color: var(--sub);
+  transition-duration: 0.2s;
+}
+.home-text:hover {
+  color: #b71c1c;
 }
 .page-title{
   margin: 0;
@@ -93,8 +104,8 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
   color: var(--ink);
 }
 .avatar {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #ccc;
@@ -111,8 +122,12 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
 .profile-hint{
   display: none;
   text-align: right;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--sub);
+  transition-duration: 0.2s;
+}
+.profile-hint:hover {
+  color: #b71c1c;
 }
 
 .spacer{ height: 12px }
@@ -128,7 +143,8 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
   padding-top: 80px;             
   padding-bottom: 80px;           
   color: #fff;                   
-  isolation: isolate;            
+  isolation: isolate;   
+  margin: 0px -10px;         
 }
 
 
@@ -199,7 +215,6 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
-.card-row::-webkit-scrollbar{ height: 10px }
 .card-row::-webkit-scrollbar-thumb{
   background: #cfc7bf; border-radius: 999px;
 }
@@ -212,14 +227,14 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
   max-width: 100%;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
   overflow: hidden;
-  transition: transform .18s ease, box-shadow .18s ease;
+  transition-duration: 0.4s;
 }
-.shop-card:hover{ transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.12) }
+.shop-card:hover {
+  box-shadow: 0px 0px 5px 1px gray;
+  transform: scale(0.98);
+}
 .shop-card.is-centered{
-  transform: scale(1.02);
-  box-shadow: 0 18px 36px rgba(0,0,0,.14);
   border-color: #d7cfc6;
 }
 .card-link{
@@ -273,6 +288,7 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
   padding: 18px clamp(16px, 4vw, 40px);
   background: #fff;
   border-top: 1px solid var(--line);
+  margin: 0px -10px;
 }
 .copy{ font-size: 14px; color: var(--sub) }
 .feedback{
@@ -292,6 +308,9 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
   margin-bottom: 8px;
   background: transparent;
 }
+.section.zone {
+  margin: 0px 10px;
+}
 .section.zone .carousel-controls button{
   appearance: none;
   border: 0;
@@ -308,8 +327,11 @@ font-family: "Prompt", "TASA Orbiter", system-ui, -apple-system, "Segoe UI",
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   transition: transform .12s ease, background .12s ease;
 }
+.carousel-controls button {
+  margin-top: 8px;
+}
 .section.zone .carousel-controls button:hover{
-  transform: translateY(-2px);
+  transform: scale(1.1);
   background: rgba(0,0,0,0.09);
 }
 .carousel-controls button:focus{ outline: 3px solid rgba(0,123,255,0.18) }
