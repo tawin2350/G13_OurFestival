@@ -103,7 +103,7 @@ header nav a:hover {
 }
 
 .main p {
-  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-size: clamp(1.1rem, 2.1vw, 1.6rem);
   color: #fff;
 }
 
