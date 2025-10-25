@@ -1,5 +1,5 @@
 (function() {
-  const secretCode = ['a', 'd', 'm', 'i', 'n'];
+  const secretCode = ['a', 'd', 'm', 'i', 'n', '1', '2', '3'];
   let userInput = [];
   let timer;
 
