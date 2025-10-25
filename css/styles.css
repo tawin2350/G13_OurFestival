@@ -493,41 +493,99 @@ header nav a:hover {
 }
 
 .card {
-  flex: 0 0 clamp(140px, 22vw, 180px);
+  flex: 0 0 clamp(200px, 28vw, 280px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
   scroll-snap-align: start;
-  transition: transform 0.2s;
+  transition: transform 0.3s ease;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
   width: 100%;
-  height: clamp(180px, 25vw, 220px);
+  height: clamp(200px, 28vw, 280px);
   object-fit: cover;
   display: block;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 1px solid #eee;
+  border: 3px solid #f0f0f0;
   background: #fff;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
 }
 
-.card p {
-  margin: 0;
-  padding: 5px 10px;
-  font-weight: bold;
-  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-  color: #333;
+.member-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   text-align: center;
 }
 
+.nickname {
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 700;
+  color: #0f5132;
+  margin: 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.fullname {
+  font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+  font-weight: 500;
+  color: #2c3e50;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.student-id {
+  font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+  font-weight: 600;
+  color: #667eea;
+  background: linear-gradient(135deg, #f0f4ff, #e8eeff);
+  padding: 6px 12px;
+  border-radius: 12px;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+}
+
+.role {
+  font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+  font-weight: 500;
+  color: #6c757d;
+  margin: 0;
+  padding: 8px 10px;
+  background: linear-gradient(135deg, #fff5f0, #ffe8e0);
+  border-radius: 10px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(15, 81, 50, 0.15);
 }
 
 .card:hover img {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-color: #0f5132;
+  transform: scale(1.02);
+}
+
+.card:hover .nickname {
+  color: #2ecc71;
+}
+
+.card:hover .student-id {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  transform: scale(1.05);
 }
 
 footer {
