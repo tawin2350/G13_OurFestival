@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Christmas Festival</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div id="login-screen" class="login-container">
+    <div class="login-card">
+      <h1>🔐 Admin Login</h1>
+      <p>กรุณาใส่รหัสผ่านเพื่อเข้าสู่ระบบ</p>
+      <form id="login-form">
+        <div class="input-group">
+          <label for="admin-password">รหัสผ่าน Admin</label>
+          <input 
+            type="password" 
+            id="admin-password" 
+            placeholder="กรอกรหัสผ่าน"
+            required
+          >
+        </div>
+        <button type="submit" class="btn-login">เข้าสู่ระบบ</button>
+        <p id="login-error" class="error-message"></p>
+      </form>
+      <a href="index.html" class="back-link">← กลับหน้าหลัก</a>
+    </div>
+  </div>
+  <div id="admin-panel" class="admin-container" style="display: none;">
+    <header class="admin-header">
+      <div class="header-left">
+        <h1>🎄 Admin Dashboard</h1>
+        <p>Christmas Festival Management</p>
+      </div>
+      <div class="header-right">
+        <a href="index.html" class="btn-secondary">หน้าหลัก</a>
+        <button id="logout-btn" class="btn-danger">ออกจากระบบ</button>
+      </div>
+    </header>
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-info">
+          <h3 id="total-users">0</h3>
+          <p>ผู้ลงทะเบียนทั้งหมด</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">💬</div>
+        <div class="stat-info">
+          <h3 id="total-feedback">0</h3>
+          <p>Feedback ทั้งหมด</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-info">
+          <h3 id="avg-rating">0.0</h3>
+          <p>คะแนนเฉลี่ย</p>
+        </div>
+      </div>
+    </div>
+    <div class="tab-container">
+      <button class="tab-btn active" data-tab="users">
+        <span>👥</span> ผู้ลงทะเบียน
+      </button>
+      <button class="tab-btn" data-tab="feedback">
+        <span>💬</span> Feedback
+      </button>
+    </div>
+    <div id="users-tab" class="tab-content active">
+      <div class="content-header">
+        <h2>📋 รายชื่อผู้ลงทะเบียน</h2>
+        <div class="search-box">
+          <input type="text" id="search-users" placeholder="🔍 ค้นหาชื่อ, อีเมล...">
+        </div>
+      </div>
+      
+      <div class="table-container">
+        <table id="users-table">
+          <thead>
+            <tr>
+              <th>ลำดับ</th>
+              <th>ชื่อ</th>
+              <th>อีเมล</th>
+              <th>เบอร์โทร</th>
+              <th>วันที่ลงทะเบียน</th>
+              <th>จัดการ</th>
+            </tr>
+          </thead>
+          <tbody id="users-tbody">
+            <tr>
+              <td colspan="6" class="no-data">กำลังโหลดข้อมูล...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="feedback-tab" class="tab-content">
+      <div class="content-header">
+        <h2>💬 Feedback จากผู้เข้าร่วม</h2>
+        <div class="filter-box">
+          <select id="filter-rating">
+            <option value="all">ทุกคะแนน</option>
+            <option value="5">⭐⭐⭐⭐⭐ (5 ดาว)</option>
+            <option value="4">⭐⭐⭐⭐ (4 ดาว)</option>
+            <option value="3">⭐⭐⭐ (3 ดาว)</option>
+            <option value="2">⭐⭐ (2 ดาว)</option>
+            <option value="1">⭐ (1 ดาว)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="feedback-container" id="feedback-container">
+        <div class="no-data">กำลังโหลดข้อมูล...</div>
+      </div>
+    </div>
+    <div id="edit-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>✏️ แก้ไขข้อมูล</h2>
+          <span class="close-modal">&times;</span>
+        </div>
+        <form id="edit-form">
+          <input type="hidden" id="edit-id">
+          <div class="form-group">
+            <label>ชื่อ</label>
+            <input type="text" id="edit-name" required>
+          </div>
+          <div class="form-group">
+            <label>อีเมล</label>
+            <input type="email" id="edit-email" required>
+          </div>
+          <div class="form-group">
+            <label>เบอร์โทร</label>
+            <input type="tel" id="edit-phone" required>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary cancel-btn">ยกเลิก</button>
+            <button type="submit" class="btn-primary">บันทึก</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="delete-modal" class="modal">
+      <div class="modal-content small">
+        <div class="modal-header">
+          <h2>⚠️ ยืนยันการลบ</h2>
+          <span class="close-modal">&times;</span>
+        </div>
+        <p>คุณแน่ใจหรือไม่ที่จะลบข้อมูลนี้?</p>
+        <p class="delete-info" id="delete-info"></p>
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary cancel-btn">ยกเลิก</button>
+          <button type="button" id="confirm-delete" class="btn-danger">ลบ</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  
+  <script src="script/admin.js"></script>
+</body>
+</html>
