@@ -126,10 +126,15 @@ function displayUsers(users) {
     return;
   }
 
-  tbody.innerHTML = users.map((user, index) => `
+  tbody.innerHTML = users.map((user, index) => {
+    const fullName = (user.firstname && user.lastname) 
+      ? `${user.firstname} ${user.lastname}` 
+      : (user.name || '-');
+    
+    return `
     <tr>
       <td>${index + 1}</td>
-      <td>${user.name || '-'}</td>
+      <td>${fullName}</td>
       <td>${user.email || '-'}</td>
       <td>${user.phone || '-'}</td>
       <td>${user.created ? new Date(user.created).toLocaleDateString('th-TH', {
@@ -140,20 +145,25 @@ function displayUsers(users) {
       <td>
         <div class="action-buttons">
           <button class="btn-edit" onclick="editUser('${user.id}')">✏️ แก้ไข</button>
-          <button class="btn-delete" onclick="deleteUser('${user.id}', '${(user.name || 'ไม่ระบุชื่อ').replace(/'/g, "\\'")}')">🗑️ ลบ</button>
+          <button class="btn-delete" onclick="deleteUser('${user.id}', '${fullName.replace(/'/g, "\\'")}')">🗑️ ลบ</button>
         </div>
       </td>
     </tr>
-  `).join('');
+    `;
+  }).join('');
 }
 
 document.getElementById('search-users').addEventListener('input', (e) => {
   const search = e.target.value.toLowerCase();
-  const filtered = allUsers.filter(user => 
-    (user.name || '').toLowerCase().includes(search) ||
-    (user.email || '').toLowerCase().includes(search) ||
-    (user.phone || '').toLowerCase().includes(search)
-  );
+  const filtered = allUsers.filter(user => {
+    const fullName = (user.firstname && user.lastname) 
+      ? `${user.firstname} ${user.lastname}` 
+      : (user.name || '');
+    
+    return fullName.toLowerCase().includes(search) ||
+      (user.email || '').toLowerCase().includes(search) ||
+      (user.phone || '').toLowerCase().includes(search);
+  });
   displayUsers(filtered);
 });
 window.editUser = function(userId) {
@@ -161,7 +171,8 @@ window.editUser = function(userId) {
   if (!user) return;
 
   document.getElementById('edit-id').value = userId;
-  document.getElementById('edit-name').value = user.name || '';
+  document.getElementById('edit-firstname').value = user.firstname || '';
+  document.getElementById('edit-lastname').value = user.lastname || '';
   document.getElementById('edit-email').value = user.email || '';
   document.getElementById('edit-phone').value = user.phone || '';
 
@@ -172,7 +183,8 @@ document.getElementById('edit-form').addEventListener('submit', (e) => {
   
   const userId = document.getElementById('edit-id').value;
   const data = {
-    name: document.getElementById('edit-name').value,
+    firstname: document.getElementById('edit-firstname').value,
+    lastname: document.getElementById('edit-lastname').value,
     email: document.getElementById('edit-email').value,
     phone: document.getElementById('edit-phone').value
   };
@@ -258,17 +270,21 @@ function displayFeedback(feedback) {
       hour: '2-digit',
       minute: '2-digit'
     }) : '-';
+    
+    const displayName = (fb.firstname && fb.lastname) 
+      ? `${fb.firstname} ${fb.lastname}` 
+      : (fb.name || 'ไม่ระบุชื่อ');
 
     return `
       <div class="feedback-card">
         <div class="feedback-header">
-          <span class="feedback-user">${fb.name || 'ไม่ระบุชื่อ'}</span>
+          <span class="feedback-user">${displayName}</span>
           <span class="feedback-rating">${stars}</span>
         </div>
         <div class="feedback-date">📅 ${date}</div>
         <div class="feedback-comment">${fb.comment || '-'}</div>
         <div class="feedback-actions">
-          <button class="btn-delete" onclick="deleteFeedback('${fb.id}', '${(fb.name || 'ไม่ระบุชื่อ').replace(/'/g, "\\'")}')">🗑️ ลบ</button>
+          <button class="btn-delete" onclick="deleteFeedback('${fb.id}', '${displayName.replace(/'/g, "\\'")}')">🗑️ ลบ</button>
         </div>
       </div>
     `;
