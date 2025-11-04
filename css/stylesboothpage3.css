@@ -64,6 +64,61 @@ header {
   color: #e75480;
 }
 
+.recommend-menu {
+  text-align: center;
+  background-color: #ffeef5;
+  padding: 30px 0;
+  border-radius: 12px;
+}
+
+.recommend-menu h2 {
+  color: #e04ea0;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.menu-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.menu-item {
+  background-color: #fdeff4;
+  border-radius: 12px;
+  padding: 15px;
+  width: 250px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.menu-item img {
+  width: 100%;
+  height: 220px;            
+  object-fit: cover;        
+  object-position: center;  
+  border-radius: 10px;
+  display: block;
+}
+
+.menu-item p {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .menu-item {
+    width: 45%;
+  }
+
+  .menu-item img {
+    height: 160px;
+  }
+}
+
+
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
