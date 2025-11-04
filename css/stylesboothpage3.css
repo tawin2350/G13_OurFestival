@@ -1,49 +1,123 @@
-
 body {
   font-family: 'Kanit', sans-serif;
   margin: 0;
   padding: 0;
   background: #fff0f6; 
   color: #4a4a4a;
+  line-height: 1.6;
 }
 
-
-header {
+/* ───────── HEADER ───────── */
+.header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #f8a1c4; 
+  justify-content: space-between;
+  background-color: #f8a1c4;
   padding: 10px 20px;
-  color: white;
+  border-radius: 0 0 15px 15px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  flex-wrap: nowrap; /* ป้องกันการขึ้นบรรทัดใหม่ */
+  overflow: hidden;
+  gap: 15px;
 }
 
-.logo-img {
-  width: 40px;
-  height: 40px;
+.header-icon {
+  flex-shrink: 0; /* ไม่ให้ไอคอนย่อจนหาย */
+}
+
+.logo-img,
+.corner-icon {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
 }
 
 .corner-icon {
-  width: 40px;
-  height: 40px;
   border-radius: 50%;
   border: 2px solid white;
 }
 
-.nav-center {
-  font-size: 20px;
+.header-title {
+  flex: 1;
+  text-align: center;
+  font-family: 'Kanit', sans-serif;
   font-weight: bold;
+  color: white;
+  font-size: clamp(18px, 2.5vw, 26px);
+  margin: 0;
   text-shadow: 1px 1px 2px rgba(255,255,255,0.6);
+  white-space: nowrap;
+}
+
+/* ───────── RESPONSIVE ───────── */
+@media (max-width: 500px) {
+  .header {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .header-icon:first-child {
+    position: absolute;
+    left: 15px;
+  }
+
+  .header-icon:last-child {
+    position: absolute;
+    right: 15px;
+  }
+
+  .header-title {
+    flex: 0;
+    font-size: 18px;
+  }
+
+  .logo-img, .corner-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* ───────── TABLET RESPONSIVE (iPad, Surface Duo) ───────── */
+@media (max-width: 900px) and (min-width: 501px) {
+  .header {
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+  }
+
+  .header-icon:first-child {
+    position: absolute;
+    left: 20px;
+  }
+
+  .header-icon:last-child {
+    position: absolute;
+    right: 20px;
+  }
+
+  .header-title {
+    flex: 0;
+    font-size: clamp(18px, 2vw, 22px);
+  }
+
+  .logo-img,
+  .corner-icon {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 
+
+
+/* ───────── STORE HEADER ───────── */
 .store-header {
   text-align: center;
-  padding: 20px;
+  padding: 30px 20px;
 }
 
 .store-header .store-img {
-  width: 90%;
+  width: 100%;
   max-width: 600px;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(255,192,203,0.6);
@@ -54,50 +128,60 @@ header {
   color: #8b5c75;
 }
 
-
-.recommend-menu {
-  text-align: center;
-  padding: 20px;
-}
-
-.recommend-menu h2 {
-  color: #e75480;
-}
-
+/* ───────── RECOMMEND MENU ───────── */
 .recommend-menu {
   text-align: center;
   background-color: #ffeef5;
-  padding: 30px 0;
+  padding: 40px 20px;
   border-radius: 12px;
 }
 
 .recommend-menu h2 {
   color: #e04ea0;
   margin-bottom: 20px;
-  font-size: 24px;
+  font-size: clamp(20px, 3vw, 28px);
 }
 
+/* ✅ เปลี่ยนจาก grid → flex สำหรับเลื่อนแนวนอน */
 .menu-grid {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  gap: 25px;
+  overflow-x: auto;
+  padding: 10px 10px 20px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
+.menu-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.menu-grid::-webkit-scrollbar-thumb {
+  background-color: #f8a1c4;
+  border-radius: 10px;
+}
+
+/* กล่องแต่ละเมนู */
 .menu-item {
+  flex: 0 0 auto;
   background-color: #fdeff4;
-  border-radius: 12px;
+  border-radius: 15px;
   padding: 15px;
-  width: 250px;
+  width: 220px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  scroll-snap-align: center;
 }
 
+.menu-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(255,105,180,0.3);
+}
 
 .menu-item img {
   width: 100%;
-  height: 220px;            
-  object-fit: cover;        
-  object-position: center;  
+  height: 220px;
+  object-fit: cover;
   border-radius: 10px;
   display: block;
 }
@@ -108,9 +192,14 @@ header {
   font-weight: 500;
 }
 
-@media (max-width: 600px) {
+/* ✅ Responsive สำหรับหน้าจอเล็ก */
+@media (max-width: 768px) {
+  .menu-grid {
+    gap: 15px;
+  }
+
   .menu-item {
-    width: 45%;
+    width: 180px;
   }
 
   .menu-item img {
@@ -118,43 +207,36 @@ header {
   }
 }
 
+@media (max-width: 480px) {
+  .menu-item {
+    width: 150px;
+  }
 
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  justify-items: center;
+  .menu-item img {
+    height: 130px;
+  }
+
+  .menu-item p {
+    font-size: 14px;
+  }
 }
 
-.menu-item {
-  background: #ffe6ee;
-  border-radius: 15px;
-  padding: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.menu-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 14px rgba(255,105,180,0.3);
-}
-
-.menu-item img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-
+/* ───────── PROMOTION ───────── */
 .promotion {
   text-align: center;
-  padding: 30px 10px;
-  background-color: #ffd1dc; /* ชมพูพาสเทล */
+  padding: 40px 20px;
+  background-color: #ffd1dc;
   border-top: 3px solid #f8a1c4;
   border-bottom: 3px solid #f8a1c4;
 }
 
 .promotion h2 {
   color: #d63384;
+  font-size: clamp(18px, 3vw, 26px);
+}
+
+.promotion h3 p {
+  margin: 8px 0;
 }
 
 .topping-gallery {
@@ -162,51 +244,34 @@ header {
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .topping-gallery img {
   border-radius: 10px;
   width: 150px;
   height: 150px;
+  object-fit: cover;
   border: 3px solid #f8a1c4;
 }
 
-
-.btn {
-  background-color: #f78fb3;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s;
-  margin-top: 10px;
-}
-
-.btn:hover {
-  background-color: #f06292;
-  transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(240,98,146,0.4);
-}
-
-
+/* ───────── CONTACT ───────── */
 .contact {
   text-align: center;
-  padding: 30px 10px;
+  padding: 40px 20px;
 }
 
 .contact h2 {
   color: #e75480;
 }
 
-
+/* ───────── FOOTER ───────── */
 footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  flex-wrap: wrap;
+  padding: 15px 20px;
   background-color: #f8a1c4;
   color: white;
   font-weight: bold;
@@ -220,4 +285,46 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+/* ───────── RESPONSIVE ───────── */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .nav-center {
+    font-size: 18px;
+  }
+
+  .menu-item img {
+    height: 180px;
+  }
+
+  .topping-gallery img {
+    width: 120px;
+    height: 120px;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-item img {
+    height: 150px;
+  }
+
+  .menu-item p {
+    font-size: 14px;
+  }
+
+  .promotion h3 p {
+    font-size: 14px;
+  }
 }
