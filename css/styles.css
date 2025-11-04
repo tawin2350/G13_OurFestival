@@ -6,8 +6,8 @@
 }
 
 body {
-  background: #fdfdfd;
-  color: #222;
+  background: linear-gradient(to bottom, #1f4224, #1d271d);
+  color: #f8feb7;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -92,7 +92,7 @@ body {
 .snowflake {
   position: fixed;
   top: -10%;
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: 1em;
   pointer-events: none;
   z-index: 9997;
@@ -130,8 +130,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 40px);
-  border-bottom: 1px solid #ccc;
-  background: white;
+  border-bottom: 1px solid #000000;
+  background: rgb(35, 40, 34);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -156,7 +156,7 @@ header .logo {
 header nav a {
   margin: 0 20px;
   text-decoration: none;
-  color: #333;
+  color: #fffbbf;
   font-weight: 500;
   font-size: clamp(0.9rem, 1vw, 1rem);
 }
@@ -596,7 +596,7 @@ footer {
   gap: 10px;
   padding: clamp(10px, 3vw, 20px) clamp(20px, 4vw, 40px);
   border-top: 1px solid #ccc;
-  background: #fafafa;
+  background: #1b211c;
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
