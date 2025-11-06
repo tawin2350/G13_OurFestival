@@ -179,8 +179,9 @@ header .nav-right {
 }
 
 .topping-grid {
-    display: grid;
-    justify-content: space-between;
+    display: flex;
+    justify-content: center;
+    gap: 150px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     place-items: center;
     margin-top: 20px;
@@ -191,11 +192,12 @@ header .nav-right {
     width: 150px;
     border: 2px solid #5ca0e0;
     border-radius: 50%;
-    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .topping-item img:hover{
     transform: scale(1.05);
+    box-shadow: 0 6px 14px #9eedff;
 }
 
 .topping-item p {
@@ -220,4 +222,70 @@ header .nav-right {
 .footer p {
   color: #000000;
   font-size: 14px;
+}
+
+@media (max-width: 480px) {
+    .store-header img {
+        max-width: 50%;
+    }
+    header .nav-center {
+        font-size: 20px;
+    }
+    .logo-img {
+        width: 30px;
+        height: 30px;
+    }
+    .corner-icon {
+        width: 40px;
+        height: 40px;
+    }
+    .promotion h3 {
+        font-size: 20px;
+    }
+    .promotion li {
+        font-size: 14px;
+    }
+    .menu-item {
+        padding: 10px;
+    }
+    .menu-item img {
+        width: 180px;
+        height: 180px;
+    }
+    .topping{
+        width: 300px;
+    }
+    .topping-grid{
+        gap: 50px;
+    }
+    .topping-item img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 481px){
+    .store-header img {
+        max-width: 40%;
+    }
+    header .nav-center {
+        font-size: 30px;
+    }
+    .menu-item {
+        padding: 13px;
+    }
+    .menu-item img {
+        width: 200px;
+        height: 200px;
+    }
+    .topping{
+        width: 600px;
+    }
+    .topping-grid{
+        gap: 100px;
+    }
+    .topping-item img {
+        width: 130px;
+        height: 130px;
+    }
 }
