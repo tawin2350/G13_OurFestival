@@ -1,330 +1,286 @@
-body {
-  font-family: 'Kanit', sans-serif;
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; 
+}
+* {
   margin: 0;
   padding: 0;
-  background: #fff0f6; 
-  color: #4a4a4a;
-  line-height: 1.6;
+  box-sizing: border-box;
 }
 
-/* ───────── HEADER ───────── */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #f8a1c4;
-  padding: 10px 20px;
-  border-radius: 0 0 15px 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  flex-wrap: nowrap; /* ป้องกันการขึ้นบรรทัดใหม่ */
-  overflow: hidden;
-  gap: 15px;
+body {
+  font-family: "Prompt", sans-serif;
+  background-color: #ffffff;
+  color: #222;
 }
 
-.header-icon {
-  flex-shrink: 0; /* ไม่ให้ไอคอนย่อจนหาย */
+
+.header-bar {
+  background-color: #840d1d;
+  padding: 10px 20px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+}
+.some-number{
+  font-family: "Ultra", serif;
+  font-size: 23px;
+  letter-spacing: .5px;
+  color: #b71c1c;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+  -webkit-text-stroke-width: 0.5px;
+  text-shadow: 2px 2px rgb(255, 253, 198);
+}
+**.some-number {
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
+  color: #d32f2f;
+  font-weight: 400;
+}
+.home-icon {
+  width: 30px; 
 }
 
-.logo-img,
 .corner-icon {
-  width: 45px;
   height: 45px;
-  object-fit: cover;
-}
-
-.corner-icon {
   border-radius: 50%;
-  border: 2px solid white;
-}
-
-.header-title {
-  flex: 1;
-  text-align: center;
-  font-family: 'Kanit', sans-serif;
-  font-weight: bold;
-  color: white;
-  font-size: clamp(18px, 2.5vw, 26px);
-  margin: 0;
-  text-shadow: 1px 1px 2px rgba(255,255,255,0.6);
-  white-space: nowrap;
-}
-
-/* ───────── RESPONSIVE ───────── */
-@media (max-width: 500px) {
-  .header {
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .header-icon:first-child {
-    position: absolute;
-    left: 15px;
-  }
-
-  .header-icon:last-child {
-    position: absolute;
-    right: 15px;
-  }
-
-  .header-title {
-    flex: 0;
-    font-size: 18px;
-  }
-
-  .logo-img, .corner-icon {
-    width: 35px;
-    height: 35px;
-  }
-}
-
-/* ───────── TABLET RESPONSIVE (iPad, Surface Duo) ───────── */
-@media (max-width: 900px) and (min-width: 501px) {
-  .header {
-    justify-content: center;
-    gap: 12px;
-    position: relative;
-  }
-
-  .header-icon:first-child {
-    position: absolute;
-    left: 20px;
-  }
-
-  .header-icon:last-child {
-    position: absolute;
-    right: 20px;
-  }
-
-  .header-title {
-    flex: 0;
-    font-size: clamp(18px, 2vw, 22px);
-  }
-
-  .logo-img,
-  .corner-icon {
-    width: 40px;
-    height: 40px;
-  }
 }
 
 
-
-
-/* ───────── STORE HEADER ───────── */
-.store-header {
-  text-align: center;
-  padding: 30px 20px;
-}
-
-.store-header .store-img {
-  width: 100%;
-  max-width: 600px;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(255,192,203,0.6);
-}
-
-.desc {
-  font-size: 1.1em;
-  color: #8b5c75;
-}
-
-/* ───────── RECOMMEND MENU ───────── */
-.recommend-menu {
-  text-align: center;
-  background-color: #ffeef5;
-  padding: 40px 20px;
-  border-radius: 12px;
-}
-
-.recommend-menu h2 {
-  color: #e04ea0;
-  margin-bottom: 20px;
-  font-size: clamp(20px, 3vw, 28px);
-}
-
-/* ✅ เปลี่ยนจาก grid → flex สำหรับเลื่อนแนวนอน */
-.menu-grid {
+.shop-banner {
   display: flex;
-  gap: 25px;
-  overflow-x: auto;
-  padding: 10px 10px 20px;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.shop-banner-box {
+  width: 100vw;
+  height: 300px;
+  border: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 }
 
-.menu-grid::-webkit-scrollbar {
-  height: 8px;
-}
-
-.menu-grid::-webkit-scrollbar-thumb {
-  background-color: #f8a1c4;
-  border-radius: 10px;
-}
-
-/* กล่องแต่ละเมนู */
-.menu-item {
-  flex: 0 0 auto;
-  background-color: #fdeff4;
-  border-radius: 15px;
-  padding: 15px;
-  width: 220px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-  scroll-snap-align: center;
-}
-
-.menu-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 14px rgba(255,105,180,0.3);
-}
-
-.menu-item img {
+.shop-banner-box img {
   width: 100%;
-  height: 220px;
+  height: 100%;
+  object-fit: cover;
+  object-position: 100% 65%;
+  border-radius: 0;
+}
+
+
+.shop-name {
+  text-align: center;
+  padding: 20px 10px;
+  font-family: "Paytone One", sans-serif;
+  font-weight: 150;
+  color: #b11e31;
+  font-size: 30px;
+}
+.recommend {
+  text-align: center;
+  padding: 40px 10%;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+}
+
+.menu-card {
+  background-color: #fdfdfd;
+  border: 2px solid #eeec70;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+}
+
+.menu-card img {
+  width: 100%;
+  height: 140px;
   object-fit: cover;
   border-radius: 10px;
-  display: block;
+  margin-bottom: 10px;
 }
 
-.menu-item p {
-  margin-top: 10px;
+.menu-card h4 {
   font-size: 16px;
-  font-weight: 500;
+  margin-bottom: 5px;
+}
+h4{
+  font-family: "Arsenal SC", sans-serif;
+  font-size: 20px;        
+  font-weight: 700;       
+  color: #060505;         
+  letter-spacing: 0.5px;  
+  text-align: center;     
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); 
+  margin-top: 10px;
+}
+h3{
+  font-family: "Arsenal SC", sans-serif;
+  font-size: 20px;        
+  font-weight: 700;       
+  color: #ffffff;         
+  letter-spacing: 0.5px;  
+  text-align: center;     
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1); 
+  margin-bottom: 10px;
+}
+.recommend h2{
+  font-size: 30px;
+  color: #b11e31;
+  font-family: "Paytone One", sans-serif;
+}
+.menu-card .price {
+  color: #c42c2c;
+  font-weight: bold;
 }
 
-/* ✅ Responsive สำหรับหน้าจอเล็ก */
-@media (max-width: 768px) {
-  .menu-grid {
-    gap: 15px;
-  }
 
-  .menu-item {
-    width: 180px;
-  }
-
-  .menu-item img {
-    height: 160px;
-  }
-}
-
-@media (max-width: 480px) {
-  .menu-item {
-    width: 150px;
-  }
-
-  .menu-item img {
-    height: 130px;
-  }
-
-  .menu-item p {
-    font-size: 14px;
-  }
-}
-
-/* ───────── PROMOTION ───────── */
-.promotion {
-  text-align: center;
-  padding: 40px 20px;
-  background-color: #ffd1dc;
-  border-top: 3px solid #f8a1c4;
-  border-bottom: 3px solid #f8a1c4;
-}
-
-.promotion h2 {
-  color: #d63384;
-  font-size: clamp(18px, 3vw, 26px);
-}
-
-.promotion h3 p {
-  margin: 8px 0;
-}
-
-.topping-gallery {
+.special-deal {
+  width: 60%;
+  margin: 60px auto;
+  background-color: #fff3f3;
+  border-radius: 20px;
+  padding: 30px;
   display: flex;
   justify-content: center;
-  gap: 30px;
+  align-items: center;
+  gap: 40px;
   flex-wrap: wrap;
-  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.topping-gallery img {
+.special-deal h3 {
+  color: #d12f2f;
+  margin-bottom: 10px;
+}
+
+.deal-img {
   border-radius: 10px;
   width: 150px;
   height: 150px;
   object-fit: cover;
-  border: 3px solid #f8a1c4;
+  border: 3px solid #b11e31;
 }
 
-/* ───────── CONTACT ───────── */
-.contact {
+
+.footer {
+  background-color: #b11e31;
   text-align: center;
-  padding: 40px 20px;
+  padding: 30px 20px;
+  border-top: 1px solid #ddd;
 }
 
-.contact h2 {
-  color: #e75480;
+.footer h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
 }
 
-/* ───────── FOOTER ───────── */
-footer {
+.footer p {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+
+.section.category {
+  position: relative;
+  text-align: center;
+  padding: 80px 20px;
+  overflow: hidden;
+  background-color: #fffaf5; 
+}
+
+.section.category::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    background: url("../source/bg-shadow.png") center/contain no-repeat;
+    opacity: 0.25;
+    transform: translate(-50%, -50%);
+    z-index: -1; 
+    filter: blur(3px);
+}
+
+.slider-container {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.menu-slider {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 15px 20px;
-  background-color: #f8a1c4;
-  color: white;
-  font-weight: bold;
-  border-top: 2px solid #ffccde;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.menu-card {
+  min-width: 250px;
+  margin: 10px;
+  background-color: #fff;
+  border: 2px solid #eeec70;
+  border-radius: 15px;
+  text-align: center;
+  padding: 15px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+  transition: 0.3s;
 }
 
-footer a {
-  color: white;
-  text-decoration: none;
+.menu-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-footer a:hover {
-  text-decoration: underline;
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255,255,255,0.8);
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 10;
 }
 
-/* ───────── RESPONSIVE ───────── */
+.prev:hover, .next:hover {
+  background-color: #ffeb3b;
+}
+
+.prev { left: 5px; }
+.next { right: 5px; }
+
+@media (max-width: 1024px) {
+  .menu-card { min-width: 200px; }
+}
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    text-align: center;
-    gap: 10px;
-  }
-
-  .nav-center {
-    font-size: 18px;
-  }
-
-  .menu-item img {
-    height: 180px;
-  }
-
-  .topping-gallery img {
-    width: 120px;
-    height: 120px;
-  }
-
-  footer {
-    flex-direction: column;
-    text-align: center;
-    gap: 10px;
-  }
+  .menu-card { min-width: 180px; }
+  .special-deal { width: 90%; }
 }
-
 @media (max-width: 480px) {
-  .menu-item img {
-    height: 150px;
-  }
-
-  .menu-item p {
-    font-size: 14px;
-  }
-
-  .promotion h3 p {
-    font-size: 14px;
-  }
+  .menu-card { min-width: 150px; }
+  .menu-card img { height: 130px; }
+  .prev, .next { display: none; } 
 }
