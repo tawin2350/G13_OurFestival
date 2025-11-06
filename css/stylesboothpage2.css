@@ -1,335 +1,206 @@
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 40px);
-  border-bottom: 1px solid #ee9393;
-  background: linear-gradient(90deg, #e57373, #81c784);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
-
-.shop-name {
-  font-family: 'Ultra' , serif;
-  color: #4a2c10;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: "Prompt", sans-serif;
-  text-align: center;
+  background-color: #ffffff;
+  color: #222;
 }
 
-header .logo {
-  font-weight: bold;
-  text-decoration: none;
-  transition: 0.2s ease-in-out;
-  color: #fff;
-  font-size: clamp(1rem, 1.5vw,1.2rem);
-}
-
-header.scrolled {
-  background: linear-gradient(90deg, #ff8a65, #4db6ac);
-  transition: 0.3s;
-}
-
-.shop-name-fancy {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.5rem;
-  color: #fff8e1;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  letter-spacing: 1px;
+/* ───────────── HEADER ───────────── */
+.header-bar {
+  background-color: #840d1d;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  animation: glowText 3s ease-in-out infinite;
+  justify-content: space-between;
 }
-
-.cookie-icon, .sparkle {
-  animation: floatEmoji 2.5s ease-in-out infinite alternate;
+.some-number {
+  font-family: "Ultra", serif;
+  font-size: 23px;
+  letter-spacing: .5px;
+  color: #b71c1c;
+  -webkit-text-stroke-color: #fff;
+  -webkit-text-stroke-width: 0.5px;
+  text-shadow: 2px 2px #fffdbc;
 }
-
-.logo:hover {
-  color: #e57373;
-  font-size: 17px;
-  border: 2px solid rgb(255, 255, 255);
-  background-color: rgb(255, 255, 255);
-  border-radius: 5px;
+.home-icon {
+  width: 30px;
 }
-
-header nav a {
-  margin: 0 20px;
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  font-size:  clamp(0.9rem, 1vw, 1rem);
-}
-
-header nav a:hover {
-  text-decoration: underline;
-}
-
-.logo-img {
-  width: clamp(30px, 5vw, 40px);         
-  height: clamp(30px, 5vw, 40px);
-  object-fit: contain; 
-  vertical-align: middle;
-  transition: 0.2s ease-in-out;
-}
-
-.logo-img:hover {
-  transform: scale(1.1);  
-  filter: brightness(0.8);
-}
-
 .corner-icon {
-  font-size: clamp(1rem, 2vw, 1.5em);
-  height: clamp(30px,6vw,50px);
-  border-radius: 20px;
+  height: 45px;
+  border-radius: 50%;
 }
 
+/* ───────────── BANNER ───────────── */
+.shop-banner {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 .shop-banner-box {
+  width: 100vw;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
-  padding-bottom: 10px;
 }
-
 .shop-banner-box img {
-  width: 50%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  object-position: 100% 65%;
 }
 
-.section { 
-    padding: 0 30px; 
+/* ───────────── SHOP NAME ───────────── */
+.shop-name {
+  text-align: center;
+  padding: 20px 10px;
+  font-family: "Paytone One", sans-serif;
+  color: #b11e31;
+  font-size: 30px;
 }
 
+/* ───────────── RECOMMEND MENU ───────────── */
 .recommend {
   text-align: center;
   padding: 40px 10%;
-  font-family: 'Lilita One' ,sans-serif;
+}
+.recommend h2 {
+  font-size: 30px;
+  color: #b11e31;
+  font-family: "Paytone One", sans-serif;
 }
 
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 25px;
+.slider-container {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
 }
-
+.menu-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
 .menu-card {
-  background-color: #fdfdfd;
+  min-width: 250px;
+  margin: 10px;
+  background-color: #fff;
   border: 2px solid #eeec70;
   border-radius: 15px;
-  padding: 10px;
+  text-align: center;
+  padding: 15px;
   box-shadow: 0 3px 5px rgba(0,0,0,0.1);
   transition: 0.3s;
 }
-
 .menu-card:hover {
   transform: translateY(-5px);
 }
-
 .menu-card img {
   width: 100%;
-  height: 100px;
+  height: 180px;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 10px;
 }
-
 .menu-card h4 {
-  font-size: 16px;
-  margin-bottom: 5px;
+  font-family: "Arsenal SC", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #060505;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
-
 .menu-card .price {
   color: #c42c2c;
   font-weight: bold;
 }
-
-.promotion {
-  background: linear-gradient(145deg, #fff9f3, #ffeedd);
-  border: 2px dashed #d7a86e;
-  border-radius: 18px;
-  padding: 25px;
-  margin: 40px auto;
-  text-align: center;
-  box-shadow: 0 5px 15px rgba(215, 168, 110, 0.2);
-  max-width: 700px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-family: 'Ultra' , serif;
-  color: #4a2c10;
-}
-
-.promotion:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(215, 168, 110, 0.3);
-}
-
-.promo-cookie h3 {
-  color: #b87434;
-  font-size: 1.5rem;
-  margin-bottom: 8px;
-}
-
-.promo-cookie p {
-  color: #6e4b1f;
-  font-size: 1rem;
-  margin-bottom: 18px;
-}
-
-.promo-cookie ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto 18px;
-  display: inline-block;
-  text-align: left;
-}
-
-.promo-cookie li {
-  background: #fff6e9;
-  border-left: 6px solid #d7a86e;
-  padding: 8px 14px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  color: #4e342e;
-  transition: background 0.3s ease;
-}
-
-.promo-cookie li:hover {
-  background: #ffeacc;
-}
-
-.promo-tag {
-  background: #d7a86e;
-  color: #fff;
-  padding: 8px 18px;
-  border-radius: 25px;
-  font-weight: bold;
-  display: inline-block;
-  animation: cookieGlow 2.5s infinite ease-in-out;
-}
-
-.footerstore {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(90deg, #e57373, #81c784);
-  color: #ffffff;
-  text-align: center;
-  padding: 24px 16px 16px;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-  box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
-  font-family: "Prompt", "Noto Sans Thai", sans-serif;
-  position: relative;
-}
-
-.footerstore-content p {
-  margin: 6px 0;
-  font-size: 20px;
-  font-family: 'Arsenal SC' , 'Ultra' , sans-serif;
-}
-
-.footerstore-content a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.2s;
-  font-family: 'Arsenal SC' , 'Ultra' , sans-serif;
-}
-
-.footerstore-content a:hover {
-  text-shadow: 0 0 8px rgba(255,255,255,0.8);
-}
-
-.footerstore-bottom {
-  font-size: 15px;
-  margin-top: 10px;
-  opacity: 0.9;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.footerstore::before {
-  content: "💗";
-  position: absolute;
-  left: 20px;
-  top: 10px;
-  font-size: 20px;
-  animation: float 3s infinite ease-in-out;
-}
-
-.footerstore::after {
-  content: "💚";
-  position: absolute;
-  right: 20px;
-  top: 10px;
-  font-size: 20px;
-  animation: float 3s infinite ease-in-out 1.5s;
-}
-
-footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: clamp(10px, 3vw, 20px) clamp(20px, 4vw, 40px);
-  border-top: 1px solid #ccc;
-  background: #fafafa;
-  font-size: clamp(0.8rem, 1.5vw, 1rem);
-}
-
-footer a {
-  color: #007aff;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-@media (min-width: 768px) {
-  footer {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-
-.menu-info {
-  text-align: center;
-  margin-top: 8px;
-  font-family: 'Prompt', sans-serif;
-}
-
-.menu-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-}
-
-.menu-price {
-  font-size: 14px;
-  color: #888;
-}
-
-h2 {
-  font-family: 'Ultra' , serif;
-  color: #4a2c10;
-}
-
 .badge {
-      font-size:12px; 
-      margin-bottom: 5px;
-      background:#f6f6f6; 
-      padding:4px 8px; 
-      border-radius:999px; 
-      display:inline-block; 
-      color:#555;
+  font-size: 12px;
+  margin-top: 3px;
+  background: #f6f6f6;
+  padding: 4px 8px;
+  border-radius: 999px;
+  display: inline-block;
+  color: #555;
+}
+
+/* ───────────── PROMOTION ───────────── */
+.special-deal {
+  width: 60%;
+  margin: 60px auto;
+  background-color: #fff3f3;
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.special-deal h3 {
+  color: #d12f2f;
+  margin-bottom: 10px;
+}
+.deal-img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
+
+/* ───────────── FOOTER ───────────── */
+.footer {
+  background-color: #b11e31;
+  text-align: center;
+  padding: 30px 20px;
+  color: #fff;
+}
+.footer h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.footer p {
+  font-size: 14px;
+}
+
+/* ───────────── RESPONSIVE ───────────── */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255,255,255,0.8);
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+.prev:hover, .next:hover {
+  background-color: #ffeb3b;
+}
+.prev { left: 5px; }
+.next { right: 5px; }
+
+@media (max-width: 1024px) {
+  .menu-card { min-width: 200px; }
+}
+@media (max-width: 768px) {
+  .menu-card { min-width: 180px; }
+  .special-deal { width: 90%; }
+}
+@media (max-width: 480px) {
+  .menu-card { min-width: 150px; }
+  .menu-card img { height: 130px; }
+  .prev, .next { display: none; }
 }
