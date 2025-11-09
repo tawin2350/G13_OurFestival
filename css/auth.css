@@ -1,3 +1,7 @@
+.logo-img {
+	width: clamp(2rem, 3vw, 3rem);
+  }
+
 .reg-status-popup {
 	position: fixed;
 	left: 50%;
@@ -115,16 +119,6 @@ body {
 	color: #222;
 }
 
-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 12px 18px;
-	background: #fff;
-	box-shadow: 0 1px 0 rgba(0,0,0,0.04);
-}
-.logo-img { height:34px; }
-.corner-icon { height:36px; border-radius:50%; }
 .auth-main {
 	display: flex;
 	align-items: center;
