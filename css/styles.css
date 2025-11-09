@@ -141,6 +141,7 @@ header .logo {
   font-weight: bold;
   text-decoration: none;
   transition: 0.2s ease-in-out;
+  filter: invert();
   color: #333;
   font-size: clamp(1rem, 1.5vw, 1.2rem);
 }
