@@ -7,6 +7,7 @@ let currentDeleteId = null;
 let currentDeleteType = null;
 let allUsers = [];
 let allFeedback = [];
+let allContacts = [];
 fetch('data/firebase-config.json')
   .then(r => r.json())
   .then(cfg => {
@@ -91,6 +92,7 @@ function loadData() {
   console.log('Starting to load data...');
   loadUsers();
   loadFeedback();
+  loadContacts();
 }
 
 
@@ -209,7 +211,14 @@ window.deleteUser = function(userId, userName) {
 document.getElementById('confirm-delete').addEventListener('click', () => {
   if (!currentDeleteId) return;
 
-  const collection = currentDeleteType === 'user' ? 'users' : 'feedbacks';
+  let collection;
+  if (currentDeleteType === 'user') {
+    collection = 'users';
+  } else if (currentDeleteType === 'feedback') {
+    collection = 'feedbacks';
+  } else if (currentDeleteType === 'contact') {
+    collection = 'contacts';
+  }
   
   fbDb.collection(collection).doc(currentDeleteId).delete()
     .then(() => {
@@ -220,8 +229,10 @@ document.getElementById('confirm-delete').addEventListener('click', () => {
       
       if (collection === 'users') {
         loadUsers();
-      } else {
+      } else if (collection === 'feedbacks') {
         loadFeedback();
+      } else if (collection === 'contacts') {
+        loadContacts();
       }
     })
     .catch(err => {
@@ -309,9 +320,93 @@ window.deleteFeedback = function(feedbackId, userName) {
   document.getElementById('delete-modal').classList.add('show');
 };
 
+function loadContacts() {
+  console.log('Loading contacts...');
+  
+  fbDb.collection('contacts').get()
+    .then(snapshot => {
+      allContacts = [];
+      console.log('Contacts found:', snapshot.size);
+      
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        console.log('Contact data:', data);
+        allContacts.push({ id: doc.id, ...data });
+      });
+      allContacts.sort((a, b) => (b.created || 0) - (a.created || 0));
+      
+      updateStats();
+      displayContacts(allContacts);
+    })
+    .catch(err => {
+      console.error('Error loading contacts:', err);
+      document.getElementById('contacts-container').innerHTML = 
+        '<div class="no-data">ไม่สามารถโหลดข้อมูลได้: ' + err.message + '</div>';
+    });
+}
+
+function displayContacts(contacts) {
+  const container = document.getElementById('contacts-container');
+  
+  if (contacts.length === 0) {
+    container.innerHTML = '<div class="no-data">📭 ยังไม่มีข้อความติดต่อ<br><small>ข้อมูลจะแสดงที่นี่เมื่อมีคนส่งข้อความผ่านหน้า contact.html</small></div>';
+    return;
+  }
+
+  container.innerHTML = contacts.map(contact => {
+    const date = contact.created ? new Date(contact.created).toLocaleDateString('th-TH', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    }) : '-';
+
+    return `
+      <div class="contact-card">
+        <div class="contact-header">
+          <div>
+            <strong>👤 ${contact.name || 'ไม่ระบุชื่อ'}</strong>
+            <div class="contact-meta">
+              <span>📧 ${contact.email || '-'}</span>
+              ${contact.phone && contact.phone !== '-' ? `<span>📞 ${contact.phone}</span>` : ''}
+            </div>
+          </div>
+          <span class="contact-date">📅 ${date}</span>
+        </div>
+        <div class="contact-subject">📌 หัวข้อ: <strong>${contact.subject || '-'}</strong></div>
+        <div class="contact-message">${contact.message || '-'}</div>
+        <div class="contact-actions">
+          <button class="btn-delete" onclick="deleteContact('${contact.id}', '${(contact.name || 'ไม่ระบุชื่อ').replace(/'/g, "\\'")}')">🗑️ ลบ</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+document.getElementById('search-contacts').addEventListener('input', (e) => {
+  const search = e.target.value.toLowerCase();
+  const filtered = allContacts.filter(contact => {
+    return (contact.name || '').toLowerCase().includes(search) ||
+      (contact.email || '').toLowerCase().includes(search) ||
+      (contact.subject || '').toLowerCase().includes(search) ||
+      (contact.message || '').toLowerCase().includes(search);
+  });
+  displayContacts(filtered);
+});
+
+window.deleteContact = function(contactId, userName) {
+  currentDeleteId = contactId;
+  currentDeleteType = 'contact';
+  document.getElementById('delete-info').textContent = `ข้อความจาก: ${userName}`;
+  document.getElementById('delete-modal').classList.add('show');
+};
+
 function updateStats() {
   document.getElementById('total-users').textContent = allUsers.length;
   document.getElementById('total-feedback').textContent = allFeedback.length;
+  document.getElementById('total-contacts').textContent = allContacts.length;
+  document.getElementById('total-contacts').textContent = allContacts.length;
   
   if (allFeedback.length > 0) {
     const sum = allFeedback.reduce((acc, fb) => acc + (fb.rating || 0), 0);

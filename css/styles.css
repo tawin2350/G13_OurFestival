@@ -148,8 +148,6 @@ header .logo {
 .logo:hover {
   color: #eee;
   font-size: 17px;
-  border: 2px solid #fff;
-  background-color: #fff;
   border-radius: 5px;
 }
 

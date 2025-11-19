@@ -44,6 +44,51 @@
     }
   }
 
+  function renderFeedbackList() {
+    if (!firebaseEnabled || !fbDb) return;
+    var listEl = qs('#feedback-list');
+    var countEl = qs('#total-feedbacks');
+    if (!listEl) return;
+
+    fbDb.collection('feedbacks').orderBy('created', 'desc').get().then(function (snap) {
+      if (snap.empty) {
+        listEl.innerHTML = '<p style="text-align: center; color: #999;">ยังไม่มีความคิดเห็น</p>';
+        if (countEl) countEl.textContent = '0';
+        return;
+      }
+
+      var html = '';
+      var count = 0;
+      snap.forEach(function(doc) {
+        var data = doc.data();
+        count++;
+        var stars = '';
+        for (var i = 1; i <= 5; i++) {
+          stars += '<span class="star' + (i <= data.rating ? ' selected' : '') + '">&#9733;</span>';
+        }
+        var date = data.created ? new Date(data.created).toLocaleDateString('th-TH', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        }) : '';
+
+        html += '<div class="feedback-item">';
+        html += '<div class="feedback-item-header">';
+        html += '<div class="feedback-item-name">' + (data.name || 'ไม่ระบุชื่อ') + '</div>';
+        html += '<div class="feedback-item-stars">' + stars + '</div>';
+        html += '</div>';
+        html += '<div class="feedback-item-date">' + date + '</div>';
+        html += '<div class="feedback-item-comment">' + (data.comment || '') + '</div>';
+        html += '</div>';
+      });
+
+      listEl.innerHTML = html;
+      if (countEl) countEl.textContent = count;
+    }).catch(function(err) {
+      listEl.innerHTML = '<p style="text-align: center; color: #d32f2f;">เกิดข้อผิดพลาดในการโหลดความคิดเห็น</p>';
+    });
+  }
+
   window.addEventListener('DOMContentLoaded', function() {
     
     var stars = Array.from(document.querySelectorAll('.star-rating .star'));
@@ -105,6 +150,7 @@
               btn.textContent = 'ส่งความคิดเห็น';
             }
             fetchAverageStar();
+            renderFeedbackList();
           }, 1500);
         }).catch(function (err) {
           if (msg) msg.textContent = 'ข้อผิดพลาด Firebase: ' + (err && err.message || err);
@@ -141,6 +187,7 @@
           firebaseEnabled = true;
           setFbStatus('');
           fetchAverageStar();
+          renderFeedbackList();
         } catch (err) {
           setFbStatus('ไม่สามารถเชื่อม Firebase: ' + (err && err.message || err));
           firebaseEnabled = false;

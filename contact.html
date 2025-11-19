@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feedback - OurFestival</title>
+  <title>Contact - Holly Jolly Fair</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/feedback.css">
+  <link rel="stylesheet" href="css/contact.css">
   <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Great+Vibes&family=Lilita+One&family=Paytone+One&family=TASA+Orbiter:wght@400..800&family=Ultra&family=Prompt:wght@300;400;600;700&family=Archivo+Black&display=swap"
     rel="stylesheet">
 </head>
@@ -34,43 +34,45 @@
   </a>
 </header>
 
-  <main style="background: #fafbfc; min-height: 80vh; padding: 2em 0;">
-    <div class="feedback-container">
-    <div class="feedback-card">
-      <h2 style="font-size: 1.5em; font-weight: 600; color: #222; margin-bottom: 0.5em; text-align: center;">Feedback</h2>
-      <p style="font-size: 1em; color: #666; text-align: center; margin-bottom: 1.2em;">ให้คะแนนและแสดงความคิดเห็นเกี่ยวกับงานนี้</p>
-      <div class="star-average" style="text-align:center;margin-bottom:1em;">
-        <span id="star-average-label">ดาวเฉลี่ย :</span>
-        <span id="star-average"></span>
+  <main class="contact-main">
+    <div class="contact-container">
+      <div class="contact-header">
+        <h1>ส่งข้อความถึงเรา</h1>
+        <p>มีคำถามหรือข้อสงสัย? ส่งข้อความมาหาเราได้เลย</p>
       </div>
-      <form id="feedback-form" class="feedback-form" autocomplete="off">
-        <div class="star-rating" id="star-rating">
-          <span class="star" data-value="1">&#9733;</span>
-          <span class="star" data-value="2">&#9733;</span>
-          <span class="star" data-value="3">&#9733;</span>
-          <span class="star" data-value="4">&#9733;</span>
-          <span class="star" data-value="5">&#9733;</span>
-        </div>
-        <input type="hidden" id="fb-rating" required>
-        <input id="fb-name" type="text" placeholder="ชื่อ" required class="feedback-input">
-        <input id="fb-email" type="email" placeholder="อีเมล" required class="feedback-input">
-        <textarea id="fb-comment" placeholder="ความคิดเห็น" required class="feedback-input" style="min-height:80px;"></textarea>
-        <button type="submit" class="feedback-btn">ส่งความคิดเห็น</button>
-      </form>
-      <div id="feedback-message" class="feedback-message"></div>
-  <div id="fb-status" class="fb-status" style="display:none"></div>
-  <div id="fb-status-popup" class="fb-status-popup" style="display:none"></div>
-    </div>
 
-    <div class="feedback-list-container">
-      <h3 style="font-size: 1.3em; font-weight: 600; color: #222; margin-bottom: 1em; text-align: center;">ความคิดเห็นทั้งหมด</h3>
-      <div id="feedback-count" style="text-align: center; color: #666; margin-bottom: 1.5em; font-size: 0.95em;">
-        จำนวนความคิดเห็น: <strong id="total-feedbacks">0</strong> รายการ
+      <div class="contact-form-section">
+        <form id="contact-form" class="contact-form" autocomplete="off">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-name">ชื่อ-นามสกุล *</label>
+              <input type="text" id="contact-name" required class="contact-input" placeholder="กรอกชื่อของคุณ">
+            </div>
+            <div class="form-group">
+              <label for="contact-email">อีเมล *</label>
+              <input type="email" id="contact-email" required class="contact-input" placeholder="example@email.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-phone">เบอร์โทรศัพท์</label>
+            <input type="tel" id="contact-phone" class="contact-input" placeholder="0XX-XXX-XXXX" pattern="[0-9]{9,10}" maxlength="10">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-subject">หัวข้อ *</label>
+            <input type="text" id="contact-subject" required class="contact-input" placeholder="หัวข้อที่ต้องการติดต่อ">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">ข้อความ *</label>
+            <textarea id="contact-message" required class="contact-textarea" placeholder="พิมพ์ข้อความของคุณที่นี่..." rows="6"></textarea>
+          </div>
+
+          <button type="submit" class="contact-btn">ส่งข้อความ</button>
+        </form>
+        <div id="contact-status" class="contact-status"></div>
       </div>
-      <div id="feedback-list" class="feedback-list">
-        <p style="text-align: center; color: #999;">กำลังโหลด...</p>
-      </div>
-    </div>
     </div>
   </main>
 
@@ -79,14 +81,13 @@
       © Holly Jolly Fair | 012 - 345 - 6789
     </div>
     <div class="feedback">
-      <a href="#">Feedback</a>
+      <a href="feedback.html">Feedback</a>
     </div>
   </footer>
 
-  
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-  <script src="script/feedback.js"></script>
+  <script src="script/contact.js"></script>
 </body>
 </html>
