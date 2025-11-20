@@ -17,7 +17,7 @@ body {
 
 /* HEADER */
 .header-bar {
-  background-color: #840d1d;
+  background-color: #004e40;
   padding: 10px 20px; 
   display: flex; 
   align-items: center; 
@@ -27,10 +27,10 @@ body {
   font-family: "Ultra", serif;
   font-size: 23px;
   letter-spacing: .5px;
-  color: #b71c1c;
-  -webkit-text-stroke-color: rgb(255, 255, 255);
+  color: #eedd82;
+  -webkit-text-stroke-color: #000000;
   -webkit-text-stroke-width: 0.5px;
-  text-shadow: 2px 2px rgb(255, 253, 198);
+  text-shadow: 2px 2px #000000;
 }
 **.some-number {
   font-family: 'Great Vibes', cursive;
@@ -188,11 +188,11 @@ h3{
   min-width: 250px;
   margin: 10px;
   background-color: #fff;
-  border: 2px solid #eeec70;
+  border: 2px solid #004e40;
   border-radius: 15px;
   text-align: center;
   padding: 15px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 5px #26a19a;
   transition: 0.3s;
 }
 
@@ -255,19 +255,20 @@ h3{
 
 /* FOOTER */
 .footer {
-  background-color: #b11e31;
+  background-color: #004e40;
   text-align: center;
   padding: 30px 20px;
   border-top: 1px solid #ddd;
 }
 
-.footer h4 {
+.footer h3 {
+  color: #eedd82;
   margin-bottom: 10px;
   font-size: 18px;
 }
 
 .footer p {
-  color: #ffffff;
+  color: #eedd82;
   font-size: 14px;
 }
 
