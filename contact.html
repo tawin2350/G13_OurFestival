@@ -6,7 +6,7 @@
   <title>Holly Jolly Fair</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/contact.css">
   <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Great+Vibes&family=Lilita+One&family=Paytone+One&family=TASA+Orbiter:wght@400..800&family=Ultra&family=Prompt:wght@300;400;600;700&family=Archivo+Black&display=swap"
     rel="stylesheet">
 </head>
@@ -34,32 +34,45 @@
   </a>
 </header>
 
+  <main class="contact-main">
+    <div class="contact-container">
+      <div class="contact-header">
+        <h1>ส่งข้อความถึงเรา</h1>
+        <p>มีคำถามหรือข้อสงสัย? ส่งข้อความมาหาเราได้เลย</p>
+      </div>
 
-  <main class="register-main">
-    <div class="register-card">
-      <h2>ลงทะเบียน</h2>
-      <p>กรอกข้อมูลเพื่อเข้าร่วมงาน Holly Jolly Fair</p>
-      <form id="register-form" autocomplete="off" class="register-form">
-        <input id="reg-firstname" type="text" placeholder="ชื่อ" required class="register-input">
-        <input id="reg-lastname" type="text" placeholder="นามสกุล" required class="register-input">
-        <input id="reg-nickname" type="text" placeholder="ชื่อเล่น" required class="register-input">
-        <select id="reg-gender" required class="register-select">
-          <option value="" disabled selected hidden>เลือกเพศ</option>
-          <option value="ชาย">ชาย</option>
-          <option value="หญิง">หญิง</option>
-          <option value="อื่นๆ">อื่นๆ</option>
-        </select>
-        <input id="reg-birth" type="date" required class="register-input">
-        <input id="reg-email" type="email" placeholder="อีเมล" required class="register-input">
-        <input id="reg-phone" type="tel" placeholder="เบอร์โทรศัพท์" required pattern="[0-9]{9,10}" maxlength="10" class="register-input">
-        <button type="submit" class="register-btn">ลงทะเบียน</button>
-      </form>
-      <div id="register-message" class="register-message"></div>
-      <div id="fb-status" class="fb-status"></div>
-      <div id="reg-status-popup" class="reg-status-popup"></div>
-      <div class="register-count">จำนวนผู้สมัคร : <strong id="registered-count">Loading...</strong></div>
-      <div id="register-list" class="register-list"></div>
-      <div id="export-message" class="export-message"></div>
+      <div class="contact-form-section">
+        <form id="contact-form" class="contact-form" autocomplete="off">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-name">ชื่อ-นามสกุล *</label>
+              <input type="text" id="contact-name" required class="contact-input" placeholder="กรอกชื่อของคุณ">
+            </div>
+            <div class="form-group">
+              <label for="contact-email">อีเมล *</label>
+              <input type="email" id="contact-email" required class="contact-input" placeholder="example@email.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-phone">เบอร์โทรศัพท์</label>
+            <input type="tel" id="contact-phone" class="contact-input" placeholder="0XX-XXX-XXXX" pattern="[0-9]{9,10}" maxlength="10">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-subject">หัวข้อ *</label>
+            <input type="text" id="contact-subject" required class="contact-input" placeholder="หัวข้อที่ต้องการติดต่อ">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">ข้อความ *</label>
+            <textarea id="contact-message" required class="contact-textarea" placeholder="พิมพ์ข้อความของคุณที่นี่..." rows="6"></textarea>
+          </div>
+
+          <button type="submit" class="contact-btn">ส่งข้อความ</button>
+        </form>
+        <div id="contact-status" class="contact-status"></div>
+      </div>
     </div>
   </main>
 
@@ -75,6 +88,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-  <script src="script/auth.js"></script>
+  <script src="script/contact.js"></script>
 </body>
 </html>

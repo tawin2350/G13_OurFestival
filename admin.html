@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - Christmas Festival</title>
+  <title>Admin Panel - Holly Jolly Fair</title>
   <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
@@ -60,6 +60,13 @@
           <p>คะแนนเฉลี่ย</p>
         </div>
       </div>
+      <div class="stat-card">
+        <div class="stat-icon">📧</div>
+        <div class="stat-info">
+          <h3 id="total-contacts">0</h3>
+          <p>ข้อความติดต่อ</p>
+        </div>
+      </div>
     </div>
     <div class="tab-container">
       <button class="tab-btn active" data-tab="users">
@@ -67,6 +74,9 @@
       </button>
       <button class="tab-btn" data-tab="feedback">
         <span>💬</span> Feedback
+      </button>
+      <button class="tab-btn" data-tab="contacts">
+        <span>📧</span> ข้อความติดต่อ
       </button>
     </div>
     <div id="users-tab" class="tab-content active">
@@ -116,6 +126,20 @@
         <div class="no-data">กำลังโหลดข้อมูล...</div>
       </div>
     </div>
+
+    <div id="contacts-tab" class="tab-content">
+      <div class="content-header">
+        <h2>📧 ข้อความติดต่อ</h2>
+        <div class="search-box">
+          <input type="text" id="search-contacts" placeholder="🔍 ค้นหาชื่อ, อีเมล, หัวข้อ...">
+        </div>
+      </div>
+
+      <div class="contacts-container" id="contacts-container">
+        <div class="no-data">กำลังโหลดข้อมูล...</div>
+      </div>
+    </div>
+
     <div id="edit-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
