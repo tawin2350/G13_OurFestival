@@ -94,16 +94,6 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 25px;
 }
-
-.menu-card {
-  background-color: #fdfdfd;
-  border: 2px solid #eeec70;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.1);
-  transition: 0.3s;
-}
-
 .menu-card:hover {
   transform: translateY(-5px);
 }
@@ -232,11 +222,11 @@ h3{
 .menu-card {
   min-width: 250px;
   margin: 10px;
-  background-color: #fff;
-  border: 2px solid #eeec70;
+  background-color: #ffffb7;
+  border: 2px solid #488d4e;
   border-radius: 15px;
   text-align: center;
-  padding: 15px;
+  padding: 20px;
   box-shadow: 0 3px 5px rgba(0,0,0,0.1);
   transition: 0.3s;
 }
