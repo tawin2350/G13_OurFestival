@@ -17,7 +17,7 @@ body {
 
 
 .header-bar {
-  background-color: #840d1d;
+  background-color: #Ffb3c6;
   padding: 10px 20px; 
   display: flex; 
   align-items: center; 
@@ -27,7 +27,7 @@ body {
   font-family: "Ultra", serif;
   font-size: 23px;
   letter-spacing: .5px;
-  color: #b71c1c;
+  color: #62cdff;
   -webkit-text-stroke-color: rgb(255, 255, 255);
   -webkit-text-stroke-width: 0.5px;
   text-shadow: 2px 2px rgb(255, 253, 198);
@@ -35,7 +35,7 @@ body {
 **.some-number {
   font-family: 'Great Vibes', cursive;
   font-size: 28px;
-  color: #d32f2f;
+  color: #62cdff;
   font-weight: 400;
 }
 .home-icon {
@@ -81,7 +81,7 @@ body {
   padding: 20px 10px;
   font-family: "Paytone One", sans-serif;
   font-weight: 150;
-  color: #b11e31;
+  color: #62cdff;
   font-size: 30px;
 }
 .recommend {
@@ -97,7 +97,7 @@ body {
 
 .menu-card {
   background-color: #fdfdfd;
-  border: 2px solid #eeec70;
+  border: 2px solid #FFC2D1;
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 3px 5px rgba(0,0,0,0.1);
@@ -142,11 +142,11 @@ h3{
 }
 .recommend h2{
   font-size: 30px;
-  color: #b11e31;
+  color: #FFC2D1;
   font-family: "Paytone One", sans-serif;
 }
 .menu-card .price {
-  color: #c42c2c;
+  color: #FFC2D1;
   font-weight: bold;
 }
 
@@ -166,7 +166,7 @@ h3{
 }
 
 .special-deal h3 {
-  color: #d12f2f;
+  color: #FFC2D1;
   margin-bottom: 10px;
 }
 
@@ -175,12 +175,12 @@ h3{
   width: 150px;
   height: 150px;
   object-fit: cover;
-  border: 3px solid #b11e31;
+  border: 3px solid #62cdff;
 }
 
 
 .footer {
-  background-color: #b11e31;
+  background-color: #Ffb3c6;
   text-align: center;
   padding: 30px 20px;
   border-top: 1px solid #ddd;
@@ -235,7 +235,7 @@ h3{
   min-width: 250px;
   margin: 10px;
   background-color: #fff;
-  border: 2px solid #eeec70;
+  border: 2px solid #FFC2D1;
   border-radius: 15px;
   text-align: center;
   padding: 15px;
