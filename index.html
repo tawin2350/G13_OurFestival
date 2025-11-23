@@ -10,6 +10,46 @@
     rel="stylesheet">
 </head>
 <body>
+  <div class="preloader">
+    <div class="santa-sleigh">
+      <div class="reindeer">
+        <div class="reindeer-body"></div>
+        <div class="reindeer-head"></div>
+        <div class="antler left"></div>
+        <div class="antler right"></div>
+        <div class="legs"></div>
+      </div>
+      <div class="rope"></div>
+      <div class="sleigh-container">
+        <div class="sleigh">
+          <div class="sleigh-body"></div>
+          <div class="sleigh-runner"></div>
+        </div>
+        <div class="santa">
+          <div class="santa-body"></div>
+          <div class="santa-head"></div>
+          <div class="santa-hat"></div>
+          <div class="santa-arm"></div>
+        </div>
+      </div>
+    </div>
+    <div class="preloader-text">กำลังโหลดจ้า...</div>
+  </div>
+
+  <div class="main-content">
+  <div class="scroll-stockings">
+    <div class="scroll-stocking stocking-scroll-left">
+      <div class="stocking-top"></div>
+      <div class="stocking-body"></div>
+      <div class="stocking-toe"></div>
+    </div>
+    <div class="scroll-stocking stocking-scroll-right">
+      <div class="stocking-top"></div>
+      <div class="stocking-body"></div>
+      <div class="stocking-toe"></div>
+    </div>
+  </div>
+
   <div class="snowflake" style="left: 10%; animation: fall1 10s infinite; font-size: 20px;">❄</div>
   <div class="snowflake" style="left: 25%; animation: fall2 14s infinite; animation-delay: 2s; font-size: 16px;">❅</div>
   <div class="snowflake" style="left: 40%; animation: fall3 12s infinite; animation-delay: 4s; font-size: 22px;">❆</div>
@@ -189,8 +229,37 @@
       <a href="feedback.html">Feedback</a>
     </div>
   </footer>
+  </div>
 
 <script src="script/script.js"></script>
 <script src="script/secret-admin.js"></script>
+<script>
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.querySelector('.preloader').style.opacity = '0';
+      setTimeout(function() {
+        document.querySelector('.preloader').style.display = 'none';
+        document.querySelector('.main-content').style.display = 'block';
+      }, 300);
+    }, 2000);
+  });
+
+  let lastScrollTop = 0;
+  const stockings = document.querySelector('.scroll-stockings');
+  
+  window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > lastScrollTop) {
+      stockings.classList.add('scrolling-down');
+      stockings.classList.remove('scrolling-up');
+    } else {
+      stockings.classList.add('scrolling-up');
+      stockings.classList.remove('scrolling-down');
+    }
+    
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+</script>
 </body>
 </html>

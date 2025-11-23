@@ -14,6 +14,786 @@ body {
   position: relative;
   overflow-x: hidden;
 }
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a4d7a 0%, #2e6fa8 50%, #5a9fd4 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  transition: opacity 0.5s ease;
+}
+
+.santa-sleigh {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  animation: flyAcross 2s ease-in-out forwards;
+}
+
+.reindeer {
+  position: relative;
+  width: 80px;
+  height: 60px;
+  animation: bounce 0.4s ease-in-out infinite;
+}
+
+.reindeer-body {
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  background: #8B4513;
+  border-radius: 15px;
+  bottom: 15px;
+  left: 15px;
+}
+
+.reindeer-head {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: #8B4513;
+  border-radius: 50%;
+  bottom: 30px;
+  left: 5px;
+}
+
+.reindeer-head::before {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: red;
+  border-radius: 50%;
+  top: 12px;
+  left: 3px;
+  box-shadow: 0 0 10px red;
+}
+
+.reindeer-head::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: black;
+  border-radius: 50%;
+  top: 8px;
+  left: 5px;
+}
+
+.antler {
+  position: absolute;
+  width: 3px;
+  height: 15px;
+  background: #654321;
+  top: 0;
+}
+
+.antler.left {
+  left: 8px;
+  transform: rotate(-20deg);
+}
+
+.antler.right {
+  left: 18px;
+  transform: rotate(20deg);
+}
+
+.antler::before,
+.antler::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 8px;
+  background: #654321;
+}
+
+.antler::before {
+  top: 3px;
+  left: -3px;
+  transform: rotate(-30deg);
+}
+
+.antler::after {
+  top: 3px;
+  right: -3px;
+  transform: rotate(30deg);
+}
+
+.legs {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  width: 40px;
+  height: 15px;
+}
+
+.legs::before,
+.legs::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 15px;
+  background: #654321;
+}
+
+.legs::before {
+  left: 5px;
+}
+
+.legs::after {
+  right: 5px;
+}
+
+.rope {
+  position: relative;
+  width: 40px;
+  height: 3px;
+  background: #8B4513;
+  bottom: 25px;
+  border-radius: 2px;
+}
+
+.sleigh-container {
+  position: relative;
+  width: 100px;
+  height: 80px;
+  animation: bounce 0.4s ease-in-out infinite 0.1s;
+}
+
+.sleigh {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  bottom: 0;
+}
+
+.sleigh-body {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #8B0000 100%);
+  border-radius: 20px 20px 10px 10px;
+  bottom: 10px;
+  border: 3px solid #600000;
+  box-shadow: inset 0 5px 15px rgba(255, 255, 255, 0.3),
+              0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sleigh-body::before {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 25px;
+  background: rgba(139, 0, 0, 0.6);
+  bottom: 5px;
+  left: 10%;
+  border-radius: 10px;
+}
+
+.sleigh-body::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 30px;
+  background: #8B0000;
+  border-radius: 5px;
+  left: -10px;
+  bottom: 5px;
+  border: 2px solid #600000;
+}
+
+.sleigh-runner {
+  position: absolute;
+  width: 110px;
+  height: 10px;
+  background: linear-gradient(to right, #FFD700, #FFA500, #FFD700);
+  border-radius: 50px;
+  bottom: 0;
+  left: -5px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.sleigh-runner::before,
+.sleigh-runner::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 25px;
+  background: #8B4513;
+  border-radius: 3px;
+  bottom: 8px;
+}
+
+.sleigh-runner::before {
+  left: 15px;
+}
+
+.sleigh-runner::after {
+  right: 15px;
+}
+
+.santa {
+  position: absolute;
+  width: 50px;
+  height: 60px;
+  bottom: 45px;
+  left: 30px;
+  z-index: 10;
+}
+
+.santa-body {
+  position: absolute;
+  width: 45px;
+  height: 35px;
+  background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+  border-radius: 18px;
+  bottom: 0;
+  border: 2px solid white;
+  box-shadow: inset 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.santa-body::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 30px;
+  background: white;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  border-radius: 4px;
+}
+
+.santa-body::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 8px;
+  background: white;
+  bottom: 0;
+  border-radius: 0 0 18px 18px;
+}
+
+.santa-head {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #FFE4C4;
+  border-radius: 50%;
+  bottom: 30px;
+  left: 7px;
+  border: 1px solid #D2B48C;
+}
+
+.santa-head::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 12px;
+  background: white;
+  bottom: -2px;
+  border-radius: 50%;
+}
+
+.santa-head::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: black;
+  border-radius: 50%;
+  top: 12px;
+  left: 10px;
+  box-shadow: 8px 0 0 black;
+}
+
+.santa-hat {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 25px solid #DC143C;
+  top: -20px;
+  left: 0;
+}
+
+.santa-hat::before {
+  content: '';
+  position: absolute;
+  width: 35px;
+  height: 8px;
+  background: white;
+  bottom: -25px;
+  left: -18px;
+  border-radius: 4px;
+}
+
+.santa-hat::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  top: -5px;
+  left: -5px;
+}
+
+.santa-arm {
+  position: absolute;
+  width: 15px;
+  height: 25px;
+  background: #DC143C;
+  border-radius: 8px;
+  top: 8px;
+  left: -8px;
+  transform: rotate(-30deg);
+  border: 1px solid #8B0000;
+}
+
+.preloader-text {
+  margin-top: 30px;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.main-content {
+  display: none;
+  position: relative;
+}
+
+.scroll-stockings {
+  position: fixed;
+  top: -150px;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10%;
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  pointer-events: none;
+}
+
+.scroll-stockings.scrolling-down {
+  transform: translateY(200px);
+}
+
+.scroll-stockings.scrolling-up {
+  transform: translateY(0);
+}
+
+.scroll-stocking {
+  transform: scale(0.7);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  position: relative;
+  transform-origin: center top;
+}
+
+.scroll-stocking::before {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 0;
+  background: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.85) 100%);
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+              top 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-stockings.scrolling-down .scroll-stocking::before {
+  height: 150px;
+  top: -150px;
+}
+
+.stocking-scroll-left {
+  animation: swingLeftRealistic 4s ease-in-out infinite;
+}
+
+.stocking-scroll-right {
+  animation: swingRightRealistic 4s ease-in-out infinite 0.7s;
+}
+
+.stocking-scroll-right .stocking-body,
+.stocking-scroll-right .stocking-toe {
+  background: linear-gradient(135deg, #27ae60 0%, #229954 50%, #1e8449 100%);
+  border-color: #186a3b;
+  box-shadow: inset -4px 0 10px rgba(0, 0, 0, 0.25), 
+              inset 4px 0 10px rgba(255, 255, 255, 0.15),
+              0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-stocking .stocking-top {
+  width: 55px;
+  height: 18px;
+  background: linear-gradient(to bottom, #ffffff, #f5f5f5);
+  border-radius: 4px 4px 0 0;
+  border: 2px solid #e0e0e0;
+  position: relative;
+  box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.08),
+              0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-stocking .stocking-top::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, 
+    transparent 0%, 
+    rgba(255, 215, 0, 0.6) 20%, 
+    rgba(255, 215, 0, 0.8) 50%, 
+    rgba(255, 215, 0, 0.6) 80%, 
+    transparent 100%);
+  bottom: -2px;
+  left: 0;
+  border-radius: 2px;
+}
+
+.scroll-stocking .stocking-body {
+  width: 50px;
+  height: 65px;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 50%, #a93226 100%);
+  border-radius: 0 0 10px 10px;
+  margin: 0 auto;
+  position: relative;
+  border: 2px solid #922b21;
+  box-shadow: inset -4px 0 10px rgba(0, 0, 0, 0.25), 
+              inset 4px 0 10px rgba(255, 255, 255, 0.15),
+              0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-stocking .stocking-body::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.35), transparent);
+  left: 6px;
+  top: 0;
+  border-radius: 0 0 0 10px;
+}
+
+.scroll-stocking .stocking-body::after {
+  content: '❄';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 22px;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.9),
+               0 2px 3px rgba(0, 0, 0, 0.3);
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.scroll-stocking .stocking-toe {
+  width: 32px;
+  height: 28px;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 50%, #a93226 100%);
+  border-radius: 0 0 16px 16px;
+  margin-left: 13px;
+  margin-top: -2px;
+  border: 2px solid #922b21;
+  box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.25),
+              inset 3px 0 6px rgba(255, 255, 255, 0.15),
+              0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes swingLeftRealistic {
+  0% {
+    transform: rotate(0deg) scale(0.7);
+  }
+  15% {
+    transform: rotate(8deg) scale(0.7);
+  }
+  30% {
+    transform: rotate(-6deg) scale(0.7);
+  }
+  45% {
+    transform: rotate(4deg) scale(0.7);
+  }
+  60% {
+    transform: rotate(-2deg) scale(0.7);
+  }
+  75% {
+    transform: rotate(1deg) scale(0.7);
+  }
+  100% {
+    transform: rotate(0deg) scale(0.7);
+  }
+}
+
+@keyframes swingRightRealistic {
+  0% {
+    transform: rotate(0deg) scale(0.7);
+  }
+  15% {
+    transform: rotate(-8deg) scale(0.7);
+  }
+  30% {
+    transform: rotate(6deg) scale(0.7);
+  }
+  45% {
+    transform: rotate(-4deg) scale(0.7);
+  }
+  60% {
+    transform: rotate(2deg) scale(0.7);
+  }
+  75% {
+    transform: rotate(-1deg) scale(0.7);
+  }
+  100% {
+    transform: rotate(0deg) scale(0.7);
+  }
+}
+
+@keyframes flyAcross {
+  0% {
+    transform: translateX(-150vw);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(150vw);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.christmas-garland {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.garland-rope {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.garland-rope path {
+  stroke: #ffffff;
+  stroke-width: 3;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
+  opacity: 0.9;
+}
+
+.stockings-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 0 10%;
+}
+
+.stocking {
+  position: relative;
+  animation: swingStocking 4s ease-in-out infinite;
+  transform-origin: top center;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.15));
+  transform: scale(0.6);
+}
+
+.stocking-1 {
+  top: 110px;
+  left: -18%;
+  animation-delay: 0s;
+}
+
+.stocking-2 {
+  top: 35px;
+  left: -6%;
+  animation-delay: 1s;
+}
+
+.stocking-3 {
+  top: 110px;
+  left: 6%;
+  animation-delay: 2s;
+}
+
+.stocking-4 {
+  top: 35px;
+  left: 18%;
+  animation-delay: 3s;
+}
+
+.stocking::before {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.stocking-top {
+  width: 55px;
+  height: 18px;
+  background: linear-gradient(to bottom, #ffffff, #f5f5f5);
+  border-radius: 4px 4px 0 0;
+  border: 2px solid #e0e0e0;
+  position: relative;
+  box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.08),
+              0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stocking-top::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, 
+    transparent 0%, 
+    rgba(255, 215, 0, 0.6) 20%, 
+    rgba(255, 215, 0, 0.8) 50%, 
+    rgba(255, 215, 0, 0.6) 80%, 
+    transparent 100%);
+  bottom: -2px;
+  left: 0;
+  border-radius: 2px;
+}
+
+.stocking-body {
+  width: 50px;
+  height: 65px;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 50%, #a93226 100%);
+  border-radius: 0 0 10px 10px;
+  margin: 0 auto;
+  position: relative;
+  border: 2px solid #922b21;
+  box-shadow: inset -4px 0 10px rgba(0, 0, 0, 0.25), 
+              inset 4px 0 10px rgba(255, 255, 255, 0.15),
+              0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.stocking-body::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.35), transparent);
+  left: 6px;
+  top: 0;
+  border-radius: 0 0 0 10px;
+}
+
+.stocking-body::after {
+  content: '❄';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 22px;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.9),
+               0 2px 3px rgba(0, 0, 0, 0.3);
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.stocking-toe {
+  width: 32px;
+  height: 28px;
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 50%, #a93226 100%);
+  border-radius: 0 0 16px 16px;
+  margin-left: 13px;
+  margin-top: -2px;
+  border: 2px solid #922b21;
+  box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.25),
+              inset 3px 0 6px rgba(255, 255, 255, 0.15),
+              0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.stocking-2 .stocking-body,
+.stocking-2 .stocking-toe {
+  background: linear-gradient(135deg, #27ae60 0%, #229954 50%, #1e8449 100%);
+  border-color: #186a3b;
+  box-shadow: inset -4px 0 10px rgba(0, 0, 0, 0.25), 
+              inset 4px 0 10px rgba(255, 255, 255, 0.15),
+              0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.stocking-4 .stocking-body,
+.stocking-4 .stocking-toe {
+  background: linear-gradient(135deg, #27ae60 0%, #229954 50%, #1e8449 100%);
+  border-color: #186a3b;
+  box-shadow: inset -4px 0 10px rgba(0, 0, 0, 0.25), 
+              inset 4px 0 10px rgba(255, 255, 255, 0.15),
+              0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes swingStocking {
+  0%, 100% {
+    transform: scale(0.6) rotate(-4deg);
+  }
+  50% {
+    transform: scale(0.6) rotate(4deg);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
 @keyframes slideInFromTop {
   0% {
     opacity: 0;
