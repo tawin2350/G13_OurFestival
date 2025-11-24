@@ -21,6 +21,8 @@ header .logo {
   gap: 8px;
   font-size: 2.1em;
   margin-bottom: 0.7em;
+  position: relative;
+  z-index: 2;
 }
 .star {
   color: #e0e0e0;
@@ -40,6 +42,8 @@ header .logo {
   justify-content: center;
   gap: 0.3em;
   animation: starGlow 1.5s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 2;
 }
 
 @keyframes starGlow {
@@ -93,122 +97,288 @@ header .logo {
 
 
 .feedback-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 2px solid transparent;
-  border-image: linear-gradient(135deg, #ffd600 0%, #ff6b6b 100%) 1;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(255, 214, 0, 0.2), 0 0 0 1px rgba(255, 214, 0, 0.1);
-  max-width: 600px;
+  background: linear-gradient(to bottom, #fefdfb 0%, #f8f6f0 100%);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  max-width: 650px;
   width: 100%;
-  padding: 2.2em 2em 1.5em 2em;
+  padding: 3em 2.5em 2.5em 2.5em;
   margin: 0 0 2em 0;
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .feedback-card::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255, 214, 0, 0.05), transparent);
-  transform: rotate(45deg);
-  animation: shimmerFeedback 3s infinite;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  height: 100%;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    rgba(26, 95, 63, 0.08) 31px,
+    rgba(26, 95, 63, 0.08) 32px
+  );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 8px;
 }
 
-@keyframes shimmerFeedback {
-  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+.feedback-card::after {
+  content: '';
+  position: absolute;
+  left: 60px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(220, 20, 60, 0.3);
+  z-index: 1;
 }
 
 .feedback-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 50px rgba(255, 214, 0, 0.3), 0 0 0 2px rgba(255, 214, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.12),
+    0 12px 24px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 @media (min-width: 768px) {
   .feedback-card {
-    max-width: 600px;
-    padding: 2.5em 3em 2em 3em;
+    max-width: 650px;
+    padding: 3em 3em 2.5em 3em;
   }
   
   .feedback-input, .feedback-select {
     font-size: 1.05em;
-    padding: 1em;
+    padding: 0.7em 0.5em;
   }
   
   .feedback-btn {
     font-size: 1.15em;
-    padding: 1.1em;
+    padding: 1.2em 2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .feedback-card {
+    padding: 2.5em 2em;
+  }
+  
+  .feedback-card::after {
+    left: 40px;
+  }
+  
+  .feedback-btn {
+    font-size: 1em;
+    padding: 1em 1.5em;
+  }
+  
+  .feedback-btn::before {
+    left: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .feedback-card {
+    padding: 2em 1.5em;
+    border-radius: 6px;
+  }
+  
+  .feedback-card::before {
+    width: calc(100% - 30px);
+  }
+  
+  .feedback-card::after {
+    left: 30px;
+  }
+  
+  .form-label-fb {
+    font-size: 0.85em;
+  }
+  
+  .feedback-input {
+    font-size: 0.95em;
+  }
+  
+  .feedback-btn {
+    font-size: 0.95em;
+    padding: 0.9em 1.3em;
+    letter-spacing: 0.5px;
+  }
+  
+  .feedback-btn::before {
+    left: 0.8em;
+    font-size: 1em;
+  }
+  
+  .star-rating {
+    font-size: 1.8em;
   }
 }
 .feedback-form {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1.5em;
+  position: relative;
+  z-index: 2;
 }
+
+.form-group-fb {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.form-label-fb {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #1a5f3f;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-left: 0.3em;
+  position: relative;
+  z-index: 2;
+}
+
+.form-label-fb::before {
+  content: '●';
+  color: #dc143c;
+  margin-right: 0.5em;
+  font-size: 0.7em;
+  vertical-align: middle;
+}
+
 .feedback-input, .feedback-select {
-  border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  padding: 0.9em;
+  border: none;
+  border-bottom: 2px solid #d4c5a9;
+  border-radius: 0;
+  padding: 0.6em 0.5em;
   font-size: 1em;
-  background: #fafbfc;
+  background: transparent;
   transition: all 0.3s ease;
+  font-family: 'Prompt', sans-serif;
+  color: #333;
+  position: relative;
+  z-index: 2;
 }
 
 .feedback-input:focus, .feedback-select:focus {
   outline: none;
-  border-color: #ffd600;
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.15), 0 4px 12px rgba(255, 214, 0, 0.2);
-  transform: translateY(-2px);
+  border-bottom-color: #dc143c;
+  background: rgba(220, 20, 60, 0.02);
 }
 .feedback-btn {
-  background: linear-gradient(135deg, #ffd600 0%, #ff6b6b 100%);
+  background: linear-gradient(135deg, #dc143c 0%, #8B0000 100%);
   color: #fff;
-  border: none;
+  border: 3px solid #FFD700;
   border-radius: 10px;
-  padding: 1em;
+  padding: 1.1em 2em;
   font-size: 1.1em;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  margin-top: 0.5em;
+  margin-top: 1em;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 214, 0, 0.4);
+  box-shadow: 
+    0 4px 15px rgba(220, 20, 60, 0.4),
+    0 0 20px rgba(255, 215, 0, 0.3);
   position: relative;
   overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Paytone One', sans-serif;
+  z-index: 2;
 }
 
 .feedback-btn::before {
-  content: '';
+  content: '✍️';
   position: absolute;
+  left: 1.5em;
   top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  transition: all 0.3s ease;
 }
 
-.feedback-btn:hover::before {
-  width: 300px;
-  height: 300px;
+.feedback-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.feedback-btn:hover::after {
+  left: 100%;
 }
 
 .feedback-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 214, 0, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 6px 25px rgba(220, 20, 60, 0.6),
+    0 0 30px rgba(255, 215, 0, 0.5);
+  border-color: #FFA500;
+}
+
+.feedback-btn:active {
+  transform: translateY(-1px);
+}
+
+.feedback-btn.signing {
+  pointer-events: none;
+}
+
+.feedback-btn.signing::before {
+  content: '';
+  left: 20%;
+  top: 50%;
+  width: 60%;
+  height: 3px;
+  background: #FFD700;
+  border-radius: 2px;
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left;
+  animation: signPen 1.5s ease-out forwards;
+  font-size: 0;
+}
+
+@keyframes signPen {
+  0% {
+    transform: translateY(-50%) scaleX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50%) scaleX(1);
+    opacity: 1;
+  }
 }
 .feedback-message {
-  color: #d32f2f;
+  color: #dc143c;
   font-size: 0.98em;
-  margin-top: 0.7em;
+  margin-top: 1em;
   text-align: center;
+  font-weight: 600;
+  background: rgba(220, 20, 60, 0.05);
+  padding: 0.8em;
+  border-radius: 8px;
+  border-left: 4px solid #dc143c;
+  position: relative;
+  z-index: 2;
 }
 .fb-status {
   color:#0b66a3;

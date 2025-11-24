@@ -1865,15 +1865,15 @@ header {
 
 .header-toggle-btn {
   position: fixed;
-  top: 15px;
-  left: 20px;
-  width: 60px;
-  height: 60px;
+  top: 80px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
   background: linear-gradient(135deg, #dc143c, #a00000);
   border: 3px solid #ffd700;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 100;
+  z-index: 10002;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1915,7 +1915,7 @@ header {
 }
 
 .toggle-icon {
-  font-size: 2em;
+  font-size: 1.6em;
   animation: toggleIconSpin 3s linear infinite;
 }
 
@@ -1959,14 +1959,23 @@ header .logo {
   font-weight: bold;
   text-decoration: none;
   transition: 0.2s ease-in-out;
-  color: #333;
+  color: #dbac4f;
   font-size: clamp(1rem, 1.5vw, 1.2rem);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-text {
+  font-family: 'Paytone One', sans-serif;
+  letter-spacing: 1px;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
 }
 
 .logo:hover {
-  color: #eee;
-  font-size: 17px;
-  border-radius: 5px;
+  color: #f9e3c6;
+  text-shadow: 0 0 10px rgba(249, 227, 198, 0.5);
+  transform: translateY(-2px);
 }
 
 header nav a {

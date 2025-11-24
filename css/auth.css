@@ -1,6 +1,82 @@
 .logo-img {
 	width: clamp(2rem, 3vw, 3rem);
-  }
+}
+
+.register-card {
+	max-width: 550px;
+	width: 92%;
+	background: linear-gradient(to bottom, #ffffff 0%, #fffef8 100%);
+	border-radius: 15px;
+	padding: 2.8em 2.5em;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), 
+	            0 4px 12px rgba(0, 0, 0, 0.1),
+	            inset 0 1px 0 rgba(255,255,255,0.8);
+	position: relative;
+	overflow: hidden;
+	border: 3px solid transparent;
+	border-image: linear-gradient(135deg, #dc143c, #FFD700, #1a5f3f) 1;
+}
+
+.register-card::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 6px;
+	background: linear-gradient(90deg, #dc143c 0%, #FFD700 50%, #1a5f3f 100%);
+	animation: shimmer 3s linear infinite;
+	background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+	0% { background-position: -200% 0; }
+	100% { background-position: 200% 0; }
+}
+
+.register-card::after {
+	content: '🎄';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 15em;
+	opacity: 0.03;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.register-card > h2 {
+	font-size: 2.3em;
+	color: #1a5f3f;
+	text-align: center;
+	margin-bottom: 0.4em;
+	font-weight: 700;
+	font-family: 'Paytone One', sans-serif;
+	text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.2);
+	position: relative;
+	z-index: 1;
+	letter-spacing: 1px;
+}
+
+.register-card > h2::before {
+	content: '🎅';
+	margin-right: 0.3em;
+}
+
+.register-card > h2::after {
+	content: '🎁';
+	margin-left: 0.3em;
+}
+
+.register-card > p {
+	font-size: 1.1em;
+	color: #2d7a54;
+	text-align: center;
+	margin-bottom: 2em;
+	font-weight: 500;
+	text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+}
 
 .reg-status-popup {
 	position: fixed;
@@ -21,145 +97,150 @@
 	display: none;
 }
 .register-btn:disabled {
-	background: linear-gradient(135deg, #b3c6ff 0%, #d4b5e5 100%);
+	background: linear-gradient(135deg, #dc143c 0%, #8B0000 100%);
 	cursor: not-allowed;
-	opacity: 0.6;
+	opacity: 0.4;
 	box-shadow: none;
+	border-color: #d4c5a9;
 }
 @keyframes fadeInPop {
 	from { opacity: 0; transform: translate(-50%, -20px); }
 	to { opacity: 0.97; transform: translate(-50%, 0); }
-}
-.register-card {
-	background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-	border: 2px solid transparent;
-	border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) 1;
-	border-radius: 20px;
-	box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2), 0 0 0 1px rgba(102, 126, 234, 0.1);
-	max-width: 370px;
-	width: 100%;  
-	padding: 2.2em 2em 1.5em 2em;
-	margin: 2em 0;
-	transition: all 0.3s ease;
-	position: relative;
-	overflow: hidden;
-}
-
-.register-card::before {
-	content: '';
-	position: absolute;
-	top: -50%;
-	left: -50%;
-	width: 200%;
-	height: 200%;
-	background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1), transparent);
-	transform: rotate(45deg);
-	animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-	0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-	100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-}
-
-.register-card:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 15px 50px rgba(102, 126, 234, 0.3), 0 0 0 2px rgba(102, 126, 234, 0.2);
-}
-.register-card h2 {
-	font-size: 1.5em;
-	font-weight: 800;
-	color: #222;
-	margin-bottom: 0.5em;
-	text-align: center;
-	text-shadow: 0 0 10px rgba(255, 193, 7, 0.5), 0 0 20px rgba(255, 193, 7, 0.3), 0 0 30px rgba(255, 193, 7, 0.2);
-	animation: glow 2s ease-in-out infinite alternate;
-	font-family: 'Paytone One', sans-serif;
-	letter-spacing: 1px;
-}
-
-@keyframes glow {
-	from {
-		text-shadow: 0 0 10px rgba(255, 193, 7, 0.5), 0 0 20px rgba(255, 193, 7, 0.3), 0 0 30px rgba(255, 193, 7, 0.2);
-	}
-	to {
-		text-shadow: 0 0 20px rgba(255, 193, 7, 0.8), 0 0 30px rgba(255, 193, 7, 0.6), 0 0 40px rgba(255, 193, 7, 0.4);
-	}
 }
 
 @keyframes christmasGradient {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
-.register-card > p {
-	font-size: 1em;
-	color: #666;
-	text-align: center;
-	margin-bottom: 1.2em;
-}
+
 .register-form {
 	display: flex;
 	flex-direction: column;
-	gap: 1em;
+	gap: 1.5em;
 }
+
+.form-group {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+}
+
+.form-label {
+	font-size: 0.95em;
+	font-weight: 600;
+	color: #1a5f3f;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	padding-left: 0.3em;
+}
+
+.form-label::before {
+	content: '●';
+	color: #dc143c;
+	margin-right: 0.5em;
+	font-size: 0.7em;
+	vertical-align: middle;
+}
+
 .register-input, .register-select {
-	border: 2px solid #e0e0e0;
-	border-radius: 10px;
-	padding: 0.9em;
+	border: 2px solid #d4c5a9;
+	border-radius: 8px;
+	padding: 0.9em 1.1em;
 	font-size: 1em;
-	background: #fafbfc;
+	background: #ffffff;
 	transition: all 0.3s ease;
+	font-family: 'Prompt', sans-serif;
+	color: #333;
+}
+
+.register-input:hover, .register-select:hover {
+	border-color: #FFD700;
+	background: #fffef8;
 }
 
 .register-input:focus, .register-select:focus {
 	outline: none;
-	border-color: #667eea;
+	border-color: #dc143c;
 	background: #fff;
-	box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1), 0 4px 12px rgba(102, 126, 234, 0.15);
-	transform: translateY(-2px);
+	box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.1), 
+	            0 4px 12px rgba(220, 20, 60, 0.15);
 }
+
+.register-select {
+	cursor: pointer;
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231a5f3f' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 1em center;
+	padding-right: 2.5em;
+}
+
 .register-btn {
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	background: linear-gradient(135deg, #dc143c 0%, #8B0000 100%);
 	color: #fff;
-	border: none;
-	padding: 1em;
+	border: 3px solid #FFD700;
+	padding: 1.1em 2em;
 	border-radius: 10px;
-	font-size: 1.05em;
-	font-weight: 600;
+	font-size: 1.1em;
+	font-weight: 700;
 	cursor: pointer;
 	transition: all 0.3s ease;
 	position: relative;
 	overflow: hidden;
-	box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+	box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4),
+	            0 0 20px rgba(255, 215, 0, 0.3);
+	margin-top: 1em;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-family: 'Paytone One', sans-serif;
 }
 
 .register-btn::before {
-	content: '';
+	content: '📝';
 	position: absolute;
+	left: 1.5em;
 	top: 50%;
-	left: 50%;
-	width: 0;
-	height: 0;
-	border-radius: 50%;
-	background: rgba(255, 255, 255, 0.3);
-	transform: translate(-50%, -50%);
-	transition: width 0.6s, height 0.6s;
+	transform: translateY(-50%);
+	font-size: 1.2em;
+	transition: all 0.3s ease;
 }
 
-.register-btn:hover::before {
-	width: 300px;
-	height: 300px;
+.register-btn::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+	transition: left 0.5s;
+}
+
+.register-btn:hover::after {
+	left: 100%;
 }
 
 .register-btn:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+	transform: translateY(-3px);
+	box-shadow: 0 6px 25px rgba(220, 20, 60, 0.6),
+	            0 0 30px rgba(255, 215, 0, 0.5);
+	border-color: #FFA500;
+}
+
+.register-btn:active {
+	transform: translateY(-1px);
 }
 .register-message {
-	color: #d32f2f;
+	color: #dc143c;
 	font-size: 0.98em;
-	margin-top: 0.7em;
+	margin-top: 1em;
 	text-align: center;
+	font-weight: 600;
+	background: rgba(220, 20, 60, 0.05);
+	padding: 0.8em;
+	border-radius: 8px;
+	border-left: 4px solid #dc143c;
 }
 .fb-status {
 	color:#0b66a3;
@@ -169,10 +250,20 @@
 	display: none;
 }
 .register-count {
-	font-size: 0.98em;
-	color: #222;
-	margin-top: 1.2em;
+	font-size: 1em;
+	color: #1a5f3f;
+	margin-top: 1.5em;
 	text-align: center;
+	font-weight: 600;
+	padding: 0.8em;
+	background: linear-gradient(135deg, rgba(212, 197, 169, 0.3), rgba(255, 215, 0, 0.2));
+	border-radius: 8px;
+	border: 2px solid #d4c5a9;
+}
+
+.register-count strong {
+	color: #dc143c;
+	font-size: 1.2em;
 }
 .register-list {
 	display: block;
@@ -187,7 +278,15 @@
 	text-align: center;
 }
 main.register-main {
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+	background: linear-gradient(-45deg, 
+		#1a5f3f 0%, 
+		#e8dcc4 25%, 
+		#a82034 50%, 
+		#d4c5a9 75%, 
+		#8B0000 90%, 
+		#f5e6d3 100%);
+	background-size: 400% 400%;
+	animation: christmasGradient 15s ease infinite;
 	background-attachment: fixed;
 	min-height: 80vh;
 	display: flex;
@@ -278,12 +377,12 @@ body {
 .form-section {
 	width: 200%;
 }
-.form-group {
+.old-form-group {
 	position: relative;
 	margin-bottom: 24px;
 	text-align: left;
 }
-.form-group input {
+.old-form-group input {
 	width: 100%;
 	font-size: 1.05em;
 	padding: 18px 14px 10px;
@@ -292,11 +391,11 @@ body {
 	background: #fff;
 	transition: all 0.2s ease;
 }
-.form-group input:focus {
+.old-form-group input:focus {
 	border-color: #1976d2;
 	box-shadow: 0 0 0 3px rgba(25,118,210,0.15);
 }
-.form-group label {
+.old-form-group label {
 	position: absolute;
 	left: 16px;
 	top: 16px;
@@ -307,9 +406,9 @@ body {
 	background: transparent;
 	padding: 0 4px;
 }
-.form-group input:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group input[type="date"]:valid + label {
+.old-form-group input:focus + label,
+.old-form-group input:not(:placeholder-shown) + label,
+.old-form-group input[type="date"]:valid + label {
 	top: -10px;
 	left: 10px;
 	font-size: 0.85em;
@@ -360,8 +459,125 @@ body {
 		width: 60px;
 		height: 60px;
 	}
-	.form-group input {
+	.old-form-group input {
 		font-size: 1em;
 		padding: 14px 10px 8px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.register-card {
+		max-width: 500px;
+		padding: 2.5em 2em;
+	}
+	
+	.register-card > h2 {
+		font-size: 2em;
+	}
+	
+	.register-card::after {
+		font-size: 12em;
+	}
+}
+
+@media (max-width: 768px) {
+	.register-card {
+		max-width: 450px;
+		padding: 2em 1.8em;
+	}
+	
+	.register-card > h2 {
+		font-size: 1.8em;
+	}
+	
+	.register-card > p {
+		font-size: 1em;
+		margin-bottom: 1.5em;
+	}
+	
+	.register-form {
+		gap: 1.3em;
+	}
+	
+	.form-label {
+		font-size: 0.9em;
+	}
+	
+	.register-input, .register-select {
+		padding: 0.8em 1em;
+		font-size: 0.95em;
+	}
+	
+	.register-btn {
+		font-size: 1em;
+		padding: 1em 1.5em;
+	}
+	
+	.register-btn::before {
+		left: 1em;
+		font-size: 1.1em;
+	}
+	
+	.register-card::after {
+		font-size: 10em;
+	}
+}
+
+@media (max-width: 480px) {
+	.register-card {
+		width: 95%;
+		padding: 1.8em 1.5em;
+		border-radius: 12px;
+	}
+	
+	.register-card > h2 {
+		font-size: 1.6em;
+	}
+	
+	.register-card > h2::before,
+	.register-card > h2::after {
+		font-size: 0.8em;
+	}
+	
+	.register-card > p {
+		font-size: 0.95em;
+		margin-bottom: 1.3em;
+	}
+	
+	.register-form {
+		gap: 1.2em;
+	}
+	
+	.form-label {
+		font-size: 0.85em;
+	}
+	
+	.register-input, .register-select {
+		padding: 0.75em 0.9em;
+		font-size: 0.9em;
+	}
+	
+	.register-btn {
+		font-size: 0.95em;
+		padding: 0.9em 1.3em;
+		letter-spacing: 0.5px;
+	}
+	
+	.register-btn::before {
+		left: 0.8em;
+		font-size: 1em;
+	}
+	
+	.register-count {
+		font-size: 0.9em;
+		padding: 0.7em;
+	}
+	
+	.register-count strong {
+		font-size: 1.1em;
+	}
+	
+	.register-card::after {
+		font-size: 8em;
 	}
 }

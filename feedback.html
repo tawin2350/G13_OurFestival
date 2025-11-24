@@ -66,6 +66,7 @@
   <div class="header-content" id="header-content">
     <a href="index.html" class="logo">
       <i class="fa fa-home"></i>
+      <span class="logo-text">HOME</span>
     </a>
     <nav class="main-nav">
       <div class="nav-dropdown">
@@ -100,8 +101,8 @@
     <div class="feedback-overlay"></div>
     <div class="feedback-container" style="position: relative; z-index: 1;">
     <div class="feedback-card">
-      <h2 style="font-size: 1.5em; font-weight: 600; color: #222; margin-bottom: 0.5em; text-align: center;">Feedback</h2>
-      <p style="font-size: 1em; color: #666; text-align: center; margin-bottom: 1.2em;">ให้คะแนนและแสดงความคิดเห็นเกี่ยวกับงานนี้</p>
+      <h2 style="font-size: 1.8em; font-weight: 700; color: #1a5f3f; margin-bottom: 0.3em; text-align: center; font-family: 'Paytone One', sans-serif; position: relative; z-index: 2;">📝 แบบประเมินความพึงพอใจ</h2>
+      <p style="font-size: 1em; color: #2d7a54; text-align: center; margin-bottom: 1.5em; position: relative; z-index: 2;">กรุณาให้คะแนนและแสดงความคิดเห็นเกี่ยวกับงาน Holly Jolly Fair</p>
       <div class="star-average" style="text-align:center;margin-bottom:1em;">
         <span id="star-average-label">ดาวเฉลี่ย :</span>
         <span id="star-average"></span>
@@ -115,10 +116,23 @@
           <span class="star" data-value="5">&#9733;</span>
         </div>
         <input type="hidden" id="fb-rating" required>
-        <input id="fb-name" type="text" placeholder="ชื่อ" required class="feedback-input">
-        <input id="fb-email" type="email" placeholder="อีเมล" required class="feedback-input">
-        <textarea id="fb-comment" placeholder="ความคิดเห็น" required class="feedback-input" style="min-height:80px;"></textarea>
-        <button type="submit" class="feedback-btn">ส่งความคิดเห็น</button>
+        
+        <div class="form-group-fb">
+          <label for="fb-name" class="form-label-fb">ชื่อ-นามสกุล</label>
+          <input id="fb-name" type="text" placeholder="  กรอกชื่อ-นามสกุล" required class="feedback-input">
+        </div>
+        
+        <div class="form-group-fb">
+          <label for="fb-email" class="form-label-fb">อีเมล</label>
+          <input id="fb-email" type="email" placeholder="  example@email.com" required class="feedback-input">
+        </div>
+        
+        <div class="form-group-fb">
+          <label for="fb-comment" class="form-label-fb">ความคิดเห็น</label>
+          <textarea id="fb-comment" placeholder="  แสดงความคิดเห็นของคุณ..." required class="feedback-input" style="min-height:100px; resize: vertical;"></textarea>
+        </div>
+        
+        <button type="submit" class="feedback-btn">ส่งแบบประเมิน</button>
       </form>
       <div id="feedback-message" class="feedback-message"></div>
   <div id="fb-status" class="fb-status" style="display:none"></div>

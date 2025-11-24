@@ -126,13 +126,11 @@
     </div>
   </div>
 
-  <!-- Back to Top Button -->
   <button class="back-to-top" id="backToTop">
     <span class="back-to-top-icon">🎁</span>
     <span class="back-to-top-text">TOP</span>
   </button>
 
-  <!-- Christmas Lights Header -->
   <div class="christmas-lights-header">
     <div class="light-string">
       <span class="xmas-light" style="--delay: 0s; --color: #ff0000;"></span>
@@ -170,6 +168,7 @@
   <div class="header-content" id="header-content">
     <a href="index.html" class="logo">
       <i class="fa fa-home"></i>
+      <span class="logo-text">HOME</span>
     </a>
     <nav class="main-nav">
       <div class="nav-dropdown">
@@ -358,7 +357,7 @@
   </footer>
   </div>
 
-  <!--<div class="register-required-popup" id="register-popup">
+  <div class="register-required-popup" id="register-popup">
     <div class="popup-overlay"></div>
     <div class="popup-box">
       <div class="popup-header">
@@ -377,7 +376,7 @@
         </button>
       </div>
     </div>
-  </div>-->
+  </div>
 
 <script src="script/script.js"></script>
 <script src="script/secret-admin.js"></script>
@@ -385,7 +384,7 @@
   (function() {
     const isRegistered = localStorage.getItem('isRegistered');
     
-    if (!isRegistered || isRegistered !== 'false') {
+    if (!isRegistered || isRegistered !== 'true') {
       setTimeout(function() {
         document.getElementById('register-popup').classList.add('show');
       }, 500);

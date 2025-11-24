@@ -131,7 +131,8 @@
       
       if (btn) {
         btn.disabled = true;
-        btn.textContent = 'กำลังโหลด...';
+        btn.classList.add('signing');
+        btn.textContent = 'กำลังเซ็นเอกสาร...';
       }
       
       var data = {
@@ -152,7 +153,7 @@
       .then(response => {
         if (response.success) {
           if (msg) msg.textContent = '';
-          setStatus('ขอบคุณสำหรับความคิดเห็น!');
+          setStatus('✅ เซ็นเอกสารเรียบร้อย!');
           
           setTimeout(function () {
             form.reset();
@@ -162,18 +163,20 @@
             
             if (btn) {
               btn.disabled = false;
-              btn.textContent = 'ส่งความคิดเห็น';
+              btn.classList.remove('signing');
+              btn.textContent = 'ส่งแบบประเมิน';
             }
             
             fetchAverageStar();
             renderFeedbackList();
-          }, 1500);
+          }, 2000);
         } else {
           if (msg) msg.textContent = response.message || 'เกิดข้อผิดพลาด';
           setStatus('เกิดข้อผิดพลาด');
           if (btn) {
             btn.disabled = false;
-            btn.textContent = 'ส่งความคิดเห็น';
+            btn.classList.remove('signing');
+            btn.textContent = 'ส่งแบบประเมิน';
           }
         }
       })
@@ -183,7 +186,8 @@
         setStatus('เกิดข้อผิดพลาด');
         if (btn) {
           btn.disabled = false;
-          btn.textContent = 'ส่งความคิดเห็น';
+          btn.classList.remove('signing');
+          btn.textContent = 'ส่งแบบประเมิน';
         }
       });
     });
