@@ -15,7 +15,7 @@ body {
   color: #222;
 }
 
-/* HEADER */
+
 .header-bar {
   background-color: #004e40;
   padding: 10px 20px; 
@@ -32,7 +32,7 @@ body {
   -webkit-text-stroke-width: 0.5px;
   text-shadow: 2px 2px #000000;
 }
-/* ใช้ class แยกแทน error */
+
 .some-number.alt {
   font-family: 'Great Vibes', cursive;
   font-size: 28px;
@@ -57,7 +57,7 @@ body {
   padding: 0;
 }
 .shop-banner-box {
-  width: 100%; /* ปรับจาก 100vw */
+  width: 100%; 
   max-width: 100%;
   height: 300px;
   border: none;
@@ -86,7 +86,7 @@ body {
   font-size: 30px;
 }
 
-/* RECOMMEND */
+
 .recommend {
   text-align: center;
   padding: 40px 10%;
@@ -98,7 +98,7 @@ body {
   gap: 25px;
 }
 
-/* รวม menu-card ให้เป็นเวอร์ชันเดียว */
+
 .menu-card {
   background-color: #fff;
   border: 2px solid #004e40;
@@ -212,7 +212,7 @@ h3{
 .prev { left: 5px; }
 .next { right: 5px; }
 
-/* DEAL */
+
 .special-deal {
   width: 60%;
   margin: 60px auto;
@@ -240,7 +240,7 @@ h3{
   border: 3px solid #b11e31;
 }
 
-/* FOOTER */
+
 .footer {
   background-color: #004e40;
   text-align: center;
