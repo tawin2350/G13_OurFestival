@@ -1,117 +1,68 @@
 const ADMIN_PASSWORD = '1212312121zaza';
+const API_URL = 'api';
 
-let fbApp = null;
-let fbDb = null;
-let firebaseEnabled = false;
 let currentDeleteId = null;
 let currentDeleteType = null;
 let allUsers = [];
 let allFeedback = [];
 let allContacts = [];
-fetch('data/firebase-config.json')
-  .then(r => r.json())
-  .then(cfg => {
-    console.log('Firebase config loaded');
-    let tries = 0;
-    
-    function initWhenReady() {
-      if (window.firebase && window.firebase.initializeApp) {
-        try {
-          if (firebase.apps && firebase.apps.length) {
-            fbApp = firebase.app();
-          } else {
-            fbApp = firebase.initializeApp(cfg);
-          }
-          fbDb = firebase.firestore();
-          firebaseEnabled = true;
-          console.log('✅ Firebase connected successfully');
-          if (sessionStorage.getItem('adminLoggedIn') === 'true') {
-            showAdminPanel();
-          }
-        } catch (err) {
-          console.error('❌ Firebase error:', err);
-          firebaseEnabled = false;
-        }
-      } else {
-        tries++;
-        if (tries < 20) {
-          setTimeout(initWhenReady, 300);
-        } else {
-          console.error('❌ Firebase SDK not loaded');
-        }
-      }
-    }
-    initWhenReady();
-  })
-  .catch(err => {
-    console.error('❌ Config error:', err);
-    alert('ไม่สามารถโหลดการตั้งค่า Firebase ได้');
-  });
+
+if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+  showAdminPanel();
+}
+
 document.getElementById('login-form').addEventListener('submit', (e) => {
   e.preventDefault();
+  
   const password = document.getElementById('admin-password').value;
-  const errorEl = document.getElementById('login-error');
-
+  const errorMsg = document.getElementById('login-error');
+  
   if (password === ADMIN_PASSWORD) {
     sessionStorage.setItem('adminLoggedIn', 'true');
     showAdminPanel();
   } else {
-    errorEl.textContent = '❌ รหัสผ่านไม่ถูกต้อง';
-    document.getElementById('admin-password').value = '';
+    errorMsg.textContent = '❌ รหัสผ่านไม่ถูกต้อง';
+    errorMsg.style.display = 'block';
+    setTimeout(() => {
+      errorMsg.style.display = 'none';
+    }, 3000);
   }
 });
-document.getElementById('logout-btn').addEventListener('click', () => {
-  sessionStorage.removeItem('adminLoggedIn');
-  location.reload();
-});
+
 function showAdminPanel() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('admin-panel').style.display = 'block';
+  
+  document.getElementById('logout-btn').addEventListener('click', logout);
+  
   loadData();
 }
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const tab = btn.dataset.tab;
-    
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    
-    btn.classList.add('active');
-    document.getElementById(tab + '-tab').classList.add('active');
-  });
-});
+
+function logout() {
+  sessionStorage.removeItem('adminLoggedIn');
+  location.reload();
+}
+
 function loadData() {
-  console.log('loadData called, firebaseEnabled:', firebaseEnabled);
-  
-  if (!firebaseEnabled || !fbDb) {
-    console.log('Waiting for Firebase...');
-    setTimeout(loadData, 500);
-    return;
-  }
-  
-  console.log('Starting to load data...');
+  console.log('Loading data from PHP API...');
   loadUsers();
   loadFeedback();
   loadContacts();
 }
 
-
 function loadUsers() {
   console.log('Loading users...');
-  fbDb.collection('users').get()
-    .then(snapshot => {
-      allUsers = [];
-      console.log('Users found:', snapshot.size);
-      
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        console.log('User data:', data);
-        allUsers.push({ id: doc.id, ...data });
-      });
-      allUsers.sort((a, b) => (b.created || 0) - (a.created || 0));
-      
-      updateStats();
-      displayUsers(allUsers);
+  fetch(API_URL + '/register.php')
+    .then(r => r.json())
+    .then(data => {
+      if (data.success) {
+        allUsers = data.data || [];
+        console.log('Users loaded:', allUsers.length);
+        updateStats();
+        displayUsers(allUsers);
+      } else {
+        throw new Error(data.message || 'Failed to load users');
+      }
     })
     .catch(err => {
       console.error('Error loading users:', err);
@@ -124,14 +75,12 @@ function displayUsers(users) {
   const tbody = document.getElementById('users-tbody');
   
   if (users.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="6" class="no-data">📭 ยังไม่มีผู้ลงทะเบียน<br><small>ข้อมูลจะแสดงที่นี่เมื่อมีคนลงทะเบียนผ่านหน้า register.html</small></td></tr>';
+    tbody.innerHTML = '<tr><td colspan="6" class="no-data">📭 ยังไม่มีผู้ลงทะเบียน</td></tr>';
     return;
   }
 
   tbody.innerHTML = users.map((user, index) => {
-    const fullName = (user.firstname && user.lastname) 
-      ? `${user.firstname} ${user.lastname}` 
-      : (user.name || '-');
+    const fullName = `${user.firstname || ''} ${user.lastname || ''}`.trim() || '-';
     
     return `
     <tr>
@@ -139,15 +88,10 @@ function displayUsers(users) {
       <td>${fullName}</td>
       <td>${user.email || '-'}</td>
       <td>${user.phone || '-'}</td>
-      <td>${user.created ? new Date(user.created).toLocaleDateString('th-TH', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      }) : '-'}</td>
+      <td>${user.created || '-'}</td>
       <td>
         <div class="action-buttons">
-          <button class="btn-edit" onclick="editUser('${user.id}')">✏️ แก้ไข</button>
-          <button class="btn-delete" onclick="deleteUser('${user.id}', '${fullName.replace(/'/g, "\\'")}')">🗑️ ลบ</button>
+          <button class="btn-delete" onclick="confirmDelete('${user.id}', 'user', '${fullName.replace(/'/g, "\\'")}')">🗑️ ลบ</button>
         </div>
       </td>
     </tr>
@@ -158,153 +102,72 @@ function displayUsers(users) {
 document.getElementById('search-users').addEventListener('input', (e) => {
   const search = e.target.value.toLowerCase();
   const filtered = allUsers.filter(user => {
-    const fullName = (user.firstname && user.lastname) 
-      ? `${user.firstname} ${user.lastname}` 
-      : (user.name || '');
-    
-    return fullName.toLowerCase().includes(search) ||
+    const fullName = `${user.firstname || ''} ${user.lastname || ''}`.toLowerCase();
+    return fullName.includes(search) ||
       (user.email || '').toLowerCase().includes(search) ||
       (user.phone || '').toLowerCase().includes(search);
   });
   displayUsers(filtered);
 });
-window.editUser = function(userId) {
-  const user = allUsers.find(u => u.id === userId);
-  if (!user) return;
-
-  document.getElementById('edit-id').value = userId;
-  document.getElementById('edit-firstname').value = user.firstname || '';
-  document.getElementById('edit-lastname').value = user.lastname || '';
-  document.getElementById('edit-email').value = user.email || '';
-  document.getElementById('edit-phone').value = user.phone || '';
-
-  document.getElementById('edit-modal').classList.add('show');
-};
-document.getElementById('edit-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  
-  const userId = document.getElementById('edit-id').value;
-  const data = {
-    firstname: document.getElementById('edit-firstname').value,
-    lastname: document.getElementById('edit-lastname').value,
-    email: document.getElementById('edit-email').value,
-    phone: document.getElementById('edit-phone').value
-  };
-
-  fbDb.collection('users').doc(userId).update(data)
-    .then(() => {
-      alert('✅ บันทึกข้อมูลเรียบร้อย');
-      closeModal('edit-modal');
-      loadUsers();
-    })
-    .catch(err => {
-      alert('❌ เกิดข้อผิดพลาด: ' + err.message);
-    });
-});
-
-window.deleteUser = function(userId, userName) {
-  currentDeleteId = userId;
-  currentDeleteType = 'user';
-  document.getElementById('delete-info').textContent = `ชื่อ: ${userName}`;
-  document.getElementById('delete-modal').classList.add('show');
-};
-document.getElementById('confirm-delete').addEventListener('click', () => {
-  if (!currentDeleteId) return;
-
-  let collection;
-  if (currentDeleteType === 'user') {
-    collection = 'users';
-  } else if (currentDeleteType === 'feedback') {
-    collection = 'feedbacks';
-  } else if (currentDeleteType === 'contact') {
-    collection = 'contacts';
-  }
-  
-  fbDb.collection(collection).doc(currentDeleteId).delete()
-    .then(() => {
-      alert('✅ ลบข้อมูลเรียบร้อย');
-      closeModal('delete-modal');
-      currentDeleteId = null;
-      currentDeleteType = null;
-      
-      if (collection === 'users') {
-        loadUsers();
-      } else if (collection === 'feedbacks') {
-        loadFeedback();
-      } else if (collection === 'contacts') {
-        loadContacts();
-      }
-    })
-    .catch(err => {
-      alert('❌ เกิดข้อผิดพลาด: ' + err.message);
-    });
-});
 
 function loadFeedback() {
   console.log('Loading feedback...');
-  
-  fbDb.collection('feedbacks').get()
-    .then(snapshot => {
-      allFeedback = [];
-      console.log('Feedback found:', snapshot.size);
-      
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        console.log('Feedback data:', data);
-        allFeedback.push({ id: doc.id, ...data });
-      });
-      allFeedback.sort((a, b) => (b.created || 0) - (a.created || 0));
-      
-      updateStats();
-      displayFeedback(allFeedback);
+  fetch(API_URL + '/feedback.php')
+    .then(r => r.json())
+    .then(data => {
+      if (data.success) {
+        allFeedback = data.data || [];
+        console.log('Feedback loaded:', allFeedback.length);
+        updateStats();
+        displayFeedback(allFeedback);
+      } else {
+        throw new Error(data.message || 'Failed to load feedback');
+      }
     })
     .catch(err => {
       console.error('Error loading feedback:', err);
-      document.getElementById('feedback-container').innerHTML = 
-        '<div class="no-data">ไม่สามารถโหลดข้อมูลได้: ' + err.message + '</div>';
+      document.getElementById('feedback-tbody').innerHTML = 
+        '<tr><td colspan="5" class="no-data">ไม่สามารถโหลดข้อมูลได้</td></tr>';
     });
 }
-function displayFeedback(feedback) {
+
+function displayFeedback(feedbacks) {
   const container = document.getElementById('feedback-container');
   
-  if (feedback.length === 0) {
-    container.innerHTML = '<div class="no-data">📭 ยังไม่มี Feedback<br><small>ข้อมูลจะแสดงที่นี่เมื่อมีคนส่ง Feedback ผ่านหน้า feedback.html</small></div>';
+  if (feedbacks.length === 0) {
+    container.innerHTML = '<div class="no-data">📭 ยังไม่มีความคิดเห็น</div>';
     return;
   }
 
-  container.innerHTML = feedback.map(fb => {
+  container.innerHTML = feedbacks.map((fb) => {
     const stars = '⭐'.repeat(fb.rating || 0);
-    const date = fb.created ? new Date(fb.created).toLocaleDateString('th-TH', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    }) : '-';
+    const date = fb.created ? new Date(fb.created).toLocaleDateString('th-TH') : '-';
     
-    const displayName = (fb.firstname && fb.lastname) 
-      ? `${fb.firstname} ${fb.lastname}` 
-      : (fb.name || 'ไม่ระบุชื่อ');
-
     return `
-      <div class="feedback-card">
-        <div class="feedback-header">
-          <span class="feedback-user">${displayName}</span>
-          <span class="feedback-rating">${stars}</span>
-        </div>
-        <div class="feedback-date">📅 ${date}</div>
-        <div class="feedback-comment">${fb.comment || '-'}</div>
-        <div class="feedback-actions">
-          <button class="btn-delete" onclick="deleteFeedback('${fb.id}', '${displayName.replace(/'/g, "\\'")}')">🗑️ ลบ</button>
-        </div>
+    <div class="feedback-card">
+      <div class="feedback-header">
+        <strong>${fb.name || '-'}</strong>
+        <span class="date">${date}</span>
       </div>
+      <div class="rating">${stars} (${fb.rating || 0}/5)</div>
+      <p class="comment">${fb.comment || '-'}</p>
+      <button class="btn-delete" onclick="confirmDelete('${fb.id}', 'feedback', '${(fb.name || 'ผู้ใช้').replace(/'/g, "\\'")}')">🗑️ ลบ</button>
+    </div>
     `;
   }).join('');
 }
 
+document.getElementById('search-feedback').addEventListener('input', (e) => {
+  const search = e.target.value.toLowerCase();
+  const filtered = allFeedback.filter(fb => 
+    (fb.name || '').toLowerCase().includes(search) ||
+    (fb.comment || '').toLowerCase().includes(search)
+  );
+  displayFeedback(filtered);
+});
+
 document.getElementById('filter-rating').addEventListener('change', (e) => {
   const rating = e.target.value;
-  
   if (rating === 'all') {
     displayFeedback(allFeedback);
   } else {
@@ -313,35 +176,24 @@ document.getElementById('filter-rating').addEventListener('change', (e) => {
   }
 });
 
-window.deleteFeedback = function(feedbackId, userName) {
-  currentDeleteId = feedbackId;
-  currentDeleteType = 'feedback';
-  document.getElementById('delete-info').textContent = `Feedback จาก: ${userName}`;
-  document.getElementById('delete-modal').classList.add('show');
-};
-
 function loadContacts() {
   console.log('Loading contacts...');
-  
-  fbDb.collection('contacts').get()
-    .then(snapshot => {
-      allContacts = [];
-      console.log('Contacts found:', snapshot.size);
-      
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        console.log('Contact data:', data);
-        allContacts.push({ id: doc.id, ...data });
-      });
-      allContacts.sort((a, b) => (b.created || 0) - (a.created || 0));
-      
-      updateStats();
-      displayContacts(allContacts);
+  fetch(API_URL + '/contact.php')
+    .then(r => r.json())
+    .then(data => {
+      if (data.success) {
+        allContacts = data.data || [];
+        console.log('Contacts loaded:', allContacts.length);
+        updateStats();
+        displayContacts(allContacts);
+      } else {
+        throw new Error(data.message || 'Failed to load contacts');
+      }
     })
     .catch(err => {
       console.error('Error loading contacts:', err);
-      document.getElementById('contacts-container').innerHTML = 
-        '<div class="no-data">ไม่สามารถโหลดข้อมูลได้: ' + err.message + '</div>';
+      document.getElementById('contacts-tbody').innerHTML = 
+        '<tr><td colspan="6" class="no-data">ไม่สามารถโหลดข้อมูลได้</td></tr>';
     });
 }
 
@@ -349,88 +201,94 @@ function displayContacts(contacts) {
   const container = document.getElementById('contacts-container');
   
   if (contacts.length === 0) {
-    container.innerHTML = '<div class="no-data">📭 ยังไม่มีข้อความติดต่อ<br><small>ข้อมูลจะแสดงที่นี่เมื่อมีคนส่งข้อความผ่านหน้า contact.html</small></div>';
+    container.innerHTML = '<div class="no-data">📭 ยังไม่มีข้อความติดต่อ</div>';
     return;
   }
 
-  container.innerHTML = contacts.map(contact => {
-    const date = contact.created ? new Date(contact.created).toLocaleDateString('th-TH', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    }) : '-';
-
+  container.innerHTML = contacts.map((contact) => {
+    const date = contact.created ? new Date(contact.created).toLocaleDateString('th-TH') : '-';
+    
     return `
-      <div class="contact-card">
-        <div class="contact-header">
-          <div>
-            <strong>👤 ${contact.name || 'ไม่ระบุชื่อ'}</strong>
-            <div class="contact-meta">
-              <span>📧 ${contact.email || '-'}</span>
-              ${contact.phone && contact.phone !== '-' ? `<span>📞 ${contact.phone}</span>` : ''}
-            </div>
-          </div>
-          <span class="contact-date">📅 ${date}</span>
-        </div>
-        <div class="contact-subject">📌 หัวข้อ: <strong>${contact.subject || '-'}</strong></div>
-        <div class="contact-message">${contact.message || '-'}</div>
-        <div class="contact-actions">
-          <button class="btn-delete" onclick="deleteContact('${contact.id}', '${(contact.name || 'ไม่ระบุชื่อ').replace(/'/g, "\\'")}')">🗑️ ลบ</button>
-        </div>
+    <div class="contact-card">
+      <div class="contact-header">
+        <strong>${contact.name || '-'}</strong>
+        <span class="email">${contact.email || '-'}</span>
       </div>
+      <div class="subject"><strong>หัวข้อ:</strong> ${contact.subject || '-'}</div>
+      <p class="message">${contact.message || '-'}</p>
+      <div class="contact-footer">
+        <span class="date">${date}</span>
+        <button class="btn-delete" onclick="confirmDelete('${contact.id}', 'contact', '${(contact.name || 'ผู้ใช้').replace(/'/g, "\\'")}')">🗑️ ลบ</button>
+      </div>
+    </div>
     `;
   }).join('');
 }
 
 document.getElementById('search-contacts').addEventListener('input', (e) => {
   const search = e.target.value.toLowerCase();
-  const filtered = allContacts.filter(contact => {
-    return (contact.name || '').toLowerCase().includes(search) ||
-      (contact.email || '').toLowerCase().includes(search) ||
-      (contact.subject || '').toLowerCase().includes(search) ||
-      (contact.message || '').toLowerCase().includes(search);
-  });
+  const filtered = allContacts.filter(c => 
+    (c.name || '').toLowerCase().includes(search) ||
+    (c.email || '').toLowerCase().includes(search) ||
+    (c.subject || '').toLowerCase().includes(search)
+  );
   displayContacts(filtered);
 });
-
-window.deleteContact = function(contactId, userName) {
-  currentDeleteId = contactId;
-  currentDeleteType = 'contact';
-  document.getElementById('delete-info').textContent = `ข้อความจาก: ${userName}`;
-  document.getElementById('delete-modal').classList.add('show');
-};
 
 function updateStats() {
   document.getElementById('total-users').textContent = allUsers.length;
   document.getElementById('total-feedback').textContent = allFeedback.length;
   document.getElementById('total-contacts').textContent = allContacts.length;
-  document.getElementById('total-contacts').textContent = allContacts.length;
   
   if (allFeedback.length > 0) {
-    const sum = allFeedback.reduce((acc, fb) => acc + (fb.rating || 0), 0);
-    const avg = sum / allFeedback.length;
-    document.getElementById('avg-rating').textContent = avg.toFixed(1);
+    const avgRating = allFeedback.reduce((sum, fb) => sum + (fb.rating || 0), 0) / allFeedback.length;
+    document.getElementById('avg-rating').textContent = avgRating.toFixed(1);
   } else {
     document.getElementById('avg-rating').textContent = '0.0';
   }
 }
 
-function closeModal(modalId) {
-  document.getElementById(modalId).classList.remove('show');
+function confirmDelete(id, type, name) {
+  currentDeleteId = id;
+  currentDeleteType = type;
+  
+  const typeName = type === 'user' ? 'ผู้ใช้' : type === 'feedback' ? 'ความคิดเห็น' : 'ข้อความ';
+  document.getElementById('delete-info').textContent = 
+    `คุณต้องการลบ${typeName}: ${name} ใช่หรือไม่?`;
+  
+  document.getElementById('delete-modal').style.display = 'flex';
 }
-document.querySelectorAll('.close-modal, .cancel-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const modal = e.target.closest('.modal');
-    if (modal) modal.classList.remove('show');
+
+document.getElementById('confirm-delete').addEventListener('click', () => {
+  if (!currentDeleteId || !currentDeleteType) return;
+  
+  alert('ฟังก์ชันลบยังไม่รองรับในเวอร์ชันนี้ (ต้องสร้าง DELETE API)');
+  closeDeleteModal();
+});
+
+function closeDeleteModal() {
+  document.getElementById('delete-modal').style.display = 'none';
+  currentDeleteId = null;
+  currentDeleteType = null;
+}
+
+document.querySelectorAll('.cancel-btn').forEach(btn => {
+  btn.addEventListener('click', closeDeleteModal);
+});
+
+document.querySelectorAll('.close-modal').forEach(btn => {
+  btn.addEventListener('click', closeDeleteModal);
+});
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.getAttribute('data-tab');
+    
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    
+    btn.classList.add('active');
+    document.getElementById(`${tab}-tab`).classList.add('active');
   });
 });
 
-document.querySelectorAll('.modal').forEach(modal => {
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.remove('show');
-    }
-  });
-});
