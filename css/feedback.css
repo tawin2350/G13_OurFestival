@@ -492,10 +492,9 @@ header .logo {
   background-attachment: fixed;
   background-size: 400% 400%;
   animation: christmasGradient 15s ease infinite;
-  min-height: 80vh;
+  min-height: 100vh;
   padding: 2em 0;
   position: relative;
-  overflow: hidden;
 }
 
 .feedback-overlay {
