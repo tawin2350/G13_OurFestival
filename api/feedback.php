@@ -9,10 +9,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-$dataFile = '../data/feedbacks.json';
+$dataFile = __DIR__ . '/../data/feedbacks.json';
+
+if (!file_exists(dirname($dataFile))) {
+    mkdir(dirname($dataFile), 0775, true);
+}
 
 if (!file_exists($dataFile)) {
     file_put_contents($dataFile, json_encode([]));
+    chmod($dataFile, 0664);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

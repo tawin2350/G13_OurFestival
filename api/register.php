@@ -9,10 +9,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-$dataFile = '../data/users.json';
+$dataFile = __DIR__ . '/../data/users.json';
+
+if (!file_exists(dirname($dataFile))) {
+    mkdir(dirname($dataFile), 0775, true);
+}
 
 if (!file_exists($dataFile)) {
     file_put_contents($dataFile, json_encode([]));
+    chmod($dataFile, 0664);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -64,10 +69,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $users[] = $newUser;
     
-    if (file_put_contents($dataFile, json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE))) {
+    $result = file_put_contents($dataFile, json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    
+    if ($result !== false) {
         echo json_encode(['success' => true, 'message' => 'สมัครสมาชิกเรียบร้อยแล้ว', 'data' => $newUser]);
     } else {
-        echo json_encode(['success' => false, 'message' => 'ไม่สามารถบันทึกข้อมูลได้']);
+        $error = error_get_last();
+        echo json_encode(['success' => false, 'message' => 'ไม่สามารถบันทึกข้อมูลได้', 'error' => $error['message'] ?? 'Unknown error', 'path' => $dataFile]);
     }
     
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
