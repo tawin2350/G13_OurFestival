@@ -1,54 +1,13 @@
 (function() {
   'use strict';
 
-  var fbApp = null, fbDb = null, firebaseEnabled = false;
+  const API_URL = 'api';
 
   window.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
     const statusDiv = document.getElementById('contact-status');
 
     if (!contactForm) return;
-
-    fetch('data/firebase-config.json')
-      .then(function(r) { 
-        if (!r.ok) throw new Error('no fb config'); 
-        return r.json(); 
-      })
-      .then(function(cfg) {
-        if (!cfg || !cfg.apiKey || !cfg.projectId) {
-          console.warn('Firebase config invalid');
-          return;
-        }
-        var tries = 0;
-        function initWhenReady() {
-          if (window.firebase && window.firebase.initializeApp) {
-            try {
-              if (firebase.apps && firebase.apps.length) {
-                fbApp = firebase.app();
-              } else {
-                fbApp = firebase.initializeApp(cfg);
-              }
-              fbDb = firebase.firestore();
-              firebaseEnabled = true;
-              console.log('Firebase connected for contact form');
-            } catch (err) {
-              console.error('Firebase init error:', err);
-              firebaseEnabled = false;
-            }
-          } else {
-            tries++;
-            if (tries < 10) { 
-              setTimeout(initWhenReady, 300); 
-            } else { 
-              console.error('Firebase SDK not found');
-            }
-          }
-        }
-        initWhenReady();
-      })
-      .catch(function(err) {
-        console.warn('Firebase config not found:', err);
-      });
 
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -82,39 +41,40 @@
       const contactData = {
         name: name,
         email: email,
-        phone: phone || '-',
+        phone: phone || '',
         subject: subject,
-        message: message,
-        created: Date.now()
+        message: message
       };
 
-      if (firebaseEnabled && fbDb) {
-        fbDb.collection('contacts').add(contactData)
-          .then(function() {
-            showStatus('ส่งข้อความเรียบร้อยแล้ว! เราจะติดต่อกลับโดยเร็วที่สุด', 'success');
-            contactForm.reset();
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'ส่งข้อความ';
-            setTimeout(function() {
-              hideStatus();
-            }, 5000);
-          })
-          .catch(function(err) {
-            console.error('Error saving contact:', err);
-            showStatus('เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาลองใหม่อีกครั้ง', 'error');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'ส่งข้อความ';
-          });
-      } else {
-        console.log('Contact form submitted (Firebase not available):', contactData);
-        showStatus('ส่งข้อความเรียบร้อยแล้ว! (Firebase ไม่พร้อมใช้งาน)', 'success');
-        contactForm.reset();
+      fetch(API_URL + '/contact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contactData)
+      })
+      .then(r => r.json())
+      .then(response => {
+        if (response.success) {
+          showStatus('ส่งข้อความเรียบร้อยแล้ว! เราจะติดต่อกลับโดยเร็วที่สุด', 'success');
+          contactForm.reset();
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'ส่งข้อความ';
+          setTimeout(function() {
+            hideStatus();
+          }, 5000);
+        } else {
+          showStatus(response.message || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล', 'error');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'ส่งข้อความ';
+        }
+      })
+      .catch(function(err) {
+        console.error('Error saving contact:', err);
+        showStatus('เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาลองใหม่อีกครั้ง', 'error');
         submitBtn.disabled = false;
         submitBtn.textContent = 'ส่งข้อความ';
-        setTimeout(function() {
-          hideStatus();
-        }, 5000);
-      }
+      });
     });
 
     function showStatus(message, type) {

@@ -1,0 +1,10 @@
+data/users.json
+data/feedbacks.json
+data/contacts.json
+data_backup_*/
+.DS_Store
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
