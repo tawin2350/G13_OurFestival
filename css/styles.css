@@ -35,7 +35,7 @@ body {
   display: flex;
   align-items: flex-end;
   gap: 20px;
-  animation: flyCircle 4s linear infinite;
+  animation: flyAcross 2s ease-in-out 2;
 }
 
 .reindeer {
@@ -564,24 +564,6 @@ body {
   }
   100% {
     transform: rotate(0deg) scale(0.7);
-  }
-}
-
-@keyframes flyCircle {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(40vw, -20vh) rotate(0deg);
-  }
-  50% {
-    transform: translate(0, -40vh) rotate(0deg);
-  }
-  75% {
-    transform: translate(-40vw, -20vh) rotate(0deg);
-  }
-  100% {
-    transform: translate(0, 0) rotate(0deg);
   }
 }
 
