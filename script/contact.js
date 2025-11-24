@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  const API_URL = 'api';
+  const API_URL = '/api';
 
   window.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
