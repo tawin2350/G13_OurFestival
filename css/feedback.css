@@ -338,33 +338,67 @@ header .logo {
 
 .feedback-btn.signing {
   pointer-events: none;
+  position: relative;
 }
 
 .feedback-btn.signing::before {
   content: '';
-  left: 20%;
+  position: absolute;
+  left: 15%;
   top: 50%;
-  width: 60%;
+  width: 70%;
   height: 3px;
-  background: #FFD700;
-  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #FFD700, #FFD700);
   transform: translateY(-50%) scaleX(0);
   transform-origin: left;
-  animation: signPen 1.5s ease-out forwards;
-  font-size: 0;
+  animation: drawSignature 1.8s ease-out forwards;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
 }
 
-@keyframes signPen {
+.feedback-btn.signing::after {
+  content: '🖊️';
+  position: absolute;
+  left: 15%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-15deg);
+  font-size: 1.5em;
+  animation: penMove 1.8s ease-out forwards;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes drawSignature {
   0% {
     transform: translateY(-50%) scaleX(0);
     opacity: 0;
   }
-  10% {
+  15% {
     opacity: 1;
   }
   100% {
     transform: translateY(-50%) scaleX(1);
     opacity: 1;
+  }
+}
+
+@keyframes penMove {
+  0% {
+    left: 15%;
+    transform: translateY(-50%) rotate(-15deg);
+    opacity: 1;
+  }
+  5% {
+    transform: translateY(-55%) rotate(-15deg);
+  }
+  10% {
+    transform: translateY(-50%) rotate(-15deg);
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    left: 85%;
+    transform: translateY(-50%) rotate(-15deg);
+    opacity: 0.3;
   }
 }
 .feedback-message {
