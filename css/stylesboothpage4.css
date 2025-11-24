@@ -259,7 +259,6 @@ h3{
   font-size: 14px;
 }
 
-/* RESPONSIVE */
 @media (max-width: 1024px) {
   .menu-card { min-width: 200px; }
 }
