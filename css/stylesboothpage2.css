@@ -1,139 +1,128 @@
+
 body, html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
 }
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
+
 body {
   font-family: "Prompt", sans-serif;
-  background-color: #ffffff;
+  background-color: #fff;
   color: #222;
 }
 
+
 .header-bar {
   background-color: #490d84;
-  padding: 10px 20px;
+  padding: clamp(8px, 2vw, 12px) clamp(16px, 4vw, 20px);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 .some-number {
   font-family: "Ultra", serif;
-  font-size: 23px;
+  font-size: clamp(18px, 2.5vw, 23px);
   letter-spacing: .5px;
   color: #b71c71;
   -webkit-text-stroke-color: #fff;
   -webkit-text-stroke-width: 0.5px;
   text-shadow: 2px 2px #fffdbc;
 }
-
 .home-icon {
-  width: 30px;
+  width: clamp(24px, 4vw, 30px);
 }
-
 .corner-icon {
-  height: 45px;
+  height: clamp(35px, 6vw, 45px);
   border-radius: 50%;
 }
 
-.shop-banner {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
 
 .shop-banner-box {
-  width: 100vw;
-  height: 300px;
+  width: 100%;
+  height: clamp(160px, 20vw, 300px);
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .shop-banner-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 100% 65%;
+  object-position: 50% 50%;
 }
+
 
 .shop-name {
   text-align: center;
-  padding: 20px 10px;
+  padding: clamp(15px, 3vw, 20px);
   font-family: "Paytone One", sans-serif;
   color: #6c1eb1;
-  font-size: 30px;
+  font-size: clamp(20px, 4vw, 30px);
 }
+
 
 .recommend {
   text-align: center;
-  padding: 40px 10%;
+  padding: clamp(20px, 5vw, 40px) 10%;
 }
-
 .recommend h2 {
-  font-size: 30px;
+  font-size: clamp(20px, 4vw, 30px);
   color: #601eb1;
   font-family: "Paytone One", sans-serif;
 }
 
+
 .slider-container {
   position: relative;
-  width: 80%;
+  width: 100%;
+  max-width: 90%;
   margin: 0 auto;
   overflow: hidden;
 }
-
 .menu-slider {
   display: flex;
+  gap: clamp(10px, 2vw, 15px);
   overflow-x: auto;
   scroll-behavior: smooth;
+  flex-wrap: nowrap;
 }
-
 .menu-card {
-  min-width: 250px;
+  flex: 0 0 auto;
+  width: clamp(150px, 18vw, 250px);
   margin: 10px;
   background-color: #fff;
   border: 2px solid #7096ee;
   border-radius: 15px;
   text-align: center;
-  padding: 15px;
+  padding: clamp(10px, 2vw, 15px);
   box-shadow: 0 3px 5px rgba(0,0,0,0.1);
   transition: 0.3s;
 }
-
-.menu-card:hover {
-  transform: translateY(-5px);
-}
-
+.menu-card:hover { transform: translateY(-5px); }
 .menu-card img {
   width: 100%;
-  height: 180px;
+  height: clamp(130px, 15vw, 180px);
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 10px;
 }
-
 .menu-card h4 {
   font-family: "Arsenal SC", sans-serif;
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
   font-weight: 700;
   color: #060505;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
-
 .menu-card .price {
   color: #402cc4;
   font-weight: bold;
 }
-
 .badge {
-  font-size: 12px;
+  font-size: clamp(10px, 1.5vw, 12px);
   margin-top: 3px;
   background: #f6f6f6;
   padding: 4px 8px;
@@ -142,79 +131,47 @@ body {
   color: #555;
 }
 
+
 .special-deal {
-  width: 60%;
-  margin: 60px auto;
+  width: clamp(80%, 60%, 90%);
+  margin: clamp(30px, 5vw, 60px) auto;
   background-color: #fff3f3;
   border-radius: 20px;
-  padding: 30px;
+  padding: clamp(20px, 3vw, 30px);
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: clamp(15px, 3vw, 20px);
   flex-wrap: wrap;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-
 .special-deal h3 {
   color: #652fd1;
+  font-size: clamp(18px, 3vw, 24px);
   margin-bottom: 10px;
 }
-
 .deal-img {
-  width: 180px;
-  height: 180px;
+  width: clamp(120px, 15vw, 180px);
+  height: clamp(120px, 15vw, 180px);
   object-fit: contain;
 }
+
 
 .footer {
   background-color: #6f1eb1;
   text-align: center;
-  padding: 30px 20px;
+  padding: clamp(15px, 3vw, 30px);
   color: #fff;
 }
+.footer h3 { margin-bottom: 10px; font-size: clamp(16px, 3vw, 20px); }
+.footer p { font-size: clamp(12px, 2vw, 14px); }
 
-.footer h3 {
-  margin-bottom: 10px;
-  font-size: 20px;
-}
-
-.footer p {
-  font-size: 14px;
-}
 
 .prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255,255,255,0.8);
-  border: none;
-  cursor: pointer;
-  font-size: 24px;
-  padding: 10px;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  z-index: 10;
+  display: none; 
 }
 
-.prev:hover, .next:hover {
-  background-color: #ffeb3b;
-}
 
-.prev { left: 5px; }
-.next { right: 5px; }
-
-@media (max-width: 1024px) {
-  .menu-card { min-width: 200px; }
-}
-
-@media (max-width: 768px) {
-  .menu-card { min-width: 180px; }
-  .special-deal { width: 90%; }
-}
-
-@media (max-width: 480px) {
-  .menu-card { min-width: 150px; }
-  .menu-card img { height: 130px; }
-  .prev, .next { display: none; }
+.menu-slider, .special-deal {
+  flex-wrap: wrap; 
 }
