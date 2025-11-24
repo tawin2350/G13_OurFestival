@@ -222,8 +222,8 @@
   color: #fff;
   padding: 1.3em 2.5em;
   border: 3px solid #FFD700;
-  border-radius: 15px;
-  font-size: 1.1em;
+  border-radius: 22px;
+  font-size: 1.1rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);

@@ -133,6 +133,15 @@
         </button>
       </form>
 
+      <div class="already-registered">
+        <p>ลงทะเบียนไว้แล้ว?</p>
+        <a href="index.html" class="login-link">
+          <span class="link-icon">✨</span>
+          <span class="link-text">เข้าสู่งานเลย</span>
+          <span class="link-icon">✨</span>
+        </a>
+      </div>
+
       <div class="footer-decor">
         <div class="gift-box gift-1">🎁</div>
         <div class="gift-box gift-2">🎁</div>
@@ -158,5 +167,20 @@
   <div id="reg-status-popup" class="reg-status-popup"></div>
 
   <script src="script/auth.js"></script>
+  <script>
+    // Auto-login for already registered users - direct entry without validation
+    const loginLink = document.querySelector('.login-link');
+    if (loginLink) {
+      loginLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Set user as registered automatically
+        localStorage.setItem('isRegistered', 'true');
+        
+        // Go directly to index
+        window.location.href = 'index.html';
+      });
+    }
+  </script>
 </body>
 </html>
