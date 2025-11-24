@@ -269,6 +269,8 @@ document.getElementById('confirm-delete').addEventListener('click', () => {
   btn.disabled = true;
   btn.textContent = 'กำลังลบ...';
   
+  console.log('Deleting:', { id: currentDeleteId, type: currentDeleteType, endpoint: apiEndpoint });
+  
   fetch(API_URL + '/' + apiEndpoint, {
     method: 'DELETE',
     headers: {
@@ -276,23 +278,27 @@ document.getElementById('confirm-delete').addEventListener('click', () => {
     },
     body: JSON.stringify({ id: currentDeleteId })
   })
-  .then(r => r.json())
+  .then(r => {
+    console.log('Response status:', r.status);
+    return r.json();
+  })
   .then(data => {
+    console.log('Response data:', data);
     if (data.success) {
       alert('✅ ' + data.message);
       closeDeleteModal();
       loadData();
     } else {
       alert('❌ ' + (data.message || 'เกิดข้อผิดพลาด'));
+      btn.disabled = false;
+      btn.textContent = 'ลบ';
     }
   })
   .catch(err => {
     console.error('Error:', err);
-    alert('❌ ไม่สามารถลบข้อมูลได้');
-  })
-  .finally(() => {
+    alert('❌ ไม่สามารถลบข้อมูลได้: ' + err.message);
     btn.disabled = false;
-    btn.textContent = '✓ ยืนยันการลบ';
+    btn.textContent = 'ลบ';
   });
 });
 
