@@ -60,7 +60,7 @@ body {
   text-align: center;
   padding: clamp(15px, 3vw, 20px);
   font-family: "Paytone One", sans-serif;
-  color: #6c1eb1;
+  color: #946330;
   font-size: clamp(20px, 4vw, 30px);
 }
 
@@ -71,7 +71,7 @@ body {
 }
 .recommend h2 {
   font-size: clamp(20px, 4vw, 30px);
-  color: #601eb1;
+  color: #946330;
   font-family: "Paytone One", sans-serif;
 }
 
