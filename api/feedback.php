@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Access-Control-Allow-Methods: POST, GET, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -89,6 +89,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'count' => $count,
         'average' => round($average, 2)
     ]);
+    
+} elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+    $input = json_decode(file_get_contents('php://input'), true);
+    
+    if (empty($input['id'])) {
+        echo json_encode(['success' => false, 'message' => 'ไม่พบ ID']);
+        exit();
+    }
+    
+    $feedbacks = json_decode(file_get_contents($dataFile), true);
+    $originalCount = count($feedbacks);
+    
+    $feedbacks = array_filter($feedbacks, function($feedback) use ($input) {
+        return $feedback['id'] !== $input['id'];
+    });
+    
+    $feedbacks = array_values($feedbacks);
+    
+    if (count($feedbacks) < $originalCount) {
+        if (file_put_contents($dataFile, json_encode($feedbacks, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE))) {
+            echo json_encode(['success' => true, 'message' => 'ลบข้อมูลเรียบร้อยแล้ว']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'ไม่สามารถบันทึกข้อมูลได้']);
+        }
+    } else {
+        echo json_encode(['success' => false, 'message' => 'ไม่พบข้อมูลที่ต้องการลบ']);
+    }
     
 } else {
     echo json_encode(['success' => false, 'message' => 'Method not allowed']);

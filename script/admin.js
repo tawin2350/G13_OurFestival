@@ -262,8 +262,39 @@ function confirmDelete(id, type, name) {
 document.getElementById('confirm-delete').addEventListener('click', () => {
   if (!currentDeleteId || !currentDeleteType) return;
   
-  alert('ฟังก์ชันลบยังไม่รองรับในเวอร์ชันนี้ (ต้องสร้าง DELETE API)');
-  closeDeleteModal();
+  const apiEndpoint = currentDeleteType === 'user' ? 'register.php' : 
+                      currentDeleteType === 'feedback' ? 'feedback.php' : 
+                      'contact.php';
+  
+  fetch(API_URL + '/' + apiEndpoint, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ id: currentDeleteId })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.success) {
+      closeDeleteModal();
+      loadData();
+      
+      const successMsg = document.createElement('div');
+      successMsg.style.cssText = 'position: fixed; top: 20px; right: 20px; background: linear-gradient(135deg, #27ae60, #229954); color: white; padding: 15px 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 10000; animation: slideIn 0.3s ease;';
+      successMsg.textContent = '✅ ลบข้อมูลเรียบร้อยแล้ว';
+      document.body.appendChild(successMsg);
+      
+      setTimeout(() => {
+        successMsg.remove();
+      }, 3000);
+    } else {
+      alert('❌ ไม่สามารถลบข้อมูลได้: ' + data.message);
+    }
+  })
+  .catch(err => {
+    console.error('Error deleting:', err);
+    alert('❌ เกิดข้อผิดพลาด: ' + err.message);
+  });
 });
 
 function closeDeleteModal() {
