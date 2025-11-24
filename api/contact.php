@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, GET, DELETE, OPTIONS');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -74,33 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $contacts = json_decode(file_get_contents($dataFile), true);
     echo json_encode(['success' => true, 'data' => $contacts, 'count' => count($contacts)]);
-    
-} elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-    $input = json_decode(file_get_contents('php://input'), true);
-    
-    if (empty($input['id'])) {
-        echo json_encode(['success' => false, 'message' => 'ไม่พบ ID']);
-        exit();
-    }
-    
-    $contacts = json_decode(file_get_contents($dataFile), true);
-    $originalCount = count($contacts);
-    
-    $contacts = array_filter($contacts, function($contact) use ($input) {
-        return $contact['id'] !== $input['id'];
-    });
-    
-    $contacts = array_values($contacts);
-    
-    if (count($contacts) < $originalCount) {
-        if (file_put_contents($dataFile, json_encode($contacts, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE))) {
-            echo json_encode(['success' => true, 'message' => 'ลบข้อมูลเรียบร้อยแล้ว']);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'ไม่สามารถบันทึกข้อมูลได้']);
-        }
-    } else {
-        echo json_encode(['success' => false, 'message' => 'ไม่พบข้อมูลที่ต้องการลบ']);
-    }
     
 } else {
     echo json_encode(['success' => false, 'message' => 'Method not allowed']);
