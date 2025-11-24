@@ -279,12 +279,12 @@
 }
 main.register-main {
 	background: linear-gradient(-45deg, 
-		#1a5f3f 0%, 
-		#e8dcc4 25%, 
-		#a82034 50%, 
-		#d4c5a9 75%, 
-		#8B0000 90%, 
-		#f5e6d3 100%);
+		#0d1f14 0%, 
+		#0f0c0a 25%, 
+		#1f0a0f 50%, 
+		#160c08 75%, 
+		#1a0000 90%, 
+		#0a1912 100%);
 	background-size: 400% 400%;
 	animation: christmasGradient 15s ease infinite;
 	background-attachment: fixed;

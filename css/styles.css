@@ -8,15 +8,15 @@
 body {
   background: 
     linear-gradient(135deg, 
-      #1a5f3f 0%, 
-      #2d7a54 15%,
-      #e8dcc4 30%,
-      #a82034 45%,
-      #d4c5a9 50%,
-      #8B0000 55%,
-      #f5e6d3 70%,
-      #1a5f3f 85%,
-      #2d7a54 100%
+      #0d1f14 0%, 
+      #1a2e1f 15%,
+      #0a1912 30%,
+      #1f0a0f 45%,
+      #160c08 50%,
+      #1a0000 55%,
+      #0f0c0a 70%,
+      #0d1f14 85%,
+      #1a2e1f 100%
     );
   background-attachment: fixed;
   background-size: 400% 400%;
