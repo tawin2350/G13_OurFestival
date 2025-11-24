@@ -262,8 +262,38 @@ function confirmDelete(id, type, name) {
 document.getElementById('confirm-delete').addEventListener('click', () => {
   if (!currentDeleteId || !currentDeleteType) return;
   
-  alert('ฟังก์ชันลบยังไม่รองรับในเวอร์ชันนี้ (ต้องสร้าง DELETE API)');
-  closeDeleteModal();
+  const apiEndpoint = currentDeleteType === 'user' ? 'register.php' : 
+                      currentDeleteType === 'feedback' ? 'feedback.php' : 'contact.php';
+  
+  const btn = document.getElementById('confirm-delete');
+  btn.disabled = true;
+  btn.textContent = 'กำลังลบ...';
+  
+  fetch(API_URL + '/' + apiEndpoint, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ id: currentDeleteId })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.success) {
+      alert('✅ ' + data.message);
+      closeDeleteModal();
+      loadData();
+    } else {
+      alert('❌ ' + (data.message || 'เกิดข้อผิดพลาด'));
+    }
+  })
+  .catch(err => {
+    console.error('Error:', err);
+    alert('❌ ไม่สามารถลบข้อมูลได้');
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.textContent = '✓ ยืนยันการลบ';
+  });
 });
 
 function closeDeleteModal() {
