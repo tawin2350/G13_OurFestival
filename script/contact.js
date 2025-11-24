@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  const API_URL = '/api';
+  const API_URL = '/G13_OurFestival/api';
 
   window.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
