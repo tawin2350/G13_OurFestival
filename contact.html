@@ -24,6 +24,31 @@
     </div>
   </div>
 
+  <button class="back-to-top" id="backToTop">
+    <span class="back-to-top-icon">🎁</span>
+    <span class="back-to-top-text">TOP</span>
+  </button>
+
+  <div class="christmas-lights-header">
+    <div class="light-string">
+      <span class="xmas-light" style="--delay: 0s; --color: #ff0000;"></span>
+      <span class="xmas-light" style="--delay: 0.1s; --color: #ffd700;"></span>
+      <span class="xmas-light" style="--delay: 0.2s; --color: #00ff00;"></span>
+      <span class="xmas-light" style="--delay: 0.3s; --color: #0000ff;"></span>
+      <span class="xmas-light" style="--delay: 0.4s; --color: #ff00ff;"></span>
+      <span class="xmas-light" style="--delay: 0.5s; --color: #ff0000;"></span>
+      <span class="xmas-light" style="--delay: 0.6s; --color: #ffd700;"></span>
+      <span class="xmas-light" style="--delay: 0.7s; --color: #00ff00;"></span>
+      <span class="xmas-light" style="--delay: 0.8s; --color: #0000ff;"></span>
+      <span class="xmas-light" style="--delay: 0.9s; --color: #ff00ff;"></span>
+      <span class="xmas-light" style="--delay: 1s; --color: #ff0000;"></span>
+      <span class="xmas-light" style="--delay: 1.1s; --color: #ffd700;"></span>
+      <span class="xmas-light" style="--delay: 1.2s; --color: #00ff00;"></span>
+      <span class="xmas-light" style="--delay: 1.3s; --color: #0000ff;"></span>
+      <span class="xmas-light" style="--delay: 1.4s; --color: #ff00ff;"></span>
+    </div>
+  </div>
+
   <div class="snowflake" style="left: 10%; animation: fall1 10s infinite; font-size: 20px;">❄</div>
   <div class="snowflake" style="left: 25%; animation: fall2 14s infinite; animation-delay: 2s; font-size: 16px;">❅</div>
   <div class="snowflake" style="left: 40%; animation: fall3 12s infinite; animation-delay: 4s; font-size: 22px;">❆</div>
@@ -34,17 +59,41 @@
   <div class="snowflake" style="left: 50%; animation: fall3 14s infinite; animation-delay: 2.5s; font-size: 21px;">✻</div>
   <div class="snowflake" style="left: 75%; animation: fall4 12s infinite; animation-delay: 4.5s; font-size: 20px;">❄</div>
   <div class="snowflake" style="left: 35%; animation: fall5 16s infinite; animation-delay: 1.5s; font-size: 23px;">❅</div>
-  <header class="animate-slide-top">
-  <a href="index.html" class="logo">
-    <i class="fa fa-home"></i>
-  </a>
-  <nav>
-    <a href="Boothdirectorypage.html">CATEGORY</a>
-    <a href="contact.html">CONTACT</a>
-  </nav>
-  <a href="register.html">
-    <img src="source/user.jpg" class="corner-icon" alt="users">
-  </a>
+  <header class="animate-slide-top christmas-header">
+  <button class="header-toggle-btn" id="header-toggle">
+    <span class="toggle-icon">🎄</span>
+  </button>
+  <div class="header-content" id="header-content">
+    <a href="index.html" class="logo">
+      <i class="fa fa-home"></i>
+    </a>
+    <nav class="main-nav">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">
+          <span>CATEGORY</span>
+          <span class="dropdown-arrow">▼</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="Boothdirectorypage.html" class="dropdown-item all-category">
+            <span class="dropdown-icon">🎄</span>
+            <span class="dropdown-text">ทั้งหมด</span>
+          </a>
+          <a href="Boothdirectorypage.html#sweet" class="dropdown-item sweet-category">
+            <span class="dropdown-icon">🧁</span>
+            <span class="dropdown-text">Sweet Zone</span>
+          </a>
+          <a href="Boothdirectorypage.html#drink" class="dropdown-item drink-category">
+            <span class="dropdown-icon">☕</span>
+            <span class="dropdown-text">Drink Zone</span>
+          </a>
+        </div>
+      </div>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+    <a href="register.html">
+      <img src="source/user.jpg" class="corner-icon" alt="users">
+    </a>
+  </div>
 </header>
 
   <main class="contact-main">
@@ -115,6 +164,86 @@
       }
       
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+
+    const headerToggle = document.getElementById('header-toggle');
+    const christmasHeader = document.querySelector('.christmas-header');
+    
+    if (headerToggle && christmasHeader) {
+      headerToggle.addEventListener('click', function() {
+        christmasHeader.classList.toggle('header-hidden');
+        
+        if (christmasHeader.classList.contains('header-hidden')) {
+          headerToggle.style.transform = 'rotate(180deg)';
+        } else {
+          headerToggle.style.transform = 'rotate(0deg)';
+        }
+      });
+    }
+
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    let cursorTrails = [];
+    const maxTrails = 15;
+    
+    document.addEventListener('mousemove', (e) => {
+      if (cursorTrails.length >= maxTrails) {
+        const oldTrail = cursorTrails.shift();
+        if (oldTrail && oldTrail.parentNode) {
+          oldTrail.parentNode.removeChild(oldTrail);
+        }
+      }
+      
+      const trail = document.createElement('div');
+      trail.className = 'cursor-trail';
+      trail.textContent = ['❄', '✨', '⭐', '🎄'][Math.floor(Math.random() * 4)];
+      trail.style.left = e.pageX + 'px';
+      trail.style.top = e.pageY + 'px';
+      document.body.appendChild(trail);
+      cursorTrails.push(trail);
+      
+      setTimeout(() => {
+        if (trail.parentNode) {
+          trail.parentNode.removeChild(trail);
+        }
+        const index = cursorTrails.indexOf(trail);
+        if (index > -1) {
+          cursorTrails.splice(index, 1);
+        }
+      }, 1000);
+    });
+
+    const snowflakes = document.querySelectorAll('.snowflake');
+    
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      
+      snowflakes.forEach((flake, index) => {
+        const speed = 0.1 + (index % 5) * 0.05;
+        const yPos = -(scrolled * speed);
+        flake.style.transform = `translateY(${yPos}px)`;
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallaxSpeed = 0.5;
+      document.body.style.backgroundPositionY = -(scrolled * parallaxSpeed) + 'px';
     });
   </script>
 </body>

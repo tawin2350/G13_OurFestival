@@ -160,6 +160,10 @@
             if (msg) msg.textContent = '';
             setStatus('สมัครเรียบร้อยแล้ว');
             
+            localStorage.setItem('isRegistered', 'true');
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userName', firstname + ' ' + lastname);
+            
             setTimeout(function () {
               qs('#reg-firstname').value = '';
               qs('#reg-lastname').value = '';
@@ -174,6 +178,8 @@
                 btn.textContent = 'สมัครสมาชิก';
               }
               setStatus('');
+              
+              window.location.href = 'index.html';
             }, 1500);
           } else {
             if (msg) msg.textContent = response.message || 'เกิดข้อผิดพลาด';

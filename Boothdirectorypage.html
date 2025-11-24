@@ -39,11 +39,26 @@
 
   <section class="section category">
     <h2 class="section-title xl">CATEGORY</h2>
-    <p class="section-sub"></p>
+    <p class="section-sub">เลือกประเภทร้านค้าที่คุณสนใจ</p>
+    
+    <div class="category-filter">
+      <button class="filter-btn active" data-category="all">
+        <span class="filter-icon">🎄</span>
+        <span class="filter-text">ทั้งหมด</span>
+      </button>
+      <button class="filter-btn" data-category="sweet">
+        <span class="filter-icon">🧁</span>
+        <span class="filter-text">Sweet Zone</span>
+      </button>
+      <button class="filter-btn" data-category="drink">
+        <span class="filter-icon">☕</span>
+        <span class="filter-text">Drink Zone</span>
+      </button>
+    </div>
   </section>
 
  
-  <section class="section zone">
+  <section class="section zone" data-zone="sweet">
     <div class="zone-head">
       <h3 class="zone-title">SWEET ZONE</h3>
     </div>
@@ -92,7 +107,7 @@
   </section>
 
   
-  <section class="section zone">
+  <section class="section zone" data-zone="drink">
     <div class="zone-head">
       <h3 class="zone-title">DRINK ZONE</h3>
     </div>

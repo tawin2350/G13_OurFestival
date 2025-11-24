@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ลงทะเบียน - Holly Jolly Fair</title>
+  <link rel="stylesheet" href="css/register-new.css">
+  <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Prompt:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="snow-container">
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">✻</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">✻</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❅</div>
+  </div>
+
+  <div class="lights-decoration">
+    <div class="light red"></div>
+    <div class="light yellow"></div>
+    <div class="light blue"></div>
+    <div class="light green"></div>
+    <div class="light red"></div>
+    <div class="light yellow"></div>
+    <div class="light blue"></div>
+    <div class="light green"></div>
+    <div class="light red"></div>
+    <div class="light yellow"></div>
+  </div>
+
+  <div class="register-container">
+    <div class="register-card">
+      <div class="card-header">
+        <div class="christmas-wreath">
+          <div class="wreath-circle">
+            <div class="wreath-leaf leaf-1"></div>
+            <div class="wreath-leaf leaf-2"></div>
+            <div class="wreath-leaf leaf-3"></div>
+            <div class="wreath-leaf leaf-4"></div>
+            <div class="wreath-berry berry-1"></div>
+            <div class="wreath-berry berry-2"></div>
+            <div class="wreath-berry berry-3"></div>
+          </div>
+          <div class="wreath-bow"></div>
+        </div>
+        <h1>🎄 Holly Jolly Fair 🎄</h1>
+        <p class="subtitle">ลงทะเบียนเข้าร่วมงาน</p>
+        <div class="star-decoration">
+          <span class="star">⭐</span>
+          <span class="star">✨</span>
+          <span class="star">⭐</span>
+        </div>
+      </div>
+
+      <form id="register-form" class="register-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstname">ชื่อจริง</label>
+            <div class="input-wrapper">
+              <span class="input-icon">👤</span>
+              <input type="text" id="reg-firstname" name="firstname" placeholder="ชื่อ" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="lastname">นามสกุล</label>
+            <div class="input-wrapper">
+              <span class="input-icon">👤</span>
+              <input type="text" id="reg-lastname" name="lastname" placeholder="นามสกุล" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nickname">ชื่อเล่น</label>
+          <div class="input-wrapper">
+            <span class="input-icon">😊</span>
+            <input type="text" id="reg-nickname" name="nickname" placeholder="ชื่อเล่น" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gender">เพศ</label>
+            <div class="input-wrapper">
+              <span class="input-icon">⚧</span>
+              <select id="reg-gender" name="gender" required>
+                <option value="">เลือกเพศ</option>
+                <option value="ชาย">ชาย</option>
+                <option value="หญิง">หญิง</option>
+                <option value="อื่นๆ">อื่นๆ</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="birth">วันเกิด</label>
+            <div class="input-wrapper">
+              <span class="input-icon">🎂</span>
+              <input type="date" id="reg-birth" name="birth" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">อีเมล</label>
+          <div class="input-wrapper">
+            <span class="input-icon">📧</span>
+            <input type="email" id="reg-email" name="email" placeholder="example@email.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">เบอร์โทรศัพท์</label>
+          <div class="input-wrapper">
+            <span class="input-icon">📱</span>
+            <input type="tel" id="reg-phone" name="phone" placeholder="0812345678" pattern="[0-9]{9,10}" maxlength="10" required>
+          </div>
+        </div>
+
+        <div class="form-message" id="register-message"></div>
+
+        <button type="submit" class="submit-btn">
+          <span class="btn-icon">🎁</span>
+          <span class="btn-text">ลงทะเบียนเลย!</span>
+          <span class="btn-icon">🎁</span>
+        </button>
+      </form>
+
+      <div class="footer-decor">
+        <div class="gift-box gift-1">🎁</div>
+        <div class="gift-box gift-2">🎁</div>
+        <div class="candy-cane">🍭</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="success-popup" id="success-popup">
+    <div class="popup-content">
+      <div class="popup-icon">🎉</div>
+      <h2>ลงทะเบียนสำเร็จ!</h2>
+      <p>ขอบคุณที่ร่วมงานกับเรา</p>
+      <div class="confetti">
+        <span>🎊</span>
+        <span>✨</span>
+        <span>🎉</span>
+        <span>⭐</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="reg-status-popup" class="reg-status-popup"></div>
+
+  <script src="script/auth.js"></script>
+</body>
+</html>

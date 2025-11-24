@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', function () {
+	
+	var filterBtns = document.querySelectorAll('.filter-btn');
+	var zones = document.querySelectorAll('.section.zone');
+	
+	filterBtns.forEach(function(btn) {
+		btn.addEventListener('click', function() {
+			filterBtns.forEach(function(b) { b.classList.remove('active'); });
+			btn.classList.add('active');
+			
+			var category = btn.getAttribute('data-category');
+			
+			zones.forEach(function(zone) {
+				var zoneCategory = zone.getAttribute('data-zone');
+				
+				if (category === 'all') {
+					zone.classList.remove('hidden');
+					zone.style.display = '';
+				} else if (zoneCategory === category) {
+					zone.classList.remove('hidden');
+					zone.style.display = '';
+				} else {
+					zone.classList.add('hidden');
+					zone.style.display = 'none';
+				}
+			});
+		});
+	});
+	
 	document.querySelectorAll('.section.zone').forEach(function (zone) {
 		var row = zone.querySelector('.card-row');
 		var btnPrev = zone.querySelector('.carousel-prev');
