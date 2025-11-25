@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Holly Jolly Fair</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/register-new.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/auth.css">
-  <link rel="stylesheet" href="css/register-new.css">
   <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Great+Vibes&family=Lilita+One&family=Paytone+One&family=TASA+Orbiter:wght@400..800&family=Ultra&family=Prompt:wght@300;400;600;700&family=Archivo+Black&display=swap"
     rel="stylesheet">
 </head>
@@ -116,7 +116,6 @@
 
 
   <main class="register-main">
-    <div class="register-container">
     <div class="register-card">
       <div class="card-header">
         <div class="christmas-wreath">
@@ -140,7 +139,7 @@
         </div>
       </div>
 
-      <form id="register-form" class="register-form">
+      <form id="register-form"  autocomplete="off">
         <div class="form-row">
           <div class="form-group">
             <label for="firstname">ชื่อจริง</label>
@@ -208,20 +207,17 @@
 
         <div class="form-message" id="register-message"></div>
 
-        <button type="submit" class="submit-btn">
+        <button type="submit" class="register-btn">
           <span class="btn-icon">🎁</span>
           <span class="btn-text">ลงทะเบียนเลย!</span>
           <span class="btn-icon">🎁</span>
         </button>
       </form>
 
-      
       <div id="fb-status" class="fb-status"></div>
-      <div id="reg-status-popup" class="reg-status-popup"></div>
       <div class="register-count">จำนวนผู้สมัคร : <strong id="registered-count">Loading...</strong></div>
       <div id="register-list" class="register-list"></div>
       <div id="export-message" class="export-message"></div>
-    </div>
 
       <div class="footer-decor">
         <div class="gift-box gift-1">🎁</div>
@@ -229,24 +225,11 @@
         <div class="candy-cane">🍭</div>
       </div>
     </div>
-  </div>
-
-  <div class="success-popup" id="success-popup">
-    <div class="popup-content">
-      <div class="popup-icon">🎉</div>
-      <h2>ลงทะเบียนสำเร็จ!</h2>
-      <p>ขอบคุณที่ร่วมงานกับเรา</p>
-      <div class="confetti">
-        <span>🎊</span>
-        <span>✨</span>
-        <span>🎉</span>
-        <span>⭐</span>
-      </div>
-    </div>
-  </div>
   </main>
+
   <div id="reg-status-popup" class="reg-status-popup"></div>
-  <footer>
+
+  <footer class="animate-slide-bottom">
     <div class="copyright">
       © Holly Jolly Fair | 095-626-4519
     </div>
@@ -256,16 +239,7 @@
   </footer>
 
   <script src="script/auth.js"></script>
-  <script>
-    const loginLink = document.querySelector('.login-link');
-    if (loginLink) {
-      loginLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        localStorage.setItem('isRegistered', 'true');
-        window.location.href = 'index.html';
-      });
-    }
-  </script>
+  
   <script>
     let lastScrollTop = 0;
     const stockings = document.querySelector('.scroll-stockings');

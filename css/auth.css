@@ -586,15 +586,17 @@
 	text-align: center;
 }
 main.register-main {
-	background: transparent;
-	min-height: 80vh;
+	background: transparent !important;
+	min-height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: relative;
 	overflow: visible;
 	z-index: 9000;
-	padding: 80px 20px 60px 20px;
+	padding: 100px 20px 80px 20px;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 main.register-main::before {
@@ -604,10 +606,13 @@ body {
 	font-family: 'Prompt', system-ui, sans-serif;
 	background: linear-gradient(180deg, #f5e6d3 0%, #e8d5c4 50%, #d4c5a9 100%);
 	background-attachment: fixed;
+	background-size: cover;
 	margin: 0;
 	color: #2d5016;
 	position: relative;
 	min-height: 100vh;
+	width: 100%;
+	overflow-x: hidden;
 }
 
 body::before {
