@@ -437,7 +437,6 @@
 	box-shadow: 0 5px 15px rgba(200, 90, 84, 0.4);
 }
 
-/* Star Decoration */
 .star-decoration {
 	display: flex;
 	justify-content: center;
@@ -466,7 +465,6 @@
 	}
 }
 
-/* Footer Decorations */
 .footer-decor {
 	margin-top: 30px;
 	display: flex;
@@ -885,4 +883,28 @@ body::before {
 	.register-card::after {
 		font-size: 8em;
 	}
+}
+.btn-text {
+    background: none;
+    border: none;
+    font-size: 18px;
+    padding: auto;
+    cursor: pointer;
+    position: relative;
+    color: #333;
+}
+
+.btn-text::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 2px;
+    background: #ff8800;
+    transition: 0.3s;
+}
+
+.btn-text:hover::before {
+    width: 16px;
 }
