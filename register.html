@@ -7,10 +7,37 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/register-new.css">
   <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Great+Vibes&family=Lilita+One&family=Paytone+One&family=TASA+Orbiter:wght@400..800&family=Ultra&family=Prompt:wght@300;400;600;700&family=Archivo+Black&display=swap"
     rel="stylesheet">
 </head>
 <body>
+  <div class="snow-container">
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">✻</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❅</div>
+    <div class="snowflake">❆</div>
+    <div class="snowflake">✻</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">❅</div>
+  </div>
+
+  <div class="lights-decoration">
+    <div class="light red"></div>
+    <div class="light yellow"></div>
+    <div class="light blue"></div>
+    <div class="light green"></div>
+    <div class="light red"></div>
+    <div class="light yellow"></div>
+    <div class="light blue"></div>
+    <div class="light green"></div>
+    <div class="light red"></div>
+    <div class="light yellow"></div>
+  </div>
+
   <div class="scroll-stockings">
     <div class="scroll-stocking stocking-scroll-left">
       <div class="stocking-top"></div>
@@ -49,16 +76,6 @@
     </div>
   </div>
 
-  <div class="snowflake" style="left: 10%; animation: fall1 10s infinite; font-size: 20px;">❄</div>
-  <div class="snowflake" style="left: 25%; animation: fall2 14s infinite; animation-delay: 2s; font-size: 16px;">❅</div>
-  <div class="snowflake" style="left: 40%; animation: fall3 12s infinite; animation-delay: 4s; font-size: 22px;">❆</div>
-  <div class="snowflake" style="left: 55%; animation: fall4 16s infinite; animation-delay: 1s; font-size: 18px;">✻</div>
-  <div class="snowflake" style="left: 70%; animation: fall5 11s infinite; animation-delay: 3s; font-size: 24px;">❄</div>
-  <div class="snowflake" style="left: 85%; animation: fall1 15s infinite; animation-delay: 5s; font-size: 19px;">❅</div>
-  <div class="snowflake" style="left: 15%; animation: fall2 13s infinite; animation-delay: 6s; font-size: 17px;">❆</div>
-  <div class="snowflake" style="left: 50%; animation: fall3 14s infinite; animation-delay: 2.5s; font-size: 21px;">✻</div>
-  <div class="snowflake" style="left: 75%; animation: fall4 12s infinite; animation-delay: 4.5s; font-size: 20px;">❄</div>
-  <div class="snowflake" style="left: 35%; animation: fall5 16s infinite; animation-delay: 1.5s; font-size: 23px;">❅</div>
   <header class="animate-slide-top christmas-header">
   <button class="header-toggle-btn" id="header-toggle">
     <span class="toggle-icon">🎄</span>
@@ -99,61 +116,137 @@
 
 
   <main class="register-main">
+    <div class="register-container">
     <div class="register-card">
-      <h2>ลงทะเบียน</h2>
-      <p>กรอกข้อมูลเพื่อเข้าร่วมงาน Holly Jolly Fair</p>
-      <form id="register-form" autocomplete="off" class="register-form">
-        <div class="form-group">
-          <label for="reg-firstname" class="form-label">ชื่อจริง</label>
-          <input id="reg-firstname" type="text" placeholder="กรอกชื่อจริง" required class="register-input">
+      <div class="card-header">
+        <div class="christmas-wreath">
+          <div class="wreath-circle">
+            <div class="wreath-leaf leaf-1"></div>
+            <div class="wreath-leaf leaf-2"></div>
+            <div class="wreath-leaf leaf-3"></div>
+            <div class="wreath-leaf leaf-4"></div>
+            <div class="wreath-berry berry-1"></div>
+            <div class="wreath-berry berry-2"></div>
+            <div class="wreath-berry berry-3"></div>
+          </div>
+          <div class="wreath-bow"></div>
         </div>
-        
-        <div class="form-group">
-          <label for="reg-lastname" class="form-label">นามสกุล</label>
-          <input id="reg-lastname" type="text" placeholder="กรอกนามสกุล" required class="register-input">
+        <h1>🎄 Holly Jolly Fair 🎄</h1>
+        <p class="subtitle">ลงทะเบียนเข้าร่วมงาน</p>
+        <div class="star-decoration">
+          <span class="star">⭐</span>
+          <span class="star">✨</span>
+          <span class="star">⭐</span>
         </div>
-        
-        <div class="form-group">
-          <label for="reg-nickname" class="form-label">ชื่อเล่น</label>
-          <input id="reg-nickname" type="text" placeholder="กรอกชื่อเล่น" required class="register-input">
-        </div>
-        
-        <div class="form-group">
-          <label for="reg-gender" class="form-label">เพศ</label>
-          <select id="reg-gender" required class="register-select">
-            <option value="" disabled selected hidden>เลือกเพศ</option>
-            <option value="ชาย">ชาย</option>
-            <option value="หญิง">หญิง</option>
-            <option value="อื่นๆ">อื่นๆ</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="reg-birth" class="form-label">วันเกิด</label>
-          <input id="reg-birth" type="date" required class="register-input">
-        </div>
-        
-        <div class="form-group">
-          <label for="reg-email" class="form-label">อีเมล</label>
-          <input id="reg-email" type="email" placeholder="example@email.com" required class="register-input">
-        </div>
-        
-        <div class="form-group">
-          <label for="reg-phone" class="form-label">เบอร์โทรศัพท์</label>
-          <input id="reg-phone" type="tel" placeholder="0812345678" required pattern="[0-9]{9,10}" maxlength="10" class="register-input">
-        </div>
-        
-        <button type="submit" class="register-btn">ลงทะเบียนเข้าร่วมงาน</button>
-      </form>
-      <div id="register-message" class="register-message"></div>
-      <div id="fb-status" class="fb-status"></div>
-      <div id="reg-status-popup" class="reg-status-popup"></div>
-      <div class="register-count">จำนวนผู้สมัคร : <strong id="registered-count">Loading...</strong></div>
-      <div id="register-list" class="register-list"></div>
-      <div id="export-message" class="export-message"></div>
-    </div>
-  </main>
+      </div>
 
+      <form id="register-form" class="register-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstname">ชื่อจริง</label>
+            <div class="input-wrapper">
+              <span class="input-icon">👤</span>
+              <input type="text" id="reg-firstname" name="firstname" placeholder="ชื่อ" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="lastname">นามสกุล</label>
+            <div class="input-wrapper">
+              <span class="input-icon">👤</span>
+              <input type="text" id="reg-lastname" name="lastname" placeholder="นามสกุล" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nickname">ชื่อเล่น</label>
+          <div class="input-wrapper">
+            <span class="input-icon">😊</span>
+            <input type="text" id="reg-nickname" name="nickname" placeholder="ชื่อเล่น" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gender">เพศ</label>
+            <div class="input-wrapper">
+              <span class="input-icon">⚧</span>
+              <select id="reg-gender" name="gender" required>
+                <option value="">เลือกเพศ</option>
+                <option value="ชาย">ชาย</option>
+                <option value="หญิง">หญิง</option>
+                <option value="อื่นๆ">อื่นๆ</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="birth">วันเกิด</label>
+            <div class="input-wrapper">
+              <span class="input-icon">🎂</span>
+              <input type="date" id="reg-birth" name="birth" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">อีเมล</label>
+          <div class="input-wrapper">
+            <span class="input-icon">📧</span>
+            <input type="email" id="reg-email" name="email" placeholder="example@email.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">เบอร์โทรศัพท์</label>
+          <div class="input-wrapper">
+            <span class="input-icon">📱</span>
+            <input type="tel" id="reg-phone" name="phone" placeholder="0812345678" pattern="[0-9]{9,10}" maxlength="10" required>
+          </div>
+        </div>
+
+        <div class="form-message" id="register-message"></div>
+
+        <button type="submit" class="submit-btn">
+          <span class="btn-icon">🎁</span>
+          <span class="btn-text">ลงทะเบียนเลย!</span>
+          <span class="btn-icon">🎁</span>
+        </button>
+      </form>
+
+      <div class="already-registered">
+        <p>ลงทะเบียนไว้แล้ว?</p>
+        <a href="index.html" class="login-link">
+          <span class="link-icon">✨</span>
+          <span class="link-text">เข้าสู่งานเลย</span>
+          <span class="link-icon">✨</span>
+        </a>
+      </div>
+
+      <div class="footer-decor">
+        <div class="gift-box gift-1">🎁</div>
+        <div class="gift-box gift-2">🎁</div>
+        <div class="candy-cane">🍭</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="success-popup" id="success-popup">
+    <div class="popup-content">
+      <div class="popup-icon">🎉</div>
+      <h2>ลงทะเบียนสำเร็จ!</h2>
+      <p>ขอบคุณที่ร่วมงานกับเรา</p>
+      <div class="confetti">
+        <span>🎊</span>
+        <span>✨</span>
+        <span>🎉</span>
+        <span>⭐</span>
+      </div>
+    </div>
+  </div>
+  </main>
+  <div id="reg-status-popup" class="reg-status-popup"></div>
   <footer>
     <div class="copyright">
       © Holly Jolly Fair | 095-626-4519
@@ -164,6 +257,16 @@
   </footer>
 
   <script src="script/auth.js"></script>
+  <script>
+    const loginLink = document.querySelector('.login-link');
+    if (loginLink) {
+      loginLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        localStorage.setItem('isRegistered', 'true');
+        window.location.href = 'index.html';
+      });
+    }
+  </script>
   <script>
     let lastScrollTop = 0;
     const stockings = document.querySelector('.scroll-stockings');
