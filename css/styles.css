@@ -1927,7 +1927,11 @@ header .logo {
 .logo-text {
   font-family: 'Paytone One', sans-serif;
   letter-spacing: 1px;
+  transition: 0.3s ease-in-out;
   font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+}
+.logo-text:hover{
+  font-size: clamp(1.2rem, 1.7vw, 1.3rem);
 }
 
 .logo:hover {
