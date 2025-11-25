@@ -99,16 +99,19 @@ function displayUsers(users) {
   }).join('');
 }
 
-document.getElementById('search-users').addEventListener('input', (e) => {
-  const search = e.target.value.toLowerCase();
-  const filtered = allUsers.filter(user => {
-    const fullName = `${user.firstname || ''} ${user.lastname || ''}`.toLowerCase();
-    return fullName.includes(search) ||
-      (user.email || '').toLowerCase().includes(search) ||
-      (user.phone || '').toLowerCase().includes(search);
+const searchUsersEl = document.getElementById('search-users');
+if (searchUsersEl) {
+  searchUsersEl.addEventListener('input', (e) => {
+    const search = e.target.value.toLowerCase();
+    const filtered = allUsers.filter(user => {
+      const fullName = `${user.firstname || ''} ${user.lastname || ''}`.toLowerCase();
+      return fullName.includes(search) ||
+        (user.email || '').toLowerCase().includes(search) ||
+        (user.phone || '').toLowerCase().includes(search);
+    });
+    displayUsers(filtered);
   });
-  displayUsers(filtered);
-});
+}
 
 function loadFeedback() {
   console.log('Loading feedback...');
@@ -157,24 +160,30 @@ function displayFeedback(feedbacks) {
   }).join('');
 }
 
-document.getElementById('search-feedback').addEventListener('input', (e) => {
-  const search = e.target.value.toLowerCase();
-  const filtered = allFeedback.filter(fb => 
-    (fb.name || '').toLowerCase().includes(search) ||
-    (fb.comment || '').toLowerCase().includes(search)
-  );
-  displayFeedback(filtered);
-});
-
-document.getElementById('filter-rating').addEventListener('change', (e) => {
-  const rating = e.target.value;
-  if (rating === 'all') {
-    displayFeedback(allFeedback);
-  } else {
-    const filtered = allFeedback.filter(fb => fb.rating === parseInt(rating));
+const searchFeedbackEl = document.getElementById('search-feedback');
+if (searchFeedbackEl) {
+  searchFeedbackEl.addEventListener('input', (e) => {
+    const search = e.target.value.toLowerCase();
+    const filtered = allFeedback.filter(fb => 
+      (fb.name || '').toLowerCase().includes(search) ||
+      (fb.comment || '').toLowerCase().includes(search)
+    );
     displayFeedback(filtered);
-  }
-});
+  });
+}
+
+const filterRatingEl = document.getElementById('filter-rating');
+if (filterRatingEl) {
+  filterRatingEl.addEventListener('change', (e) => {
+    const rating = e.target.value;
+    if (rating === 'all') {
+      displayFeedback(allFeedback);
+    } else {
+      const filtered = allFeedback.filter(fb => fb.rating === parseInt(rating));
+      displayFeedback(filtered);
+    }
+  });
+}
 
 function loadContacts() {
   console.log('Loading contacts...');
@@ -225,15 +234,18 @@ function displayContacts(contacts) {
   }).join('');
 }
 
-document.getElementById('search-contacts').addEventListener('input', (e) => {
-  const search = e.target.value.toLowerCase();
-  const filtered = allContacts.filter(c => 
-    (c.name || '').toLowerCase().includes(search) ||
-    (c.email || '').toLowerCase().includes(search) ||
-    (c.subject || '').toLowerCase().includes(search)
-  );
-  displayContacts(filtered);
-});
+const searchContactsEl = document.getElementById('search-contacts');
+if (searchContactsEl) {
+  searchContactsEl.addEventListener('input', (e) => {
+    const search = e.target.value.toLowerCase();
+    const filtered = allContacts.filter(c => 
+      (c.name || '').toLowerCase().includes(search) ||
+      (c.email || '').toLowerCase().includes(search) ||
+      (c.subject || '').toLowerCase().includes(search)
+    );
+    displayContacts(filtered);
+  });
+}
 
 function updateStats() {
   document.getElementById('total-users').textContent = allUsers.length;

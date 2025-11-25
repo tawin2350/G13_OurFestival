@@ -278,40 +278,42 @@
 	text-align: center;
 }
 main.register-main {
-	background: linear-gradient(-45deg, 
-		#0d1f14 0%, 
-		#0f0c0a 25%, 
-		#1f0a0f 50%, 
-		#160c08 75%, 
-		#1a0000 90%, 
-		#0a1912 100%);
-	background-size: 400% 400%;
-	animation: christmasGradient 15s ease infinite;
-	background-attachment: fixed;
+	background: transparent;
 	min-height: 80vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: relative;
 	overflow: hidden;
+	z-index: 1;
 }
 
 main.register-main::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: radial-gradient(circle at 25% 35%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-	            radial-gradient(circle at 75% 65%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-	pointer-events: none;
+	display: none;
 }
 body {
 	font-family: 'Prompt', system-ui, sans-serif;
-	background: #f6f7fb;
+	background: linear-gradient(180deg, #f5e6d3 0%, #e8d5c4 50%, #d4c5a9 100%);
+	background-attachment: fixed;
 	margin: 0;
-	color: #222;
+	color: #2d5016;
+	position: relative;
+	min-height: 100vh;
+}
+
+body::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: 
+		radial-gradient(circle at 15% 20%, rgba(205, 133, 63, 0.08) 0%, transparent 40%),
+		radial-gradient(circle at 85% 80%, rgba(139, 69, 19, 0.08) 0%, transparent 40%),
+		radial-gradient(circle at 50% 50%, rgba(218, 165, 32, 0.05) 0%, transparent 60%);
+	pointer-events: none;
+	z-index: 0;
 }
 
 .auth-main {
@@ -320,21 +322,10 @@ body {
 	justify-content: center;
 	min-height: 100vh;
 	padding: 60px 15px;
-	background: linear-gradient(135deg, 
-		#1a5f3f 0%, 
-		#2d7a54 15%,
-		#e8dcc4 30%,
-		#a82034 45%,
-		#d4c5a9 50%,
-		#8B0000 55%,
-		#f5e6d3 70%,
-		#1a5f3f 85%,
-		#2d7a54 100%
-	);
-	background-attachment: fixed;
-	background-size: 400% 400%;
-	animation: christmasGradient 15s ease infinite;
+	background: transparent;
 	box-sizing: border-box;
+	position: relative;
+	z-index: 1;
 }
 .card.glass-card {
 	background: rgba(255, 255, 255, 0);

@@ -512,23 +512,11 @@ header .logo {
 }
 
 .feedback-main {
-  background: linear-gradient(135deg, 
-    #0d1f14 0%, 
-    #1a2e1f 15%,
-    #0f0c0a 30%,
-    #1f0a0f 45%,
-    #160c08 50%,
-    #1a0000 55%,
-    #0a1912 70%,
-    #0d1f14 85%,
-    #1a2e1f 100%
-  );
-  background-attachment: fixed;
-  background-size: 400% 400%;
-  animation: christmasGradient 15s ease infinite;
+  background: transparent;
   min-height: 100vh;
   padding: 2em 0;
   position: relative;
+  z-index: 1;
 }
 
 .feedback-overlay {

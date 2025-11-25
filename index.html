@@ -201,12 +201,65 @@
 
 
   <section class="main animate-fade">
-    <div class="content">
-      <h> </h1>
-      <p>Holly Jolly Fair</p>
+    <div class="hero-decoration left-tree">
+      <div class="christmas-tree">
+        <div class="tree-top"></div>
+        <div class="tree-middle"></div>
+        <div class="tree-bottom"></div>
+        <div class="tree-trunk"></div>
+        <div class="tree-ornament ornament-1"></div>
+        <div class="tree-ornament ornament-2"></div>
+        <div class="tree-ornament ornament-3"></div>
+      </div>
+      <div class="christmas-ball ball-red"></div>
+    </div>
+
+    <div class="hero-decoration right-tree">
+      <div class="christmas-tree">
+        <div class="tree-top"></div>
+        <div class="tree-middle"></div>
+        <div class="tree-bottom"></div>
+        <div class="tree-trunk"></div>
+        <div class="tree-ornament ornament-1"></div>
+        <div class="tree-ornament ornament-2"></div>
+        <div class="tree-ornament ornament-3"></div>
+      </div>
+      <div class="christmas-ball ball-gold"></div>
+    </div>
+
+    <div class="hero-branch top-branch">
+      <svg viewBox="0 0 800 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 50 Q150 20, 250 50 T450 50 T650 50 T850 50" stroke="#5a7c5f" stroke-width="8" fill="none"/>
+        <circle cx="100" cy="35" r="12" fill="#cd853f"/>
+        <circle cx="200" cy="60" r="10" fill="#8b4513"/>
+        <circle cx="350" cy="40" r="14" fill="#a0522d"/>
+        <circle cx="500" cy="55" r="11" fill="#cd853f"/>
+        <circle cx="600" cy="45" r="13" fill="#8b4513"/>
+        <circle cx="700" cy="50" r="12" fill="#a0522d"/>
+        <path d="M400 20 L410 40 L390 40 Z" fill="#f4e5d3"/>
+      </svg>
+    </div>
+
+    <div class="content hero-content">
+      <h1 class="hero-title">Christmas Fair</h1>
+      <p class="hero-subtitle">Join us for a magical celebration<br>of the holiday season</p>
+      <a href="#gallery-section" class="hero-button">Learn More</a>
+    </div>
+
+    <div class="info-cards">
+      <div class="info-card" id="event-details-card" style="cursor: pointer;">
+        <div class="card-icon">📅</div>
+        <h3>Event Details</h3>
+        <p>มหาวิทยาลัยธรรมศาสตร์<br>13:00-16:00</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">🎁</div>
+        <h3>About Us</h3>
+        <p>Learn more about our<br>Christmas fair</p>
+      </div>
     </div>
   </section>
-  <section class="work">
+  <section class="work" id="gallery-section">
     <div class="split-hero">
       <div class="split-hero-inner">
         <div class="split-visual animate-slide-right">
@@ -378,9 +431,69 @@
     </div>
   </div>
 
+  <div class="event-details-popup" id="event-popup">
+    <div class="popup-overlay" onclick="closeEventPopup()"></div>
+    <div class="popup-box event-popup-box">
+      <button class="popup-close" onclick="closeEventPopup()">×</button>
+      <div class="popup-header">
+        <div class="popup-icon-circle">📅</div>
+        <h2>Event Details</h2>
+      </div>
+      <div class="popup-body">
+        <div class="event-info">
+          <div class="event-info-item">
+            <span class="event-icon">📍</span>
+            <div>
+              <strong>สถานที่</strong>
+              <p>อาคารบรรยายรวม 4 มหาวิทยาลัยธรรมศาสตร์<br>รังสิต ปทุมธานี</p>
+            </div>
+          </div>
+          <div class="event-info-item">
+            <span class="event-icon">🕒</span>
+            <div>
+              <strong>เวลา</strong>
+              <p>13:00 - 16:00 น.</p>
+            </div>
+          </div>
+          <div class="event-info-item">
+            <span class="event-icon">📅</span>
+            <div>
+              <strong>วันที่</strong>
+              <p>งาน Christmas Fair ประจำปี</p>
+            </div>
+          </div>
+        </div>
+        <div class="event-map">
+          <h3>📍 แผนที่</h3>
+          <iframe 
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.048602805868!2d100.60942037586244!3d14.07188408632514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e27c6c5c2b8cb1%3A0xdee7a18abf8e57a3!2sThammasat%20University%20Rangsit%20Campus!5e0!3m2!1sen!2sth!4v1700000000000!5m2!1sen!2sth"
+            height="300" 
+            style="border:0; border-radius: 15px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <script src="script/script.js"></script>
 <script src="script/secret-admin.js"></script>
 <script>
+  document.getElementById('event-details-card')?.addEventListener('click', function() {
+    document.getElementById('event-popup').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  });
+  function closeEventPopup() {
+    document.getElementById('event-popup').style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeEventPopup();
+    }
+  });
   (function() {
     const isRegistered = localStorage.getItem('isRegistered');
     
@@ -451,6 +564,19 @@
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
+    });
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
     });
   });
 
